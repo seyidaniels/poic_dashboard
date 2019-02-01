@@ -13,4 +13,11 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/timeline', 'HomeController@timeline');
+Route::get('/rules', 'HomeController@rule');
+Route::get('/faq', 'HomeController@faq');
 Route::get('/dashboard', 'SinglePageController@index');
+
+
+Route::get('verify/{email_token}', 'RegisterController@verifyUser');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
+Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('password.reset');

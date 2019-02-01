@@ -16,6 +16,8 @@
     <!-- <link href="/landing/assets/css/demo.css" rel="stylesheet" /> -->
     <link href="/landing/assets/css/custom.css" rel="stylesheet" />
     <link href="/landing/assets/css/float-button.css" rel="stylesheet" />
+    <link href="/landing/assets/css/timeline.css" rel="stylesheet" >
+
 
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="/landing/assets/slick/slick.css"/>

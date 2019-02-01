@@ -15,4 +15,14 @@ class HomeController extends Controller
     {
         return view('timeline');
     }
+
+    function rule()
+    {
+        return view('rules');
+    }
+
+    function faq()
+    {
+        return view('faq');
+    }
 }

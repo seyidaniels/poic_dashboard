@@ -10,7 +10,7 @@ navbar navbar-expand-lg bg-dark fixed-top
                 <img src="/landing/assets/img/logo-white.png"  class="img-fluid img-white" style="width: 50%;" alt="">
                 <img src="/landing/assets/img/logo-white.png"class="img-fluid img-blue" alt="">
             </a>
-            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index"
+            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" href="#"navigation" aria-controls="navigation-index"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar bar1"></span>
                 <span class="navbar-toggler-bar bar2"></span>
@@ -20,7 +20,7 @@ navbar navbar-expand-lg bg-dark fixed-top
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link page-scroll" href="#">
+                    <a class="nav-link page-scroll" href="#"  >
                         <p>Home </p>
                     </a>
                 </li>
@@ -30,7 +30,7 @@ navbar navbar-expand-lg bg-dark fixed-top
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="font-size: 14px;">
+                    <a class="nav-link" href="#"   style="font-size: 14px;">
                         Rules
                     </a>
                 </li>

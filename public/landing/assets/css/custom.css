@@ -742,9 +742,9 @@ output {
 }
 
 .poic-footer {
-  border-radius: 15px;
- background-color: #121212;
-    padding: 96px 0px 1px 0px;
+  /* border-radius: 15px; */
+  background-color: #121212;
+  padding: 96px 0px 1px 0px;
 }
 
 .social-icons span {

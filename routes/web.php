@@ -13,4 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/timeline', 'HomeController@timeline');
+Route::get('/rules', 'HomeController@rule');
+Route::get('/faq', 'HomeController@faq');
 Route::get('/dashboard', 'SinglePageController@index');

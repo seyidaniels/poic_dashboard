@@ -313,8 +313,6 @@ export default {
             this.loading = !this.loading;
         },
         handleResponse (data) {
-            console.log(data);
-            return;
             if (data.success) {
                 toastr.success(data.message);
                 this.userSignUp = ''

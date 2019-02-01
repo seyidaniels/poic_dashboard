@@ -2079,9 +2079,6 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = !this.loading;
     },
     handleResponse: function handleResponse(data) {
-      console.log(data);
-      return;
-
       if (data.success) {
         toastr.success(data.message);
         this.userSignUp = '';

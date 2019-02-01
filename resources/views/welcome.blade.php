@@ -12,7 +12,7 @@
                         <p class="text-white">Do you have an innovative idea or technology-driven solution? Apply for POIC</p>
 
 
-                        <h5 class="m-4">Application opens in <span id="countdown" class="text-orange" ></span> </h5>
+                        <h5 class="m-4">Application is Open</h5>
 
                         <!-- <a class=" btn btn-lg btn-orange text-left" href="{{URL('dashboard')}}"> Apply Now
                             <span class="pull-right fa fa-chevron-right"></span>
@@ -45,10 +45,10 @@
 
                                            <div class="col-md-8">
 
-                                                <p class="text-justify"> Proffesor Oluwatoyin Temitayo Ogundipe (born 31 May 1960) is a Nigerian academic, author and a Professor of botany. </p>
-                                                <p class="text-justify"> He is the 12th substantive Vice-Chancellor of University of Lagos. He attended the University of Ife (now Obafemi Awolowo University) where he obtained a Bachelor of science (B.Sc.) degree in Botany. He holds a master's degree in Botany from the University of Ife and Doctorate degree (Ph.D.) from the same University. Thereafter, he obtained a master's degree in Business Administration from the University of Lagos and bagged a certificate of attendance from University of Reading in 1998.</p>
-                                                   <p class="text-justify"> Professor Ogundipe began his academic career at the University of Lagos as a lecturer where he rose to the rank of professor of Botany in 2002. He was Dean, School of Postgraduate Studies from August 2007 to July 2011 and Director, Academic Planning Unit April 2012 to April 2016. He was appointed as the vice chancellor of the University of Lagos in November 2017 having emerged highest in the interview conducted, beating Professor Olukayode Amund, and Professor Ayodeji Olukoju to the post.</p>
-                                                    <p class="text-justify"> Until his appointment in November, he was the deputy vice chancellor of the University of Lagos. </p>
+                                                <p class="text-justify"> Professor Oluwatoyin Temitayo Ogundipe (born May 31, 1960) is a Nigerian academic, author and a Professor of botany. </p>
+                                                <p class="text-justify"> He is the 12th Vice-Chancellor of University of Lagos. He attended the University of Ife (now Obafemi Awolowo University) where he obtained a Bachelor of science (B.Sc.) degree in Botany. He holds a master's degree in Botany from the University of Ife and Doctorate degree (Ph.D.) from the same University. Thereafter, he obtained a master's degree in Business Administration from the University of Lagos and bagged a certificate of attendance from University of Reading in 1998.</p>
+                                                   <p class="text-justify"> Professor Ogundipe began his academic career at the University of Lagos as a lecturer where he rose to the rank of professor of Botany in 2002. He was Dean, School of Postgraduate Studies from August 2007 to July 2011 and Director, Academic Planning Unit April 2012 to April 2016. He was appointed as the vice chancellor of the University of Lagos in November 2017.</p>
+                                                    <p class="text-justify"> Until his appointment in November, he was the Deputy Vice Chancellor of the University of Lagos. </p>
                                                       <p class="text-justify"> Toyin Ogundipe is married with children</p>
 
                                            </div>

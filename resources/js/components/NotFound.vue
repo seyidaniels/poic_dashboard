@@ -8,7 +8,7 @@
 
           <!-- Image -->
           <div class="text-center">
-            <img src="/dashboard_assets/assets/img/illustrations/lost.svg" alt="..." class="img-fluid">
+            <img src="dashboard_assets/assets/img/illustrations/lost.svg" alt="..." class="img-fluid">
           </div>
 
         </div>

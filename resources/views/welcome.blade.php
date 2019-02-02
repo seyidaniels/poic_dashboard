@@ -40,7 +40,7 @@
                                        <div class="row">
                                            <div class="col-md-4">
                                                 <h2 class="font-weight-bold mt-1">Who is Professor Ogundipe?</h2>
-                                                <img src="/dashboard_assets/assets/img/covers/aut-size-cover.png"  class="img-fluid img-responsive" alt="">
+                                                <img src="dashboard_assets/assets/img/covers/aut-size-cover.png"  class="img-fluid img-responsive" alt="">
                                            </div>
 
                                            <div class="col-md-8">

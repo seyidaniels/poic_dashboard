@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 @include('includes.header')
 
 <body class="index-page sidebar-collapse">
@@ -43,7 +43,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="/dashboard">
-                            <button class="nav-link btn btn-orange" style="border-radius: 40px;" > 
+                            <button class="nav-link btn btn-orange" style="border-radius: 40px;" >
                                 <p>Apply Now</p>
                             </button>
                         </a>
@@ -68,7 +68,7 @@
                         <br><br>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <img src="/dashboard_assets/assets/img/illustrations/happiness.svg" alt="..." class="img-fluid">
+                        <img src="dashboard_assets/assets/img/illustrations/happiness.svg" alt="..." class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -76,19 +76,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <img src="/dashboard_assets/assets/img/illustrations/designer-life.svg" alt="..." class="img-fluid">
+                        <img src="dashboard_assets/assets/img/illustrations/designer-life.svg" alt="..." class="img-fluid">
                     </div>
                     <div class="col-sm-8 text-right text-justify">
                         <h2>Qualification</h2>
                         <p>
                             The challenge is open to undergraduate and graduate students. Teams may have between 2-4 members. Teams/Participants are free to enlist professors, teachers, and professionals as advisors, but the work must be done by the students only.
-                            All team members must be students at the time of submission of the application. 
+                            All team members must be students at the time of submission of the application.
                         </p>
                         <br>
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <div class="container" >
@@ -104,7 +104,7 @@
                         </p>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <img src="/dashboard_assets/assets/img/illustrations/coworking.svg" alt="..." class="img-fluid">
+                        <img src="dashboard_assets/assets/img/illustrations/coworking.svg" alt="..." class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -112,24 +112,24 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <img src="/dashboard_assets/assets/img/illustrations/scale.svg" alt="..." class="img-fluid">
+                        <img src="dashboard_assets/assets/img/illustrations/scale.svg" alt="..." class="img-fluid">
                     </div>
                     <div class="col-sm-8 text-right text-justify">
                         <h2>Submitting</h2><br>
                         <p>
-                            Submissions will commence in late November 2018, on the conference website. Interested teams will complete the submission form, as well as sign the participant agreement.  Proposals would be submitted at 8:00 p.m. on January 8, 2019. 
+                            Submissions will commence in late November 2018, on the conference website. Interested teams will complete the submission form, as well as sign the participant agreement.  Proposals would be submitted at 8:00 p.m. on January 8, 2019.
                         </p>
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
 </body>
 
 <footer>
-    @include('includes.address')    
+    @include('includes.address')
 </footer>
 
 <!--   Core JS Files   -->

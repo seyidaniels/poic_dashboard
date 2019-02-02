@@ -37,7 +37,7 @@
                 <div class="row justify-content-center">
                   <div class="col-12 col-xl-10">
 
-                    <img src="/dashboard_assets/assets/img/illustrations/happiness.svg"  alt="..." class="img-fluid mt--5 mb-4" style="max-width: 272px;">
+                    <img src="dashboard_assets/assets/img/illustrations/happiness.svg"  alt="..." class="img-fluid mt--5 mb-4" style="max-width: 272px;">
 
                     <h2>
                       We are glad to have you on board

@@ -131,7 +131,7 @@
                     <!-- Link -->
                     <div class="text-center">
                     <small class="text-muted text-center">
-                        Already have an account? <a  href="#" @click="showSignIn = true; showSignUp = false; showForgot = false" >Log in</a>.
+                        Already have an account? <a  href="#" @click="showSignIn = true; showSignUp = false; showForgot = false; showResendEmail = false;" >Log in</a>.
                     </small>
 
 
@@ -196,15 +196,13 @@
             <!-- Link -->
             <div class="text-center">
               <small class="text-muted text-center">
-                Dont have an account? <a  href="#" @click="showSignUp = true; showForgot = false; showSignIn = false;" >Sign Up</a>.
+                Dont have an account? <a  href="#" @click="showSignUp = true; showForgot = false; showSignIn = false; showResendEmail = false;" >Sign Up</a>.
               </small>
               <small class="text-muted text-center">
-                Forgot Password? <a  href="#" @click="showForgot = true; showSignUp = false; showSignIn = false;" >Forgot</a>.
+                Forgot Password? <a  href="#" @click="showForgot = true; showSignUp = false; showSignIn = false; showResendEmail = false;" >Forgot</a>.
               </small>
+              <small v-if="promptResend"   class="text-muted text-center" > Did not get any email,  <a href="#" @click="showResendEmail = true; showForgot = false; showSignIn = false; showSignUp = false; " > Resend </a> </small>
             </div>
-
-
-
 
           </form>
               </div>
@@ -246,7 +244,7 @@
             <!-- Link -->
             <div class="text-center">
               <small class="text-muted text-center">
-                Back to Login?<a  href="#" @click="showSignUp = false; showForgot = false; showSignIn = true;" >Sign In</a>.
+                Back to Login?<a  href="#" @click="showSignUp = false; showForgot = false; showSignIn = true; showResendEmail = false" >Sign In</a>.
               </small>
             </div>
           </form>
@@ -255,6 +253,55 @@
         </transition>
 
           </div>
+
+
+          <div v-show="showResendEmail">
+
+        <transition name="component-fade" mode="out-in">
+
+            <div>
+
+                                        <!-- Subheading -->
+                <p class="text-center mb-5">
+                    Resend Email
+                </p>
+                <form>
+
+            <!-- Email address -->
+            <div class="form-group">
+
+              <!-- Label -->
+              <label>
+                Email Address
+              </label>
+
+              <!-- Input -->
+              <input type="email" class="form-control" placeholder="name@address.com">
+
+            </div>
+
+
+             <!-- Submit -->
+            <button class="btn btn-lg btn-block btn-primary mb-3">
+                Resend Verification Code
+            </button>
+
+            <!-- Link -->
+            <div class="text-center">
+              <small class="text-muted text-center">
+                Back to Login?<a  href="#" @click="showSignUp = false; showForgot = false; showSignIn = true; showResendEmail = false;" >Sign In</a>.
+              </small>
+            </div>
+          </form>
+            </div>
+
+        </transition>
+
+          </div>
+
+
+
+
 
         </div>
 
@@ -269,6 +316,8 @@ export default {
             showForgot: false,
             showSignIn: true,
             loading: false,
+            promptResend: false,
+            showResendEmail: false,
             url: '',
             userSignUp: {
                 'email': '',
@@ -291,7 +340,6 @@ export default {
             if (this.userSignUp.phone.length < 11)  return toastr.warning ("Invalid Phone Number")
             if (this.userSignUp.password.length < 5)  return toastr.warning("Please use a stronger password");
             if (this.userSignUp.password !== this.userSignUp.password_confirmation)  return toastr.warning ("Passwords do not match")
-
             return true;
         },
          validateEmail(email) {
@@ -317,12 +365,16 @@ export default {
                 toastr.success(data.message);
                 this.userSignUp = ''
                 this.userSignIn = ''
+                let token = data.data.token;
+                let user = data.data.user;
+                this.saveUserData(token, user);
                 setTimeout(() => {
                     location.reload()
                 }, 3000);
             }else {
                 toastr.warning (data.error);
             }
+            if (data.not_verified) this.promptResend = true;
             this.toggleLoading();
         },
         handleError (error) {
@@ -330,6 +382,8 @@ export default {
                 if (error.response.status === 422) {
                 Object.values(error.response.data.error).forEach( function (element) {
                 toastr.error(element)})
+                }else if (error.response.status === 404) {
+                    toastr.error ("Could not find the requested resource")
                 } else {
                     toastr.error ("a server error occured")
                 }
@@ -337,6 +391,12 @@ export default {
                 toastr.error("Oops! Bad Network Connection")
             }
             this.toggleLoading();
+        },
+        saveUserData (token, user) {
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('token', token)
+            this.$store.dispatch('SET_TOKEN', token)
+            this.$store.dispatch('SET_USER', user)
         },
          validateLogin () {
             if (!this.validateEmail(this.userSignIn.email)) return toastr.warning ("Email is not valid");

@@ -13,6 +13,8 @@ class WelcomeEmail extends Notification
 
     private $data;
 
+
+
     /**
      * Create a new notification instance.
      *
@@ -42,7 +44,7 @@ class WelcomeEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        return  (new MailMessage)->view('email.welcome', ['data' => $this->data])->from ('seyidaniels@gmail.com');
+        return  (new MailMessage)->view('email.welcome', ['data' => $this->data])->from ('seyidaniels@gmail.com')->subject('POIC Account Created, Verification Needed');
     }
 
     /**

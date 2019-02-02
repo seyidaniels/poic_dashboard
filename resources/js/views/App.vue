@@ -1,8 +1,8 @@
 <template>
   <div>
-    <app-auth v-show="!authenticated"></app-auth>
+    <app-auth v-show="!this.$store.getters.isAuthenticated"></app-auth>
 
-    <app-dashboard v-show="authenticated"></app-dashboard>
+    <app-dashboard v-show="this.$store.getters.isAuthenticated"></app-dashboard>
 
   </div>
 </template>
@@ -18,8 +18,12 @@ export default {
   },
   data: function() {
     return {
-      authenticated: false
     };
   },
+  mounted () {
+      console.log(
+          this.$store
+      )
+  }
 };
 </script>

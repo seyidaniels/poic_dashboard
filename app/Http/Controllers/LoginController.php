@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use JWTAuth;
+use App\Notifications\WelcomeEmail;
+
 
 class LoginController extends Controller
 {
@@ -34,8 +36,8 @@ class LoginController extends Controller
         // all good so return the token
         // Check if Users mail has been verified
         $user = JWTAuth::toUser($token);
-        if ($user->verify == true ) return response()->json (['success' => false, 'error' => 'Ooops! Seems your account has not been verified', 'not_verified' => true]);
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+        if ($user->verified == false ) return response()->json (['success' => false, 'error' => 'Ooops! Seems your account has not been verified, Kindly check your email for verification', 'not_verified' => true]);
+        return response()->json(['success' => true, 'data'=> [ 'token' => $token, 'user' => $user ]], 200);
     }
     /**
      * Log out
@@ -54,5 +56,17 @@ class LoginController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(['success' => false, 'error' => 'Failed to logout, please try again.'], 500);
         }
+    }
+
+    public function resendVerification (Request $request) {
+        $email = $request['email'];
+
+        $data = User::findOrFail($email);
+
+        $data['message'] = 'You requested for a new verfication code, If your account has been verified, Kindly ignore this email';
+
+        $user->notify(new WelcomeEmail($data));
+
+
     }
 }

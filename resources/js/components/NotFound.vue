@@ -2,13 +2,13 @@
 
      <!-- CONTENT
     ================================================== -->
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-12 col-md-6 offset-xl-2 offset-md-1 order-md-2 mb-5 mb-md-0">
+     <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10 col-xl-8">
 
           <!-- Image -->
           <div class="text-center">
-            <img src="assets/img/illustrations/lost.svg" alt="..." class="img-fluid">
+            <img src="/dashboard_assets/assets/img/illustrations/lost.svg" alt="..." class="img-fluid">
           </div>
 
         </div>
@@ -32,8 +32,8 @@
             </p>
 
             <!-- Button -->
-            <a href="index-2.html" class="btn btn-lg btn-primary">
-              Return to your dashboard
+            <a href="/dashboard" class="btn btn-lg btn-primary">
+              Return Home
             </a>
 
           </div>

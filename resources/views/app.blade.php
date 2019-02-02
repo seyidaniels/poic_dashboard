@@ -38,10 +38,11 @@
 
        <div id="app"></div>
 
-       <script src="{{asset('js/app.js')}}"></script>
 
 
     <!-- Libs JS -->
+    <script src="/dashboard_assets/assets/libs/jquery/dist/jquery.min.js"></script>
+
     <script src="/dashboard_assets/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/dashboard_assets/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="/dashboard_assets/assets/libs/chart.js/Chart.extension.min.js"></script>
@@ -57,6 +58,13 @@
 
     <!-- Theme JS -->
     <script src="/dashboard_assets/assets/js/theme.min.js"></script>
+
+    <script src="{{asset('js/app.js')}}"></script>
+
+
+
+
+
 
 
     </body>

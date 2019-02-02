@@ -11,6 +11,8 @@ import Vue from 'vue';
 import Routes from '@/js/routes.js';
 import App from '@/js/views/App'
 import store from '@/js/store'
+import moment from 'moment'
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,6 +32,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
+Vue.prototype.moment = moment
 
 const app = new Vue({
     el: '#app',

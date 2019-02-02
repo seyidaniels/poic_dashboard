@@ -9,12 +9,12 @@
 </template>
 <script>
 import Navbar from "@/js/components/includes/Navbar";
-import SecondNavbar from "@/js/components/includes/SecondNavbar";
+import SecondNavBar from "@/js/components/includes/SecondNavBar";
 
 export default {
   components: {
     "app-navbar": Navbar,
-    "app-navbar-second": SecondNavbar
+    "app-navbar-second": SecondNavBar
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/landing/assets/img/favicon.svg">
-    <link rel="icon" type="image/png" href="/landing/assets/img/favicon.svg">
+    <link rel="apple-touch-icon" sizes="76x76" href="/landing/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="/landing/assets/img/favicon.png">
     <meta charset="UTF-8">
     <title>Professor Ogundipe Innovative Challenge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

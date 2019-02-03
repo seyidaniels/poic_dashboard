@@ -7,13 +7,11 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class WelcomeEmail extends Notification
+class TeamCreated extends Notification
 {
     use Queueable;
 
     private $data;
-
-
 
     /**
      * Create a new notification instance.
@@ -44,7 +42,8 @@ class WelcomeEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        return  (new MailMessage)->view('email.welcome', ['data' => $this->data])->from ('poic@unilag.edu.ng')->subject('POIC Account Created, Verification Needed');
+        return  (new MailMessage)->view('email.team', ['data' => $this->data])->from ('poic@Unilag.edu.ng')->subject('POIC | Your Team has been Created');
+
     }
 
     /**
@@ -56,7 +55,7 @@ class WelcomeEmail extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Congrats, You just created an account on POIC'
+            'message' => 'Your Team has been created'
         ];
     }
 }

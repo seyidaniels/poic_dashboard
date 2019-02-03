@@ -14,6 +14,7 @@ import store from '@/js/store'
 import moment from 'moment'
 
 
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -39,10 +40,11 @@ Vue.prototype.moment = moment
 const app = new Vue({
     el: '#app',
     router: Routes,
+    moment: moment,
     store: store,
     render: h => h(App)
 });
 export default app;
 
-store.getters.isAuthenticated ? axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') : ""
+store.getters.isAuthenticated ? axios.defaults.headers.common['Authorization'] = "Bearer " +  localStorage.getItem('token') : ""
 

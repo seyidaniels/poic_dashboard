@@ -22,16 +22,16 @@
               <!-- Toggle -->
               <a href="#!" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-sm avatar-online">
-                  <img src="dashboard_assets/assets/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                  <img src="https://image.flaticon.com/icons/svg/145/145849.svg" class="avatar-img rounded-circle" alt="...">
                 </div>
               </a>
 
               <!-- Menu -->
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
-                <a href="profile-posts.html" class="dropdown-item">Profile</a>
-                <a href="settings.html" class="dropdown-item">Settings</a>
+                <a href="#" class="dropdown-item">Profile</a>
+                <a href="#" class="dropdown-item">Settings</a>
                 <hr class="dropdown-divider">
-                <a href="sign-in.html" class="dropdown-item">Logout</a>
+                <a href="#" @click="logout" class="dropdown-item">Logout</a>
               </div>
 
             </div>
@@ -79,3 +79,23 @@
 
 
 </template>
+<script>
+export default {
+    methods: {
+logout () {
+    axios.post (this.$store.state.serverURI + 'logout', {'token': localStorage.getItem('token')}).then (response => {
+        if (response.data.success) {
+            this.$store.dispatch("SET_TOKEN", null);
+            this.$store.dispatch("SET_USER", null);
+            localStorage.removeItem('user')
+            localStorage.removeItem('token')
+            location.href = '/dashboard'
+        }
+    }).catch (error => {
+        handleError(error)
+    })
+}
+}
+}
+</script>
+

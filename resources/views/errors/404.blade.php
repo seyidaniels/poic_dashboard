@@ -57,10 +57,16 @@
               Looks like you ended up here by accident?
             </p>
 
-            <!-- Button -->
+            @if (Auth::user())
+                <!-- Button -->
+            <a href="/dashboard" class="btn btn-lg btn-primary">
+                Return to Dashboard
+              </a>
+            @else
             <a href="/" class="btn btn-lg btn-primary">
-              Return Home
+                Return Home
             </a>
+            @endif
 
           </div>
 

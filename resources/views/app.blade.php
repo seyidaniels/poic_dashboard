@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="dashboard_assets/assets/fonts/feather/feather.min.css">
     <link rel="stylesheet" href="dashboard_assets/assets/libs/highlight.js/styles/vs2015.css">
     <link rel="stylesheet" href="dashboard_assets/assets/libs/quill/dist/quill.core.css">
+    <link rel="stylesheet" href="dashboard_assets/assets/libs/select2/dist/css/select2.min.css">
 
     <link rel="stylesheet" href="dashboard_assets/assets/libs/flatpickr/dist/flatpickr.min.css">
 
@@ -29,6 +30,13 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+    <style>
+        [v-cloak] {
+        display: none;
+        }
+    </style>
+
     <style>body { display: none; }</style>
 
 
@@ -36,7 +44,7 @@
 
     <body>
 
-       <div id="app"></div>
+       <div  id="app" v-cloak></div>
 
 
 

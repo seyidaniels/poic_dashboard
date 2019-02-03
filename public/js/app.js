@@ -57708,7 +57708,7 @@ var render = function() {
   return _c("div", { staticClass: "main-content" }, [
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: " row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "justify-content-center" }, [
             _c("div", { staticClass: "card mt-5" }, [
               _c(

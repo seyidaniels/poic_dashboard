@@ -57313,13 +57313,15 @@ var render = function() {
         _c("div", { attrs: { id: "alerts" } }, [
           _c("div", { staticClass: "header mt-md-6" }, [
             _c("div", { staticClass: "header-body" }, [
-              _c("h1", { staticClass: "header-title" }, [
-                _vm._v(
-                  "\n              Welcome, " +
-                    _vm._s(this.$store.getters.getUser.firstname) +
-                    "\n            "
-                )
-              ])
+              this.$store.getters.firstname
+                ? _c("h1", { staticClass: "header-title" }, [
+                    _vm._v(
+                      "\n              Welcome, " +
+                        _vm._s(this.$store.getters.getUser.firstname) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),

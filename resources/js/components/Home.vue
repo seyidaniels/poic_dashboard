@@ -23,9 +23,9 @@
                 <div class="card-body">
                   <div class="alert alert-success" role="alert">
                     <h4 class="alert-heading">Well done!</h4>
-                    <p>Thank you for signing up successfully, we</p>
+                    <p>Thank you for signing up successfully, we  are glad to have you on board</p>
                     <hr>
-                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                    <p class="mb-0">Do contact 08176607259 if there are any issues in applying for poic here.</p>
                   </div>
                 </div>
               </div>

@@ -57386,13 +57386,17 @@ var staticRenderFns = [
           [
             _c("h4", { staticClass: "alert-heading" }, [_vm._v("Well done!")]),
             _vm._v(" "),
-            _c("p", [_vm._v("Thank you for signing up successfully, we")]),
+            _c("p", [
+              _vm._v(
+                "Thank you for signing up successfully, we  are glad to have you on board"
+              )
+            ]),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
             _c("p", { staticClass: "mb-0" }, [
               _vm._v(
-                "Whenever you need to, be sure to use margin utilities to keep things nice and tidy."
+                "Do contact 08176607259 if there are any issues in applying for poic here."
               )
             ])
           ]

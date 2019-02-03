@@ -42,7 +42,7 @@ class RegisterController extends Controller
 
             $user = User::create($data);
 
-            $data['message'] = 'Thank you for creating an account to partipate in the Professor Ogundipe Innovative Challenge. To continue please confirm your email by clicking the button below';
+            $data['message'] = 'Thank you for creating an account to participate in the Professor Ogundipe Innovative Challenge. To continue please confirm your email by clicking the button below';
 
             $user->notify(new WelcomeEmail($data));
 

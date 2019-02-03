@@ -33,9 +33,9 @@
                       <div class="col-auto">
 
                         <!-- Link -->
-                        <a href="#!" class="small">
+                        <router-link to="/notifications" class="small">
                           View all
-                        </a>
+                        </router-link>
 
                       </div>
                     </div> <!-- / .row -->
@@ -44,14 +44,14 @@
 
                     <!-- List group -->
                     <div class="list-group list-group-flush my--3">
-                      <a class="list-group-item px-0" href="#!">
+                      <a class="list-group-item px-0" href="#" v-for="(msg , index) in notifications" :key="index"  >
 
                         <div class="row">
                           <div class="col-auto">
 
                             <!-- Avatar -->
                             <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                              <img src="https://image.flaticon.com/icons/svg/1040/1040216.svg" alt="..." class="avatar-img rounded-circle">
                             </div>
 
                           </div>
@@ -59,222 +59,18 @@
 
                             <!-- Content -->
                             <div class="small text-muted">
-                              <strong class="text-body">Dianna Smiley</strong> shared your post with <strong class="text-body">Ab Hadley</strong>, <strong class="text-body">Adolfo Hess</strong>, and <strong class="text-body">3 others</strong>.
+                              <strong class="text-body"> {{msg.data.message}} </strong>.
                             </div>
 
                           </div>
                           <div class="col-auto">
 
                             <small class="text-muted">
-                              2m
+                              {{moment(msg.created_at).fromNow()}}
                             </small>
 
                           </div>
                         </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-2.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Ab Hadley</strong> reacted to your post with a 😍
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-3.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Adolfo Hess</strong> commented <blockquote class="text-body">“I don’t think this really makes sense to do without approval from Johnathan since he’s the one...” </blockquote>
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-4.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Daniela Dewitt</strong> subscribed to you.
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-5.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Miyah Myles</strong> shared your post with <strong class="text-body">Ryu Duke</strong>, <strong class="text-body">Glen Rouse</strong>, and <strong class="text-body">3 others</strong>.
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-6.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Ryu Duke</strong> reacted to your post with a 😍
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-7.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Glen Rouse</strong> commented <blockquote class="text-body">“I don’t think this really makes sense to do without approval from Johnathan since he’s the one...” </blockquote>
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
-                      </a>
-                      <a class="list-group-item px-0" href="#!">
-
-                        <div class="row">
-                          <div class="col-auto">
-
-                            <!-- Avatar -->
-                            <div class="avatar avatar-sm">
-                              <img src="dashboard_assets/assets/img/avatars/profiles/avatar-8.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-
-                          </div>
-                          <div class="col ml--2">
-
-                            <!-- Content -->
-                            <div class="small text-muted">
-                              <strong class="text-body">Grace Gross</strong> subscribed to you.
-                            </div>
-
-                          </div>
-                          <div class="col-auto">
-
-                            <small class="text-muted">
-                              2m
-                            </small>
-
-                          </div>
-                        </div> <!-- / .row -->
-
                       </a>
                     </div>
 
@@ -288,15 +84,15 @@
 
                 <!-- Toggle -->
                 <a href="#" class="avatar avatar-sm avatar-online dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="dashboard_assets/assets/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  <img src="https://image.flaticon.com/icons/svg/145/145849.svg" alt="..." class="avatar-img rounded-circle">
                 </a>
 
                 <!-- Menu -->
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a href="profile-posts.html" class="dropdown-item">Profile</a>
-                  <a href="settings.html" class="dropdown-item">Settings</a>
+                  <a href="#" class="dropdown-item">Profile</a>
+                  <a href="#" class="dropdown-item">Settings</a>
                   <hr class="dropdown-divider">
-                  <a href="sign-in.html" class="dropdown-item">Logout</a>
+                  <a href="#" @click="logout" class="dropdown-item">Logout</a>
                 </div>
 
               </div>
@@ -306,3 +102,50 @@
         </div> <!-- / .container -->
       </nav>
 </template>
+<script>
+import { mapGetters } from 'vuex'
+import handleError from '../../error';
+
+export default {
+data: function ()  {
+    return {
+        notifications: []
+    }
+},
+watch:  {
+    notifications () {
+        // this.notifications = this.$store.getters.notifications
+    }
+},
+created () {
+    if (this.$store.getters.isAuthenticated) {
+            axios.defaults.headers.common['Authorization'] = "Bearer " +  localStorage.getItem('token')
+            axios.get(this.$store.state.serverURI + 'get-notifications').then(response => {
+            if (response.data.success) {
+                this.notifications = response.data.notifications;
+                this.$store.dispatch("SET_NOTIFICATIONS", this.notifications)
+
+            }
+        }).catch (error => {
+            handleError(error)
+        })
+    }
+},
+methods: {
+logout () {
+    axios.post (this.$store.state.serverURI + 'logout', {'token': localStorage.getItem('token')}).then (response => {
+        if (response.data.success) {
+            this.$store.dispatch("SET_TOKEN", null);
+            this.$store.dispatch("SET_USER", null);
+            localStorage.removeItem('user')
+            localStorage.removeItem('token')
+            location.href = '/dashboard'
+        }
+    }).catch (error => {
+        handleError(error)
+    })
+}
+}
+}
+</script>
+

@@ -278,6 +278,7 @@
               <!-- Input -->
               <input type="email" class="form-control" placeholder="name@address.com">
 
+
             </div>
 
 
@@ -298,10 +299,6 @@
         </transition>
 
           </div>
-
-
-
-
 
         </div>
 
@@ -347,11 +344,10 @@ export default {
             return re.test(String(email).toLowerCase());
         },
         clickRegister() {
-            console.log(this.validateRegister())
             if (this.validateRegister() === true) {
                 this.toggleLoading();
                 axios.post (this.url + 'register', this.userSignUp).then (response => {
-                    this.handleResponse(response.data);
+                    this.handleResponse(response);
                 }).catch (error => {
                     this.handleError(error)
                 })
@@ -361,20 +357,18 @@ export default {
             this.loading = !this.loading;
         },
         handleResponse (data) {
-            if (data.success) {
-                toastr.success(data.message);
+            if (data.data.success) {
+                toastr.success(data.data.message);
                 this.userSignUp = ''
                 this.userSignIn = ''
-                let token = data.data.token;
-                let user = data.data.user;
+                let token = data.data.data.token;
+                let user = data.data.data.user;
                 this.saveUserData(token, user);
-                setTimeout(() => {
-                    location.reload()
-                }, 3000);
+                window.location.reload();
             }else {
-                toastr.warning (data.error);
+                toastr.warning (data.data.error);
             }
-            if (data.not_verified) this.promptResend = true;
+            if (data.data.not_verified) this.promptResend = true;
             this.toggleLoading();
         },
         handleError (error) {
@@ -385,10 +379,8 @@ export default {
                 }else if (error.response.status === 404) {
                     toastr.error ("Could not find the requested resource")
                 } else {
-                    toastr.error ("a server error occured")
+                    toastr.error ("Oops! Something went wrong, we could not send a verification mail to you, please try again!")
                 }
-            }else {
-                toastr.error("Oops! Bad Network Connection")
             }
             this.toggleLoading();
         },
@@ -399,25 +391,30 @@ export default {
             this.$store.dispatch('SET_USER', user)
         },
          validateLogin () {
-            if (!this.validateEmail(this.userSignIn.email)) return toastr.warning ("Email is not valid");
             if (this.userSignIn.password.length < 5) return toastr.warning ("Password too short");
             return true;
         },
 
      clickLogin () {
-         if (this.validateLogin() == true) {
              this.toggleLoading()
              axios.post(this.url + 'login', this.userSignIn).then (response => {
-                 this.handleResponse(response.data)
+                 if (response.data.success) {
+                     let token = response.data.data.token;
+                    let user = response.data.data.user;
+                    this.saveUserData(token, user);
+                    location.reload();
+                 }else {
+                     toastr.error(response.data.error)
+                      if (response.data.not_verified) this.promptResend = true;
+                        this.toggleLoading();
+                 }
              }).catch (error => {
                  this.handleError(error);
              })
-         }
      }
     },
     mounted () {
         this.url = this.$store.state.serverURI
-        console.log(this.url)
     }
 
 }

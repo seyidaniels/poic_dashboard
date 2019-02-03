@@ -37,7 +37,7 @@ class LoginController extends Controller
         // Check if Users mail has been verified
         $user = JWTAuth::toUser($token);
         if ($user->verified == false ) return response()->json (['success' => false, 'error' => 'Ooops! Seems your account has not been verified, Kindly check your email for verification', 'not_verified' => true]);
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token, 'user' => $user ]], 200);
+        return response()->json(['success' => true, 'message' => 'Authentication Success', 'data'=> [ 'token' => $token, 'user' => $user ]], 200);
     }
     /**
      * Log out

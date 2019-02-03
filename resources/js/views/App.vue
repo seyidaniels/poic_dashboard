@@ -16,14 +16,5 @@ export default {
     "app-auth": Auth,
     "app-dashboard": Dashboard
   },
-  data: function() {
-    return {
-    };
-  },
-  mounted () {
-      console.log(
-          this.$store
-      )
-  }
 };
 </script>

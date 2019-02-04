@@ -22,7 +22,7 @@
                 </p>
 
                 <!-- Form -->
-                <form @submit="clickRegister" >
+                <form @submit.prevent="clickRegister" >
 
                     <!-- Email address -->
                     <div class="form-group">
@@ -157,7 +157,7 @@
           </p>
 
           <!-- Form -->
-          <form @submit="clickLogin" >
+          <form @submit.prevent="clickLogin" >
 
             <!-- Email address -->
             <div class="form-group">
@@ -332,7 +332,6 @@ export default {
     },
     methods: {
         validateRegister () {
-            if (!this.validateEmail(this.userSignUp.email))  return toastr.warning ("Invalid Email field") ;
             if (this.userSignUp.firstname.length < 3  || this.userSignUp.lastname.length < 3 )  return toastr.warning("Firstname or Lastname fields cant be empty")
             if (this.userSignUp.phone.length < 11)  return toastr.warning ("Invalid Phone Number")
             if (this.userSignUp.password.length < 5)  return toastr.warning("Please use a stronger password");

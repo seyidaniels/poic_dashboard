@@ -2096,7 +2096,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     validateRegister: function validateRegister() {
-      if (!this.validateEmail(this.userSignUp.email)) return toastr.warning("Invalid Email field");
       if (this.userSignUp.firstname.length < 3 || this.userSignUp.lastname.length < 3) return toastr.warning("Firstname or Lastname fields cant be empty");
       if (this.userSignUp.phone.length < 11) return toastr.warning("Invalid Phone Number");
       if (this.userSignUp.password.length < 5) return toastr.warning("Please use a stronger password");
@@ -56272,298 +56271,324 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("form", { on: { submit: _vm.clickRegister } }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v(
-                              "\n                    Email Address\n                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.userSignUp.email,
-                                expression: "userSignUp.email"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "email",
-                              placeholder: "name@address.com"
-                            },
-                            domProps: { value: _vm.userSignUp.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.userSignUp,
-                                  "email",
-                                  $event.target.value
-                                )
-                              }
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.clickRegister($event)
                             }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("label", [_vm._v("Firstname")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.userSignUp.firstname,
-                                  expression: "userSignUp.firstname"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text", placeholder: "firstname" },
-                              domProps: { value: _vm.userSignUp.firstname },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.userSignUp,
-                                    "firstname",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("label", [_vm._v("Lastname")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.userSignUp.lastname,
-                                  expression: "userSignUp.lastname"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text", placeholder: "lastname" },
-                              domProps: { value: _vm.userSignUp.lastname },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.userSignUp,
-                                    "lastname",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v(
-                              "\n                    Phone Number\n                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.userSignUp.phone,
-                                expression: "userSignUp.phone"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "phone",
-                              placeholder: "08012345678"
-                            },
-                            domProps: { value: _vm.userSignUp.phone },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.userSignUp,
-                                  "phone",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v(
-                              "\n                    Password\n                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "input-group input-group-merge" },
-                            [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.userSignUp.password,
-                                    expression: "userSignUp.password"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-control form-control-appended",
-                                attrs: {
-                                  type: "password",
-                                  placeholder: "Enter your password"
-                                },
-                                domProps: { value: _vm.userSignUp.password },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.userSignUp,
-                                      "password",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "input-group-append" }, [
-                                _c(
-                                  "span",
-                                  { staticClass: "input-group-text" },
-                                  [_c("i", { staticClass: "fe fe-eye" })]
-                                )
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v(
-                              "\n                    Confirm Password\n                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "input-group input-group-merge" },
-                            [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.userSignUp.password_confirmation,
-                                    expression:
-                                      "userSignUp.password_confirmation"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-control form-control-appended",
-                                attrs: {
-                                  type: "password",
-                                  placeholder: "Enter your password"
-                                },
-                                domProps: {
-                                  value: _vm.userSignUp.password_confirmation
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.userSignUp,
-                                      "password_confirmation",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "input-group-append" }, [
-                                _c(
-                                  "span",
-                                  { staticClass: "input-group-text" },
-                                  [_c("i", { staticClass: "fe fe-eye" })]
-                                )
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-lg btn-block btn-primary mb-3",
-                            attrs: { disabled: _vm.loading, type: "submit" }
-                          },
-                          [
-                            _vm.loading
-                              ? _c("i", {
-                                  staticClass: "fa fa-circle-o-notch fa-spin"
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            !_vm.loading
-                              ? _c("span", [_vm._v("Sign Up")])
-                              : _vm._e()
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center" }, [
-                          _c(
-                            "small",
-                            { staticClass: "text-muted text-center" },
-                            [
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
                               _vm._v(
-                                "\n                    Already have an account? "
-                              ),
-                              _c(
-                                "a",
+                                "\n                    Email Address\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
                                 {
-                                  attrs: { href: "#" },
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.userSignUp.email,
+                                  expression: "userSignUp.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "email",
+                                placeholder: "name@address.com"
+                              },
+                              domProps: { value: _vm.userSignUp.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.userSignUp,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("label", [_vm._v("Firstname")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.userSignUp.firstname,
+                                    expression: "userSignUp.firstname"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "firstname"
+                                },
+                                domProps: { value: _vm.userSignUp.firstname },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.userSignUp,
+                                      "firstname",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("label", [_vm._v("Lastname")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.userSignUp.lastname,
+                                    expression: "userSignUp.lastname"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "lastname"
+                                },
+                                domProps: { value: _vm.userSignUp.lastname },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.userSignUp,
+                                      "lastname",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v(
+                                "\n                    Phone Number\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.userSignUp.phone,
+                                  expression: "userSignUp.phone"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "phone",
+                                placeholder: "08012345678"
+                              },
+                              domProps: { value: _vm.userSignUp.phone },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.userSignUp,
+                                    "phone",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v(
+                                "\n                    Password\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "input-group input-group-merge" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.userSignUp.password,
+                                      expression: "userSignUp.password"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "form-control form-control-appended",
+                                  attrs: {
+                                    type: "password",
+                                    placeholder: "Enter your password"
+                                  },
+                                  domProps: { value: _vm.userSignUp.password },
                                   on: {
-                                    click: function($event) {
-                                      _vm.showSignIn = true
-                                      _vm.showSignUp = false
-                                      _vm.showForgot = false
-                                      _vm.showResendEmail = false
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.userSignUp,
+                                        "password",
+                                        $event.target.value
+                                      )
                                     }
                                   }
-                                },
-                                [_vm._v("Log in")]
-                              ),
-                              _vm._v(".\n                ")
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group-append" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "input-group-text" },
+                                      [_c("i", { staticClass: "fe fe-eye" })]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v(
+                                "\n                    Confirm Password\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "input-group input-group-merge" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.userSignUp.password_confirmation,
+                                      expression:
+                                        "userSignUp.password_confirmation"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "form-control form-control-appended",
+                                  attrs: {
+                                    type: "password",
+                                    placeholder: "Enter your password"
+                                  },
+                                  domProps: {
+                                    value: _vm.userSignUp.password_confirmation
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.userSignUp,
+                                        "password_confirmation",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group-append" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "input-group-text" },
+                                      [_c("i", { staticClass: "fe fe-eye" })]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-lg btn-block btn-primary mb-3",
+                              attrs: { disabled: _vm.loading, type: "submit" }
+                            },
+                            [
+                              _vm.loading
+                                ? _c("i", {
+                                    staticClass: "fa fa-circle-o-notch fa-spin"
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.loading
+                                ? _c("span", [_vm._v("Sign Up")])
+                                : _vm._e()
                             ]
-                          )
-                        ])
-                      ])
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "text-center" }, [
+                            _c(
+                              "small",
+                              { staticClass: "text-muted text-center" },
+                              [
+                                _vm._v(
+                                  "\n                    Already have an account? "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showSignIn = true
+                                        _vm.showSignUp = false
+                                        _vm.showForgot = false
+                                        _vm.showResendEmail = false
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Log in")]
+                                ),
+                                _vm._v(".\n                ")
+                              ]
+                            )
+                          ])
+                        ]
+                      )
                     ])
                   ]
                 )
@@ -56593,172 +56618,183 @@ var render = function() {
                         _vm._v("\n        Log in to your account\n      ")
                       ]),
                       _vm._v(" "),
-                      _c("form", { on: { submit: _vm.clickLogin } }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v("\n            Email Address\n          ")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.userSignIn.email,
-                                expression: "userSignIn.email"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "email",
-                              placeholder: "name@address.com"
-                            },
-                            domProps: { value: _vm.userSignIn.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.userSignIn,
-                                  "email",
-                                  $event.target.value
-                                )
-                              }
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.clickLogin($event)
                             }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v("\n            Password\n          ")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.userSignIn.password,
-                                expression: "userSignIn.password"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "password",
-                              placeholder: "password"
-                            },
-                            domProps: { value: _vm.userSignIn.password },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.userSignIn,
-                                  "password",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-lg btn-block btn-primary mb-3",
-                            attrs: { disabled: _vm.loading, type: "submit" }
-                          },
-                          [
-                            _vm.loading
-                              ? _c("i", {
-                                  staticClass: "fa fa-circle-o-notch fa-spin"
-                                })
-                              : _vm._e(),
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v("\n            Email Address\n          ")
+                            ]),
                             _vm._v(" "),
-                            !_vm.loading
-                              ? _c("span", [_vm._v("Sign In")])
-                              : _vm._e()
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center" }, [
-                          _c(
-                            "small",
-                            { staticClass: "text-muted text-center" },
-                            [
-                              _vm._v("\n            Dont have an account? "),
-                              _c(
-                                "a",
+                            _c("input", {
+                              directives: [
                                 {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showSignUp = true
-                                      _vm.showForgot = false
-                                      _vm.showSignIn = false
-                                      _vm.showResendEmail = false
-                                    }
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.userSignIn.email,
+                                  expression: "userSignIn.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "email",
+                                placeholder: "name@address.com"
+                              },
+                              domProps: { value: _vm.userSignIn.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
                                   }
-                                },
-                                [_vm._v("Sign Up")]
-                              ),
-                              _vm._v(".\n          ")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "small",
-                            { staticClass: "text-muted text-center" },
-                            [
-                              _vm._v("\n            Forgot Password? "),
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showForgot = true
-                                      _vm.showSignUp = false
-                                      _vm.showSignIn = false
-                                      _vm.showResendEmail = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Forgot")]
-                              ),
-                              _vm._v(".\n          ")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _vm.promptResend
-                            ? _c(
-                                "small",
-                                { staticClass: "text-muted text-center" },
-                                [
-                                  _vm._v(" Did not get any email,  "),
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.showResendEmail = true
-                                          _vm.showForgot = false
-                                          _vm.showSignIn = false
-                                          _vm.showSignUp = false
-                                        }
-                                      }
-                                    },
-                                    [_vm._v(" Resend ")]
+                                  _vm.$set(
+                                    _vm.userSignIn,
+                                    "email",
+                                    $event.target.value
                                   )
-                                ]
-                              )
-                            : _vm._e()
-                        ])
-                      ])
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v("\n            Password\n          ")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.userSignIn.password,
+                                  expression: "userSignIn.password"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "password",
+                                placeholder: "password"
+                              },
+                              domProps: { value: _vm.userSignIn.password },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.userSignIn,
+                                    "password",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-lg btn-block btn-primary mb-3",
+                              attrs: { disabled: _vm.loading, type: "submit" }
+                            },
+                            [
+                              _vm.loading
+                                ? _c("i", {
+                                    staticClass: "fa fa-circle-o-notch fa-spin"
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.loading
+                                ? _c("span", [_vm._v("Sign In")])
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "text-center" }, [
+                            _c(
+                              "small",
+                              { staticClass: "text-muted text-center" },
+                              [
+                                _vm._v("\n            Dont have an account? "),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showSignUp = true
+                                        _vm.showForgot = false
+                                        _vm.showSignIn = false
+                                        _vm.showResendEmail = false
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Sign Up")]
+                                ),
+                                _vm._v(".\n          ")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              { staticClass: "text-muted text-center" },
+                              [
+                                _vm._v("\n            Forgot Password? "),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showForgot = true
+                                        _vm.showSignUp = false
+                                        _vm.showSignIn = false
+                                        _vm.showResendEmail = false
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Forgot")]
+                                ),
+                                _vm._v(".\n          ")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.promptResend
+                              ? _c(
+                                  "small",
+                                  { staticClass: "text-muted text-center" },
+                                  [
+                                    _vm._v(" Did not get any email,  "),
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.showResendEmail = true
+                                            _vm.showForgot = false
+                                            _vm.showSignIn = false
+                                            _vm.showSignUp = false
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(" Resend ")]
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        ]
+                      )
                     ])
                   ]
                 )

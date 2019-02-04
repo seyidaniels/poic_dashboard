@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const state = {
   callingAPI: false,
   searching: '',
-  serverURI: 'http://poic.local/api/',
+  serverURI: 'http://poic.unilag.edu.ng/api/',
   user: null,
   token: null,
     ignoreAuthToken: false,

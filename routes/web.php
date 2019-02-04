@@ -19,5 +19,5 @@ Route::get('/dashboard', 'SinglePageController@index');
 
 
 Route::get('verify/{email_token}', 'RegisterController@verifyUser');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
-Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('password.reset');
+Route::get('reset-password/{email_token}', 'PasswordsController@index')->name('password.request');
+Route::post('password/reset', 'PasswordsController@submitRequest')->name('password.reset');

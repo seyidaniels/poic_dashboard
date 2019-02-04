@@ -1,7 +1,8 @@
 <?php
 Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
-Route::post('recover', 'AuthController@recover');
+Route::post('recover', 'PasswordsController@recover');
+Route::post('resend-verification', 'LoginController@resendVerification');
 Route::group(['middleware' => ['jwt.auth']], function() {
     Route::post('logout', 'LoginController@logout');
     Route::post('create-team', 'TeamController@createTeam');

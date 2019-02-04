@@ -7,13 +7,11 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class WelcomeEmail extends Notification
+class resetPassword extends Notification
 {
     use Queueable;
 
     private $data;
-
-
 
     /**
      * Create a new notification instance.
@@ -33,14 +31,7 @@ class WelcomeEmail extends Notification
      */
     public function via($notifiable)
     {
-
-        if (array_key_exists('resend', $this->data)){
-            return ['mail'];
-        }else {
-            return ['mail', 'database'];
-        }
-
-
+        return ['mail'];
     }
 
     /**
@@ -51,8 +42,8 @@ class WelcomeEmail extends Notification
      */
     public function toMail($notifiable)
     {
-            $subject = array_key_exists('resend', $this->data) ? "Verification Code Resent" : "POIC Account Created, Verification Needed" ;
-            return  (new MailMessage)->view('email.welcome', ['data' => $this->data])->from ('poic@unilag.edu.ng')->subject($subject);
+        $subject = "You requested a Password Reset";
+        return  (new MailMessage)->view('email.reset-password', ['data' => $this->data])->from ('poic@unilag.edu.ng')->subject($subject);
     }
 
     /**
@@ -64,7 +55,7 @@ class WelcomeEmail extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Congrats, You just created an account on POIC'
+            //
         ];
     }
 }

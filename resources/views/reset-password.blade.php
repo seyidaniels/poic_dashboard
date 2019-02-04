@@ -46,7 +46,7 @@
 
                     <!-- Subheading -->
                     <h1 class="header-title">
-                        {{$error}}
+                        {{$message}}
                     <!-- Button -->
                     <a href="/" class="btn btn-lg btn-primary">
                     Return Home
@@ -60,13 +60,66 @@
 
                     <!-- Subheading -->
                     <h1 class="header-title">
-                        {{$message}}
+                        Hi {{$user->firstname}},  You requested a password change!
                     </h1>
 
-                    <!-- Button -->
-                    <a href="/dashboard" class="btn btn-lg btn-primary mt-4">
-                        Dashboard
-                    </a>
+                    @if(Session::has('error'))
+                    <div class="my-4 alert alert-danger" >
+                        {{Session::get('message')}}
+                    </div>
+                    @endif
+
+
+                @if(Session::has('success'))
+                    <div class="alert my-4 alert-success">
+                        {{Session::get('message')}}
+                    </div>
+                     <!-- Button -->
+                     <a href="/dashboard" class="btn btn-lg btn-primary">
+                        Go To Dashboard
+                        </a>
+                @else
+                <form class="my-4" method="post" action="/password/reset" >
+                    @csrf
+                            <!-- Password -->
+                            <div class="form-group">
+
+                              <!-- Label -->
+                              <label>
+                                New Password
+                              </label>
+
+                              <!-- Input -->
+                              <input type="password" name="password" class="form-control" placeholder="new password">
+
+                            </div>
+
+                            <input type="hidden" name="user_id" value="{{$user->id}}" >
+                            <input type="hidden" name="token" value="{{$token}}" >
+
+                             <!-- Password -->
+                             <div class="form-group">
+
+                                    <!-- Label -->
+                                    <label>
+                                      Confirm Password
+                                    </label>
+
+                                    <!-- Input -->
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="confirm new password">
+
+                                  </div>
+
+                             <!-- Submit -->
+                            <button class="btn btn-lg btn-block btn-primary mb-3" type="submit" >
+                                Reset Password
+                            </button>
+
+                </form>
+
+                @endif
+
+
 
                 </div>
 

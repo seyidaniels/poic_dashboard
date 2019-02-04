@@ -1763,6 +1763,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../error */ "./resources/js/error.js");
 //
 //
 //
@@ -2070,6 +2071,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2080,6 +2085,8 @@ __webpack_require__.r(__webpack_exports__);
       promptResend: false,
       showResendEmail: false,
       url: '',
+      resend_email: '',
+      recover_email: '',
       userSignUp: {
         'email': '',
         'firstname': '',
@@ -2182,6 +2189,40 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).catch(function (error) {
         _this2.handleError(error);
+      });
+    },
+    resendEmail: function resendEmail() {
+      var _this3 = this;
+
+      if (this.resend_email == '') return toastr.error("Invalid Email");
+      this.toggleLoading();
+      axios.post(this.url + 'resend-verification', {
+        'email': this.resend_email
+      }).then(function (response) {
+        if (response.data.success) {
+          toastr.success(response.data.message);
+        }
+
+        _this3.toggleLoading();
+      }).catch(function (error) {
+        Object(_error__WEBPACK_IMPORTED_MODULE_0__["default"])(error);
+      });
+    },
+    recoverPassword: function recoverPassword() {
+      var _this4 = this;
+
+      if (this.recover_email == '') return toastr.error("Invalid Email");
+      this.toggleLoading();
+      axios.post(this.url + 'recover', {
+        'email': this.recover_email
+      }).then(function (response) {
+        if (response.data.success) {
+          toastr.success(response.data.message);
+        }
+
+        _this4.toggleLoading();
+      }).catch(function (error) {
+        Object(_error__WEBPACK_IMPORTED_MODULE_0__["default"])(error);
       });
     }
   },
@@ -56826,55 +56867,94 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("form", [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v("\n            Email Address\n          ")
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.recoverPassword($event)
+                            }
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v("\n            Email Address\n          ")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.recover_email,
+                                  expression: "recover_email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "email",
+                                placeholder: "name@address.com"
+                              },
+                              domProps: { value: _vm.recover_email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.recover_email = $event.target.value
+                                }
+                              }
+                            })
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "email",
-                              placeholder: "name@address.com"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-lg btn-block btn-primary mb-3"
-                          },
-                          [_vm._v("\n            Recover Password\n        ")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center" }, [
                           _c(
-                            "small",
-                            { staticClass: "text-muted text-center" },
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-lg btn-block btn-primary mb-3"
+                            },
                             [
-                              _vm._v("\n            Back to Login?"),
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showSignUp = false
-                                      _vm.showForgot = false
-                                      _vm.showSignIn = true
-                                      _vm.showResendEmail = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Sign In")]
-                              ),
-                              _vm._v(".\n          ")
+                              _vm.loading
+                                ? _c("i", {
+                                    staticClass: "fa fa-circle-o-notch fa-spin"
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.loading
+                                ? _c("span", [_vm._v("Recover Password")])
+                                : _vm._e()
                             ]
-                          )
-                        ])
-                      ])
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "text-center" }, [
+                            _c(
+                              "small",
+                              { staticClass: "text-muted text-center" },
+                              [
+                                _vm._v("\n            Back to Login?"),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showSignUp = false
+                                        _vm.showForgot = false
+                                        _vm.showSignIn = true
+                                        _vm.showResendEmail = false
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Sign In")]
+                                ),
+                                _vm._v(".\n          ")
+                              ]
+                            )
+                          ])
+                        ]
+                      )
                     ])
                   ]
                 )
@@ -56904,59 +56984,97 @@ var render = function() {
                         _vm._v("\n                Resend Email\n            ")
                       ]),
                       _vm._v(" "),
-                      _c("form", [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [
-                            _vm._v("\n            Email Address\n          ")
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.resendEmail($event)
+                            }
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _vm._v("\n            Email Address\n          ")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.resend_email,
+                                  expression: "resend_email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "email",
+                                placeholder: "name@address.com"
+                              },
+                              domProps: { value: _vm.resend_email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.resend_email = $event.target.value
+                                }
+                              }
+                            })
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "email",
-                              placeholder: "name@address.com"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-lg btn-block btn-primary mb-3"
-                          },
-                          [
-                            _vm._v(
-                              "\n            Resend Verification Code\n        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center" }, [
                           _c(
-                            "small",
-                            { staticClass: "text-muted text-center" },
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-lg btn-block btn-primary mb-3",
+                              attrs: { disabled: _vm.loading, type: "submit" }
+                            },
                             [
-                              _vm._v("\n            Back to Login?"),
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showSignUp = false
-                                      _vm.showForgot = false
-                                      _vm.showSignIn = true
-                                      _vm.showResendEmail = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Sign In")]
-                              ),
-                              _vm._v(".\n          ")
+                              _vm.loading
+                                ? _c("i", {
+                                    staticClass: "fa fa-circle-o-notch fa-spin"
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.loading
+                                ? _c("span", [
+                                    _vm._v("Resend Verification Email")
+                                  ])
+                                : _vm._e()
                             ]
-                          )
-                        ])
-                      ])
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "text-center" }, [
+                            _c(
+                              "small",
+                              { staticClass: "text-muted text-center" },
+                              [
+                                _vm._v("\n            Back to Login?"),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showSignUp = false
+                                        _vm.showForgot = false
+                                        _vm.showSignIn = true
+                                        _vm.showResendEmail = false
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Sign In")]
+                                ),
+                                _vm._v(".\n          ")
+                              ]
+                            )
+                          ])
+                        ]
+                      )
                     ])
                   ]
                 )
@@ -57349,7 +57467,7 @@ var render = function() {
         _c("div", { attrs: { id: "alerts" } }, [
           _c("div", { staticClass: "header mt-md-6" }, [
             _c("div", { staticClass: "header-body" }, [
-              this.$store.getters.firstname
+              this.$store.getters.isAuthenticated
                 ? _c("h1", { staticClass: "header-title" }, [
                     _vm._v(
                       "\n              Welcome, " +

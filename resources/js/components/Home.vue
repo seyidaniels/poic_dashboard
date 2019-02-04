@@ -11,7 +11,7 @@
                 <div class="header-body">
 
                   <!-- Title -->
-                  <h1 class="header-title" v-if="this.$store.getters.firstname" >
+                  <h1 class="header-title" v-if="this.$store.getters.isAuthenticated" >
                     Welcome, {{this.$store.getters.getUser.firstname}}
                   </h1>
 

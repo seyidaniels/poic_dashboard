@@ -220,7 +220,7 @@
                 <p class="text-center mb-5">
                     Recover Password
                 </p>
-                <form>
+                <form @submit.prevent="recoverPassword" >
 
             <!-- Email address -->
             <div class="form-group">
@@ -231,14 +231,15 @@
               </label>
 
               <!-- Input -->
-              <input type="email" class="form-control" placeholder="name@address.com">
+              <input type="email" v-model="recover_email" class="form-control" placeholder="name@address.com">
 
             </div>
 
 
              <!-- Submit -->
-            <button class="btn btn-lg btn-block btn-primary mb-3">
-                Recover Password
+            <button class="btn btn-lg btn-block btn-primary mb-3" >
+                     <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
+                    <span v-if="!loading">Recover Password</span>
             </button>
 
             <!-- Link -->
@@ -265,7 +266,7 @@
                 <p class="text-center mb-5">
                     Resend Email
                 </p>
-                <form>
+                <form @submit.prevent="resendEmail" >
 
             <!-- Email address -->
             <div class="form-group">
@@ -276,15 +277,17 @@
               </label>
 
               <!-- Input -->
-              <input type="email" class="form-control" placeholder="name@address.com">
+              <input type="email" v-model="resend_email" class="form-control" placeholder="name@address.com">
 
 
             </div>
 
 
              <!-- Submit -->
-            <button class="btn btn-lg btn-block btn-primary mb-3">
-                Resend Verification Code
+            <button class="btn btn-lg btn-block btn-primary mb-3" :disabled="loading"
+                    type="submit" >
+                     <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
+                    <span v-if="!loading">Resend Verification Email</span>
             </button>
 
             <!-- Link -->
@@ -306,6 +309,8 @@
     </div>
 </template>
 <script>
+import handleError from '../error';
+
 export default {
     data: function () {
         return {
@@ -316,6 +321,8 @@ export default {
             promptResend: false,
             showResendEmail: false,
             url: '',
+            resend_email: '',
+            recover_email: '',
             userSignUp: {
                 'email': '',
                 'firstname': '',
@@ -410,6 +417,30 @@ export default {
              }).catch (error => {
                  this.handleError(error);
              })
+     },
+     resendEmail () {
+         if (this.resend_email == '') return toastr.error("Invalid Email")
+         this.toggleLoading()
+        axios.post(this.url + 'resend-verification', {'email': this.resend_email}).then (response => {
+            if (response.data.success) {
+                toastr.success(response.data.message);
+            }
+            this.toggleLoading()
+        }).catch (error => {
+            handleError(error)
+        })
+     },
+     recoverPassword () {
+         if (this.recover_email == '') return toastr.error ("Invalid Email");
+         this.toggleLoading();
+         axios.post(this.url + 'recover', {'email': this.recover_email}).then (response => {
+             if (response.data.success) {
+                toastr.success(response.data.message);
+            }
+            this.toggleLoading()
+        }).catch (error => {
+            handleError(error)
+        })
      }
     },
     mounted () {

@@ -7,13 +7,9 @@
         <div class="container">
             <div class="content-center brand text-left">
                 <div class="row">
-                    <div class="col-md-8" >
-                        <h2 class="mb-4 exh ">Professor Ogundipe <span class="text-orange">Innovative</span> Challenge</h2>
-                        <p class="text-white">Do you have an innovative idea or technology-driven solution? Apply for POIC</p>
-
-
-                        <h5 class="m-4">Application is Open</h5>
-
+                    <div class="col-md-8" style="margin-top: 200px;" >
+                        <h3 class="m-4">Professor Ogundipe <span class="text-orange">Innovative</span> Challenge</h3>
+                        <h5 class="text-white">Do you have an innovative idea or technology-driven solution? Apply for POIC</h5>
                         <!-- <a class=" btn btn-lg btn-orange text-left" href="{{URL('dashboard')}}"> Apply Now
                             <span class="pull-right fa fa-chevron-right"></span>
                         </a>

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Validator;
 use JWTAuth;
 use App\Notifications\WelcomeEmail;
-
+use App\User;
+use DB;
 
 class LoginController extends Controller
 {
@@ -59,14 +60,25 @@ class LoginController extends Controller
     }
 
     public function resendVerification (Request $request) {
+
         $email = $request['email'];
 
-        $data = User::findOrFail($email);
+        $user = User::where('email', $email)->first();
 
+        DB::transaction(function () use ($user) {
+        $data['email_token'] = str_random(30);
+        $user->email_token  = $data['email_token'];
+
+        $user->update();
+
+        $data['firstname'] = $user->firstname;
+        $data['resend'] = true;
         $data['message'] = 'You requested for a new verfication code, If your account has been verified, Kindly ignore this email';
 
         $user->notify(new WelcomeEmail($data));
+        });
 
+        return response()->json (['success' => true, 'message' => 'Another email has been sent to you, Please check your inbox and your spam folder']);
 
     }
 }

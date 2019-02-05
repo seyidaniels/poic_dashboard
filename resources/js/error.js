@@ -4,7 +4,7 @@ export default function handleError(error) {
             toastr.error("Oooops! Please sign in again");
             localStorage.removeItem('token')
             localStorage.removeItem('user')
-            setTimeout(() => { location.reload() }, 3000);
+            setTimeout(() => { location.href = "/dashboard" }, 3000);
         } else if (error.response.status === 422) {
             if (error.response.data.message) {
                 toastr.error(response.data.message)

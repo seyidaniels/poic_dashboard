@@ -8,7 +8,7 @@
           </button>
 
           <!-- Brand -->
-          <a class="navbar-brand" href="index-2.html">
+          <a class="navbar-brand" href="#">
             <img src="landing/assets/img/logo-white.png" class="navbar-brand-img
             mx-auto" alt="...">
           </a>

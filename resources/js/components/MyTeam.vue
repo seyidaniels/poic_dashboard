@@ -134,14 +134,13 @@ export default {
                 this.team = response.data.team
                 // this.members = response.data.members
             }
-            console.log(this.team);
         }).catch (error => {
                 handleError(error)
         })
     },
     methods: {
         leaveTeam () {
-            if (confirm("Are you sure you want to leave thosis team")){
+            if (confirm("Are you sure you want to leave this team")){
                 console.log("Sends a request to the server")
             }
         }

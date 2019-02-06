@@ -13,7 +13,7 @@
           </div>
         </div>
 
-        <p>This guide will help you get started with Dashkit! All the important stuff – compiling the source, file structure, build tools, file includes – is documented here, but should you have any questions, always feel free to reach out to support@goodthemes.co.</p>
+        <p>This guide will help you get started with your application process for Professor Ogundipe Innovative Challenge! Defaulters would be automatically disqualified, please kindly note these rules</p>
 
         <ul>
           <li class="text-justify">The following people may not enter the contest:</li>
@@ -28,9 +28,11 @@
             >People who have a conflict of interest throughout the competition.</li>
           </ol>
 
-          <li class="text-justify">There should be no imitation of innovation.</li>
+          <li class="text-justify">There should be no imitation to innovation.</li>
 
-          <li class="text-justify">No singular person should be a member of more than one group.</li>
+          <li class="text-justify">No singular person should be a member of more than one team.</li>
+
+          <li class="text-justify">A team consists of a minimum of 1 individual and a maximum of 4 .</li>
 
           <li
             class="text-justify"

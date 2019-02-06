@@ -55,7 +55,7 @@ class GeneralMessage extends Notification
     public function toArray($notifiable)
     {
         return [
-            $this->data['message']
+            'message' => $this->data['message']
         ];
     }
 }

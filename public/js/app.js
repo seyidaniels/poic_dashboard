@@ -2990,6 +2990,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3006,8 +3013,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     if (this.$store.getters.isAuthenticated) {
-      axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
-      axios.get(this.$store.state.serverURI + 'get-notifications').then(function (response) {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
+      axios.get(this.$store.state.serverURI + "get-notifications").then(function (response) {
         if (response.data.success) {
           _this.notifications = response.data.notifications;
 
@@ -3022,17 +3029,17 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this2 = this;
 
-      axios.post(this.$store.state.serverURI + 'logout', {
-        'token': localStorage.getItem('token')
+      axios.post(this.$store.state.serverURI + "logout", {
+        token: localStorage.getItem("token")
       }).then(function (response) {
         if (response.data.success) {
           _this2.$store.dispatch("SET_TOKEN", null);
 
           _this2.$store.dispatch("SET_USER", null);
 
-          localStorage.removeItem('user');
-          localStorage.removeItem('token');
-          location.href = '/dashboard';
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          location.href = "/dashboard";
         }
       }).catch(function (error) {
         Object(_error__WEBPACK_IMPORTED_MODULE_1__["default"])(error);
@@ -58489,15 +58496,11 @@ var render = function() {
     [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "mr-auto" }, [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.moment().format("MMMM Do YYYY, h:mm:ss a")) +
-              "\n      "
-          )
+          _vm._v(_vm._s(_vm.moment().format("MMMM Do YYYY, h:mm:ss a")))
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "d-none d-lg-block" }, [
-          _c("div", { staticClass: "navbar-user " }, [
+          _c("div", { staticClass: "navbar-user" }, [
             _c("div", { staticClass: "dropdown mr-4" }, [
               _vm._m(0),
               _vm._v(" "),
@@ -58522,11 +58525,7 @@ var render = function() {
                               staticClass: "small",
                               attrs: { to: "/notifications" }
                             },
-                            [
-                              _vm._v(
-                                "\n                      View all\n                    "
-                              )
-                            ]
+                            [_vm._v("View all")]
                           )
                         ],
                         1
@@ -58553,20 +58552,22 @@ var render = function() {
                               _c("div", { staticClass: "col ml--2" }, [
                                 _c("div", { staticClass: "small text-muted" }, [
                                   _c("strong", { staticClass: "text-body" }, [
-                                    _vm._v(" " + _vm._s(msg.data.message) + " ")
+                                    _vm._v(
+                                      _vm._s(
+                                        msg.data.message
+                                          ? msg.data.message
+                                          : msg.data
+                                      )
+                                    )
                                   ]),
-                                  _vm._v(".\n                        ")
+                                  _vm._v(".\n                      ")
                                 ])
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-auto" }, [
                                 _c("small", { staticClass: "text-muted" }, [
                                   _vm._v(
-                                    "\n                          " +
-                                      _vm._s(
-                                        _vm.moment(msg.created_at).fromNow()
-                                      ) +
-                                      "\n                        "
+                                    _vm._s(_vm.moment(msg.created_at).fromNow())
                                   )
                                 ])
                               ])
@@ -58645,9 +58646,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col" }, [
-      _c("h5", { staticClass: "card-header-title" }, [
-        _vm._v("\n                      Notifications\n                    ")
-      ])
+      _c("h5", { staticClass: "card-header-title" }, [_vm._v("Notifications")])
     ])
   },
   function() {

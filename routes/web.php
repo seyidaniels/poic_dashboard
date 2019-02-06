@@ -21,3 +21,9 @@ Route::get('/dashboard', 'SinglePageController@index');
 Route::get('verify/{email_token}', 'RegisterController@verifyUser');
 Route::get('reset-password/{email_token}', 'PasswordsController@index')->name('password.request');
 Route::post('password/reset', 'PasswordsController@submitRequest')->name('password.reset');
+
+
+
+// Admin Routes
+
+Route::get('send-mails', 'AdminController@mailAll');

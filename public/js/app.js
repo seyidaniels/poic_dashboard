@@ -2824,22 +2824,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
       var _this = this;
 
-      axios.post(this.$store.state.serverURI + 'logout', {
-        'token': localStorage.getItem('token')
+      axios.post(this.$store.state.serverURI + "logout", {
+        token: localStorage.getItem("token")
       }).then(function (response) {
         if (response.data.success) {
           _this.$store.dispatch("SET_TOKEN", null);
 
           _this.$store.dispatch("SET_USER", null);
 
-          localStorage.removeItem('user');
-          localStorage.removeItem('token');
-          location.href = '/dashboard';
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          location.href = "/dashboard";
         }
       }).catch(function (error) {
         handleError(error);
@@ -58022,6 +58047,155 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Rules.vue?vue&type=template&id=56b06e1c&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Rules.vue?vue&type=template&id=56b06e1c& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-12 col-lg-10 col-xl-8" }, [
+          _c("div", { staticClass: "header mt-md-5" }, [
+            _c("div", { staticClass: "header-body" }, [
+              _c("h6", { staticClass: "header-pretitle" }, [
+                _vm._v("MUST READ")
+              ]),
+              _vm._v(" "),
+              _c("h1", { staticClass: "header-title display-4" }, [
+                _vm._v("Rules and Guidelines")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "This guide will help you get started with Dashkit! All the important stuff – compiling the source, file structure, build tools, file includes – is documented here, but should you have any questions, always feel free to reach out to support@goodthemes.co."
+            )
+          ]),
+          _vm._v(" "),
+          _c("ul", [
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v("The following people may not enter the contest:")
+            ]),
+            _vm._v(" "),
+            _c("ol", [
+              _c("li", { staticClass: "text-justify" }, [
+                _vm._v(
+                  "The organizer’s employees and their children, of any company directly involved with POIC."
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "text-justify" }, [
+                _vm._v(
+                  "People who have been involved in organizing the contest."
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "text-justify" }, [
+                _vm._v(
+                  "People who have a conflict of interest throughout the competition."
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v("There should be no imitation of innovation.")
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "No singular person should be a member of more than one group."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "The organizers(committees) reserve the right, in case of force majeure or for any reason beyond their control, to modify the dates of the competition. They cannot be held liable in this regard."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "The selection is stringently restricted to the decision made by the judges. No external influence will be considered"
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "Participants are required to compete using their true identities. The organizer reserves the right to carry out all checks that may be necessary."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "The committees shall not be held responsible for any disagreements that may arise among the members of a team or between different teams and accordingly, cannot intervene."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "The organizer shall not be bound to return the entries presented, once the contest is over."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "Any entry form that is incomplete or that contains inaccuracies will not be taken into account and will result, automatically in the disqualification from the contest of the team in question."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "Participants must compete in teams made of 2-5 people maximum, which may include an academic lecturer. It will be possible to change team members during this phase (Feb 1st-Feb. 22nd, 00:00 Lagos)Once this phase has been completed, no more changes will be accepted. If however a member decides to leave the team after this phase, the team must inform the organizer by email."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "Each team must appoint a leader who will represent it and who must be one of the students in the team. The leader will be the POIC contact person. He/she will coordinate with the other team members."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "If the whole team decides to withdraw from the competition, the organizer should be notified."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "text-justify" }, [
+              _vm._v(
+                "Entry in the contest implies the unreserved acceptance of these regulations in full, rules of conduct and laws, regulations and other legislation applicable in Nigeria."
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includes/Navbar.vue?vue&type=template&id=2c226879&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/includes/Navbar.vue?vue&type=template&id=2c226879& ***!
@@ -58108,7 +58282,7 @@ var render = function() {
                     { staticClass: "nav-link", attrs: { to: "/" } },
                     [
                       _c("i", { staticClass: "fe fe-home" }),
-                      _vm._v(" Dashboard\n            ")
+                      _vm._v(" Dashboard\n          ")
                     ]
                   )
                 ],
@@ -58124,7 +58298,7 @@ var render = function() {
                     { staticClass: "nav-link", attrs: { to: "/my-team" } },
                     [
                       _c("i", { staticClass: "fe fe-file" }),
-                      _vm._v(" My Team\n            ")
+                      _vm._v(" My Team\n          ")
                     ]
                   )
                 ],
@@ -58140,7 +58314,42 @@ var render = function() {
                     { staticClass: "nav-link", attrs: { to: "/project" } },
                     [
                       _c("i", { staticClass: "fe fe-user" }),
-                      _vm._v(" My Project\n            ")
+                      _vm._v(" My Project\n          ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/rules" } },
+                    [
+                      _c("i", { staticClass: "fe fe-umbrella" }),
+                      _vm._v(" Rules and Guidelines\n          ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item d-lg-none" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: "/notifications" }
+                    },
+                    [
+                      _c("i", { staticClass: "fe fe-mail" }),
+                      _vm._v(" Messages\n          ")
                     ]
                   )
                 ],
@@ -58180,7 +58389,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
       _c("img", {
-        staticClass: "navbar-brand-img\n        mx-auto",
+        staticClass: "navbar-brand-img mx-auto",
         attrs: { src: "landing/assets/img/logo-white.png", alt: "..." }
       })
     ])
@@ -74194,6 +74403,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Rules.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Rules.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Rules_vue_vue_type_template_id_56b06e1c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Rules.vue?vue&type=template&id=56b06e1c& */ "./resources/js/components/Rules.vue?vue&type=template&id=56b06e1c&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Rules_vue_vue_type_template_id_56b06e1c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Rules_vue_vue_type_template_id_56b06e1c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Rules.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Rules.vue?vue&type=template&id=56b06e1c&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Rules.vue?vue&type=template&id=56b06e1c& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rules_vue_vue_type_template_id_56b06e1c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Rules.vue?vue&type=template&id=56b06e1c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Rules.vue?vue&type=template&id=56b06e1c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rules_vue_vue_type_template_id_56b06e1c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Rules_vue_vue_type_template_id_56b06e1c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/includes/Navbar.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/includes/Navbar.vue ***!
@@ -74458,6 +74720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_MyTeam__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/components/MyTeam */ "./resources/js/components/MyTeam.vue");
 /* harmony import */ var _js_components_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/components/Project */ "./resources/js/components/Project.vue");
 /* harmony import */ var _js_components_Notifications__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/js/components/Notifications */ "./resources/js/components/Notifications.vue");
+/* harmony import */ var _js_components_Rules__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/js/components/Rules */ "./resources/js/components/Rules.vue");
 
 
 
@@ -74465,6 +74728,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  //import store from '@/js/store' // your vuex store
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -74490,6 +74754,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/notifications',
     component: _js_components_Notifications__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: '/rules',
+    component: _js_components_Rules__WEBPACK_IMPORTED_MODULE_8__["default"]
   }]
 });
 router.beforeResolve(function (to, from, next) {

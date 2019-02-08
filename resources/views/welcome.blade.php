@@ -23,9 +23,7 @@
 
             </div>
         </div>
-        <button href="#"   id="arrow-down" class="float">
-                <i class="fa fa-arrow-down my-float"></i>
-        </button>
+        
     </div>
     <div class="main">
         <div class="about" id="about">

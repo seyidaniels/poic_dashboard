@@ -104,7 +104,7 @@
                         <div class="card-body">
                             <h3 class="mt-5 mb-0 font-weight-bold">got Inquiries?</h3>
                             <p>For Sponsorship and Contact details, we are ready to heed your calls</p>
-                            <a class=" btn btn-lg btn-orange text-center" data-toggle="modal" href="#"contactForm" >Message
+                            <a class=" btn btn-lg btn-orange text-center" data-toggle="modal" href="#contactForm" >Message
                                 </a>
                         </div>
                     </div>
@@ -116,39 +116,42 @@
     </div>
 
 
-    <!-- Contact Modal -->
-                <!-- Modal Core -->
-                <div class="modal fade" id="contactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Contact Us</h4>
+     <!-- Contact Modal -->
+                    <!-- Modal Core -->
+                    <div class="modal fade" id="contactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Contact Us</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class= "form-control-md form-control contact-input partss" placeholder="Name" >
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class= "form-control-md form-control contact-input partss" placeholder="Email Address" >
+                                </div>
+                                <div class="form-group"><!--
+                                    <input type="email" class= "form-control-md form-control contact-input partss" placeholder="Email Address" "> -->
+                                    <textarea class="form-control message-in" placeholder="Message" name="" rows="10"></textarea>
+                                </div>
+                                <button class="nav-link btn btn-lg btn-orange text-center btn-block">Send a Message</button>
+                            </form>
+                          </div>
+                          <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-info btn-simple">Save</button>
+                          </div> -->
+                        </div>
                       </div>
-                      <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class= "form-control-md form-control contact-input partss" placeholder="Name" ">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class= "form-control-md form-control contact-input partss" placeholder="Email Address" ">
-                            </div>
-                            <div class="form-group"><!--
-                                <input type="email" class= "form-control-md form-control contact-input partss" placeholder="Email Address" "> -->
-                                <textarea class="form-control message-in" placeholder="Message" name="" rows="10"></textarea>
-                            </div>
-                            <button class="nav-link btn btn-lg btn-orange text-center btn-block">Send a Message</button>
-                        </form>
-                      </div>
-                      <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-info btn-simple">Save</button>
-                      </div> -->
                     </div>
-                  </div>
-                </div>
 
-                <!-- Contact Modal -->
+                    <!-- Contact Modal -->
+
+
+
 
  </div>
 @endsection

@@ -69,6 +69,17 @@ class LoginController extends Controller
         $data['email_token'] = str_random(30);
         $user->email_token  = $data['email_token'];
 
+
+
+
+
+
+
+
+
+
+
+        
         $user->update();
 
         $data['firstname'] = $user->firstname;

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname' , 'lastname', 'phone', 'email', 'password', 'email_token', 'verified'
+        'firstname', 'lastname', 'phone', 'email', 'password', 'email_token', 'verified'
     ];
 
     /**
@@ -34,11 +34,23 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
-    public function profile () {
+    public function profile()
+    {
         return $this->hasOne('App\Profile');
     }
 
-    public function team() {
+    public function team()
+    {
         return $this->belongsTo('App\Team');
+    }
+
+    public function isTeamHead()
+    {
+        return $this->id == $this->team->head->id;
+    }
+
+    public function fullname()
+    {
+        return $this->firstname . " " . $this->lastname;
     }
 }

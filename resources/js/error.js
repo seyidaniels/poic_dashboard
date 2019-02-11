@@ -4,7 +4,9 @@ export default function handleError(error) {
             toastr.error("Oooops! Please sign in again");
             localStorage.removeItem('token')
             localStorage.removeItem('user')
-            setTimeout(() => { location.href = "/dashboard" }, 3000);
+            setTimeout(() => {
+                location.href = "/dashboard"
+            }, 3000);
         } else if (error.response.status === 422) {
             if (error.response.data.message) {
                 toastr.error(response.data.message)
@@ -16,8 +18,10 @@ export default function handleError(error) {
         } else if (error.response.status === 404) {
             toastr.error("Could not find the requested resource")
         } else if (error.response.status === 500) {
-            toastr.error("An error occurred on the server!")
+            toastr.error(error.response.data.message)
         }
     }
 }
-export { error }
+export {
+    error
+}

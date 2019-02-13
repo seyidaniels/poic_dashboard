@@ -29,8 +29,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Theme included stylesheets -->
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
     <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/image-picker/0.3.1/image-picker.css" />
+
 
 
     <style>
@@ -65,6 +71,8 @@
     <script src="dashboard_assets/assets/libs/select2/dist/js/select2.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-picker/0.3.1/image-picker.min.js"></script>
 
     <!-- Theme JS -->
     <script src="dashboard_assets/assets/js/theme.min.js"></script>

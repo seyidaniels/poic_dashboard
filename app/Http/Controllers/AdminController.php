@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function mailAll()
     {
         $data['message'] =
-            "Hello, how are you doing and trust your day went well, This is to notify you that the competiton terms and conditions have been updated on your dashboard\n  Kindly log on to view the rules and regulations";
+            "Hello, How you doing, If you have created a team, You can now ";
 
         $data['subject'] = "Hey, Check POIC Rules and Guildlines";
 

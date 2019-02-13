@@ -12,25 +12,13 @@ class AdminController extends Controller
     public function mailAll()
     {
         $data['message'] =
-            "Hello, How you doing, If you have created a team, You can now ";
+            "Hello, How you doing, If you have created a team, You can now create, update and submit your Project! \n Also note that your registration is void if you have not created a team and started a project. \n  Only team members who have registered on the website can be added";
 
         $data['subject'] = "Hey, Check POIC Rules and Guildlines";
 
         $users = User::all();
 
         Notification::send($users, new GeneralMessage($data));
-
-
-        $data['message'] =
-            "We noticed you have not created a team yet, Kindly note that creating a team is a prr-requisite to applying for the competition, Please treat as urgent";
-
-        $data['subject'] = "Create a Team Today!";
-
-        $users = User::where('team_id', null)->get();
-
-
-        Notification::send($users, new GeneralMessage($data));
-
 
         return response()->json(['error' => false, 'message' => 'message sent successfully']);
 

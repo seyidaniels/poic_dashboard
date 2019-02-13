@@ -35,6 +35,7 @@
     <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/image-picker/0.3.1/image-picker.css" />
 
 
 
@@ -70,6 +71,8 @@
     <script src="dashboard_assets/assets/libs/select2/dist/js/select2.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-picker/0.3.1/image-picker.min.js"></script>
 
     <!-- Theme JS -->
     <script src="dashboard_assets/assets/js/theme.min.js"></script>

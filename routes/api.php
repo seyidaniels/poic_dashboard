@@ -9,4 +9,5 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::get('get-notifications', 'NotificationsController@getNotifications');
     Route::get('get-team', 'TeamController@getTeam');
     Route::post('process-project', 'ProjectController@processProject');
+    Route::get('get-project', 'ProjectController@getProject');
 });

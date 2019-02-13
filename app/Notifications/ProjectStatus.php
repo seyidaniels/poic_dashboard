@@ -6,22 +6,23 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Auth;
 
 class ProjectStatus extends Notification
 {
     use Queueable;
 
 
-    private $status;
+    private $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($status)
+    public function __construct($data)
     {
-        $this->status = $status;
+        $this->data = $data;
     }
 
     /**
@@ -44,8 +45,8 @@ class ProjectStatus extends Notification
     public function toMail($notifiable)
     {
         $subject = "Notification with respect to your Project";
-        $data = ['message' => $this->formatMessage($this->status)];
-        return (new MailMessage)->view('email.project-status', $data)->from('poic@Unilag.edu.ng')->subject($subject);
+        $this->data['message'] = $this->formatMessage($this->data['status']);
+        return (new MailMessage)->view('email.project-status', ['data' => $this->data])->from('poic@Unilag.edu.ng')->subject($subject);
 
     }
 
@@ -58,7 +59,7 @@ class ProjectStatus extends Notification
     public function toArray($notifiable)
     {
         return [
-            "message" => $this->formatMessage($this->$status)
+            "message" => $this->formatMessage($this->data['status'])
         ];
     }
 
@@ -67,7 +68,7 @@ class ProjectStatus extends Notification
         // status could be created, updated, submitted || Accepted, Rejected, Modification
         $message = "";
 
-        switch ($message) {
+        switch ($status) {
             case "created":
                 $message = "Your Team Project has now been created, Further modififcations can be done before it can be finally submitted";
                 break;

@@ -24,7 +24,6 @@ class ProjectController extends Controller
         $this->middleware(function ($request, $next) {
 
             if (Auth::user()->team == null) throw new \Exception("You have not created a team yet!", 422);
-
             return $next($request);
         });
     }
@@ -35,11 +34,13 @@ class ProjectController extends Controller
 
         $validation = $this->validator($request->all());
 
-        if ($validation->fails()) return response()->json(['success' => false, 'errors' => $validation->errors()], 422);
+        if ($validation->fails()) return response()->json(['success' => false, 'error' => $validation->errors()], 422);
 
         DB::transaction(function () use ($data, $request) {
 
             $project = Auth::user()->team->project;
+
+            if ($project->is_submitted) throw new \Exception("You have submitted a project already and can no longer edit or create a new one", 422);
 
             $data['image'] = UploadImage::handle($data['image'], 'projects');
 
@@ -59,8 +60,9 @@ class ProjectController extends Controller
 
                 $this->updateProject($data);
             }
+            $data['status'] = $this->status;
 
-            Notification::send(Auth::user()->team->members, new ProjectStatus($this->status));
+            Notification::send(Auth::user()->team->members, new ProjectStatus($data));
 
         }, 3);
 
@@ -84,10 +86,18 @@ class ProjectController extends Controller
 
     }
 
+    public function getProject()
+    {
+        $project = Auth::user()->team->project;
+        if ($project !== null) {
+            return response()->json(['project' => $project, 'success' => true]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => 'required|min:50|string',
+            'title' => 'required|min:30|string',
             'body' => ['required', new WordCount],
             'category' => 'required|string'
         ]);

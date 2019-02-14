@@ -40,7 +40,9 @@ class ProjectController extends Controller
 
             $project = Auth::user()->team->project;
 
-            if ($project->is_submitted) throw new \Exception("You have submitted a project already and can no longer edit or create a new one", 422);
+            if ($project !== null) {
+                if ($project->is_submitted) throw new \Exception("You have submitted a project already and can no longer edit or create a new one", 422);
+            }
 
             $data['image'] = UploadImage::handle($data['image'], 'projects');
 

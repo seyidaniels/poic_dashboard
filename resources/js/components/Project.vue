@@ -64,7 +64,7 @@
                     type="radio"
                     name="test"
                     value="software"
-                    v-model="category"
+                    v-model="project.category"
                     @change="clicked()"
                     checked
                   >
@@ -102,7 +102,7 @@
                     type="radio"
                     name="category"
                     value="security"
-                    v-model="category"
+                    v-model="project.category"
                     @change="clicked()"
                     checked
                   >

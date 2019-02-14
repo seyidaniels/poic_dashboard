@@ -14,7 +14,7 @@ class AdminController extends Controller
         $data['message'] =
             "Hello, How you doing, If you have created a team, You can now create, update and submit your Project! \n Also note that your registration is void if you have not created a team and started a project. \n  Only team members who have registered on the website can be added to a team";
 
-        $data['subject'] = "Hey, Check POIC Rules and Guildlines";
+        $data['subject'] = "Hiya, Start Submitting your Projects now!";
 
         $users = User::all();
 

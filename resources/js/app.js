@@ -1,17 +1,18 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import  './bootstrap';
+import './bootstrap';
 
 import Vue from 'vue';
 import Routes from '@/js/routes.js';
 import App from '@/js/views/App'
 import store from '@/js/store'
 import moment from 'moment'
+import Vuesax from 'vuesax'
+
 
 
 
@@ -28,6 +29,12 @@ import moment from 'moment'
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+
+
+Vue.use(Vuesax)
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -39,6 +46,7 @@ Vue.prototype.moment = moment
 
 const app = new Vue({
     el: '#app',
+    vs: Vuesax,
     router: Routes,
     moment: moment,
     store: store,
@@ -46,5 +54,4 @@ const app = new Vue({
 });
 export default app;
 
-store.getters.isAuthenticated ? axios.defaults.headers.common['Authorization'] = "Bearer " +  localStorage.getItem('token') : ""
-
+store.getters.isAuthenticated ? axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token') : ""

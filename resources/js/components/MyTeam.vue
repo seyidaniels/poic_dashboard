@@ -1,7 +1,7 @@
 <template >
   <div class="main-content" v-cloak>
     <div class="container-fluid">
-      <div v-if="team.name" class="row justify-content-center">
+      <div v-if="team" class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8">
           <!-- Header -->
           <div class="header mt-md-5">
@@ -74,7 +74,7 @@
         </div>
       </div>
       <!-- / .row -->
-      <div class="row justify-content-center" v-else>
+      <div class="row justify-content-center" v-if="noTeam">
         <div class="card mt-5">
           <div class="card-body text-center">
             <div class="row justify-content-center">
@@ -107,17 +107,23 @@ export default {
   data: function() {
     return {
       team: [],
-      members: []
+      members: [],
+      noTeam: false
     };
   },
   mounted() {
+    this.$vs.loading();
+    console.log(this.$vs);
     axios
       .get(this.$store.state.serverURI + "get-team")
       .then(response => {
         if (response.data.success) {
-          this.team = response.data.team;
+          response.data.team !== null
+            ? (this.team = response.data.team)
+            : (this.noTeam = true);
           // this.members = response.data.members
         }
+        this.$vs.loading.close();
       })
       .catch(error => {
         handleError(error);

@@ -25,5 +25,12 @@ Route::post('password/reset', 'PasswordsController@submitRequest')->name('passwo
 
 
 // Admin Routes
-
 Route::get('send-mails', 'AdminController@mailAll');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@index');
+    // Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login')->name('login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('dashboard', 'AdminController@dashboard');
+});
+

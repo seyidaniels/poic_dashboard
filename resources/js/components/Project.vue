@@ -135,7 +135,7 @@
           <button class="btn btn-primary" @click="proceed()">
             <span>
               <i class="fa fa-forward"></i>
-            </span> Proceed
+            </span> Proceed Seyi
           </button>
         </div>
 
@@ -253,6 +253,7 @@ export default {
   },
   methods: {
     getProject() {
+      this.$vs.loading();
       axios
         .get(this.$store.state.serverURI + "get-project")
         .then(response => {
@@ -260,6 +261,7 @@ export default {
             this.project = response.data.project;
             this.showIntro = false;
           }
+          this.$vs.loading.close();
         })
         .catch(error => {
           handleError(error);

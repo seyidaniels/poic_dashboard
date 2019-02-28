@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 use App\Notifications\GeneralMessage;
 use App\User;
 use Notification;
+use Auth;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        if (Auth::check()) {
+            return redirect('/admin/dashboard');
+        }
+
+        return view('admin.login');
+    }
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
     public function mailAll()
     {
         $data['message'] =
@@ -21,6 +34,5 @@ class AdminController extends Controller
         Notification::send($users, new GeneralMessage($data));
 
         return response()->json(['error' => false, 'message' => 'message sent successfully']);
-
     }
 }

@@ -16,8 +16,6 @@ Route::get('/timeline', 'HomeController@timeline');
 Route::get('/rules', 'HomeController@rule');
 Route::get('/faq', 'HomeController@faq');
 Route::get('/dashboard', 'SinglePageController@index');
-
-
 Route::get('verify/{email_token}', 'RegisterController@verifyUser');
 Route::get('reset-password/{email_token}', 'PasswordsController@index')->name('password.request');
 Route::post('password/reset', 'PasswordsController@submitRequest')->name('password.reset');
@@ -28,9 +26,12 @@ Route::post('password/reset', 'PasswordsController@submitRequest')->name('passwo
 Route::get('send-mails', 'AdminController@mailAll');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-    // Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    Route::post('login', 'Auth\LoginController@login')->name('login');
-    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-    Route::get('dashboard', 'AdminController@dashboard');
+    Route::post('login', 'Auth\LoginController@authenticate')->name('login');
+    Route::get('/logout', 'Auth\LoginController@disAuth');
+    Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'is_admin']], function () {
+        Route::get('/', 'AdminController@dashboard');
+        Route::get('teams', 'AdminController@getTeams');
+        Route::get('projects', 'AdminController@getProjects');
+        Route::get('project/view/{id}', 'AdminController@viewProject');
+    });
 });
-

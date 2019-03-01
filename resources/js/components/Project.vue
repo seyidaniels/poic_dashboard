@@ -82,7 +82,7 @@
                         <!-- Subtitle -->
                         <p
                           class="card-text small text-muted"
-                        >Software Engineering and Programming, Human Computer Interaction, Robotics and Artificial Intelligence, Data Mining, Graphics Visualization, Bioinformatics and Computational Biology</p>
+                        >Software Engineering and Programming, Human Computer Interaction, Robotics and Artificial Intelligence, Data Mining, Graphics Visualization, Bioinformatics and Computational Biology, Energy and Mineral Resources</p>
                       </div>
                     </div>
                     <!-- / .row -->

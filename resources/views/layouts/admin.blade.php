@@ -2,6 +2,9 @@
 <html lang="en">
 
     @include('includes.admin.header')
+
+        @yield('title')
+
   <body>
 
     @include('includes.admin.navbar')

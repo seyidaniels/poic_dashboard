@@ -20,6 +20,5 @@
 
     <style>body { display: none; }</style>
 
-    @yield('title')
 
   </head>

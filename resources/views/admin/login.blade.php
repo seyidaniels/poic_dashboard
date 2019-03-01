@@ -53,6 +53,8 @@
               <!-- Input -->
               <input type="email"  placeholder="name@address.com" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
 
+
+
                @if ($errors->has('email'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -85,13 +87,6 @@
                     </span>
                 @endif
 
-                <!-- Icon -->
-                <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fe fe-eye"></i>
-                  </span>
-                </div>
-
               </div>
             </div>
 
@@ -99,6 +94,11 @@
             <button type="submit" class="btn btn-lg btn-block btn-primary mb-3">
               Sign in
             </button>
+
+
+                           @if(Session::has('message'))
+                <h4 class="text-danger">{{Session::get('message')}}</h4>
+                @endif
 
 
           </form>

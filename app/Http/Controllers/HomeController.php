@@ -1,28 +1,29 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    function index()
     {
         return view('welcome');
+    }
+    function timeline()
+    {
+        return view('timeline');
+    }
+    function rule()
+    {
+        return view('rules');
+    }
+    function faq()
+    {
+        return view('faq');
+    }
+    function terms()
+    {
+        $file = storage_path('app') . '/' . 'terms_conditions.pdf'; // or wherever you have stored your PDF files
+        return response()->file($file);
     }
 }

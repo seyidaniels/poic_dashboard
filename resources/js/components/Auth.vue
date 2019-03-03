@@ -128,7 +128,16 @@
                 </div>
 
                 <div class="form-group">
-                  <small class="text-primary">By Signing Up, You agree to POIC terms and conditions</small>
+                  <small class="text-primary">
+                    By Signing Up, You agree to
+                    <span>
+                      <a
+                        class="text-info"
+                        target="_blank"
+                        href="terms-conditions"
+                      >POIC terms and conditions</a>
+                    </span>
+                  </small>
                 </div>
 
                 <!-- Submit -->

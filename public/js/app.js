@@ -2085,6 +2085,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -70740,8 +70749,21 @@ var render = function() {
                           _c("div", { staticClass: "form-group" }, [
                             _c("small", { staticClass: "text-primary" }, [
                               _vm._v(
-                                "By Signing Up, You agree to POIC terms and conditions"
-                              )
+                                "\n                  By Signing Up, You agree to\n                  "
+                              ),
+                              _c("span", [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "text-info",
+                                    attrs: {
+                                      target: "_blank",
+                                      href: "terms-conditions"
+                                    }
+                                  },
+                                  [_vm._v("POIC terms and conditions")]
+                                )
+                              ])
                             ])
                           ]),
                           _vm._v(" "),

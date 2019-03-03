@@ -95,8 +95,8 @@
                     >
 
                     <!-- Icon -->
-                    <div class="input-group-append" @click="togglePass($event)">
-                      <span class="input-group-text">
+                    <div class="input-group-append">
+                      <span class="input-group-text" @click="togglePass($event)">
                         <i class="fe fe-eye"></i>
                       </span>
                     </div>
@@ -119,8 +119,8 @@
                     >
 
                     <!-- Icon -->
-                    <div class="input-group-append" @click="togglePass($event)">
-                      <span class="input-group-text">
+                    <div class="input-group-append">
+                      <span class="input-group-text" @click="togglePass($event)">
                         <i class="fe fe-eye"></i>
                       </span>
                     </div>

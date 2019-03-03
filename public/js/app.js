@@ -70700,18 +70700,18 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  {
-                                    staticClass: "input-group-append",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.togglePass($event)
-                                      }
-                                    }
-                                  },
+                                  { staticClass: "input-group-append" },
                                   [
                                     _c(
                                       "span",
-                                      { staticClass: "input-group-text" },
+                                      {
+                                        staticClass: "input-group-text",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.togglePass($event)
+                                          }
+                                        }
+                                      },
                                       [_c("i", { staticClass: "fe fe-eye" })]
                                     )
                                   ]
@@ -70763,18 +70763,18 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  {
-                                    staticClass: "input-group-append",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.togglePass($event)
-                                      }
-                                    }
-                                  },
+                                  { staticClass: "input-group-append" },
                                   [
                                     _c(
                                       "span",
-                                      { staticClass: "input-group-text" },
+                                      {
+                                        staticClass: "input-group-text",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.togglePass($event)
+                                          }
+                                        }
+                                      },
                                       [_c("i", { staticClass: "fe fe-eye" })]
                                     )
                                   ]

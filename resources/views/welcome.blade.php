@@ -89,7 +89,7 @@
             <div class="container">
                 <div class="cash-content text-center text-white">
                     <h3 class="mb-0 font-weight-bold">Got a Ground Breaking Innovative Idea ?</h3>
-                    <p>Compete with over 200 Students from Nigerian Universities to win the grand prize of  <span class="text-orange">3 Million Naira</span> </p>
+                    <p>Compete with over 200 Students from Nigerian Tertiary Institutions to win the grand prize of  <span class="text-orange">3 Million Naira</span> </p>
                      <a class=" btn btn-lg btn-orange text-center" href="{{URL('dashboard')}}">See Rules and Guidlines
                             <span class="pull-right fa fa-chevron-right"></span>
                         </a>

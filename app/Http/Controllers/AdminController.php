@@ -46,9 +46,9 @@ class AdminController extends Controller
     public function mailAll()
     {
         $data['message'] =
-            "Hello, You can now submit your project in any category of your choice and the project deadline has been further adjoruned. Furthermore, Your Project Content would be minimum of 300 words rather than 1000 words";
+            "Hello, You can now submit your project in any category of your choice and the project deadline has been further adjourned. Furthermore, Your Project Content would be minimum of 300 words rather than 1000 words";
 
-        $data['subject'] = "Project Submission Terns Updated";
+        $data['subject'] = "Project Submission Terms Updated";
 
         $users = User::all();
 

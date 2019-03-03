@@ -173,7 +173,7 @@
                 <table class="mobile-text-center" bgcolor="#B78743" cellpadding="0" cellspacing="0" style="border-radius: 3px;">
                   <tr>
                     <th class="sans-serif">
-                    <a href="{{Config::get('app.url')}}/dashboard/#/rules" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">View Rules and Guidelines</a>
+                    <a href="{{Config::get('app.url')}}/terms-conditions" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">View Terms and Conditions</a>
                     </th>
                   </tr>
                 </table>

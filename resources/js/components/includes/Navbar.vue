@@ -93,6 +93,11 @@
               <i class="fe fe-umbrella"></i> Rules and Guidelines
             </router-link>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="/terms-conditions">
+              <i class="fe fe-layout"></i> Terms and Conditions
+            </a>
+          </li>
           <li class="nav-item d-lg-none">
             <router-link class="nav-link" to="/notifications">
               <i class="fe fe-mail"></i> Messages

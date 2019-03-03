@@ -2122,6 +2122,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    togglePass: function togglePass(event) {
+      if (this.userSignUp.password.length > 0) {
+        var password = event.target.parentNode.parentNode.parentNode.firstChild;
+
+        if (password.type === "password") {
+          password.type = "text";
+          event.target.className = "fe fe-eye-off";
+        } else {
+          password.type = "password";
+          event.target.className = "fe fe-eye";
+        }
+      }
+    },
     validateRegister: function validateRegister() {
       if (this.userSignUp.firstname.length < 3 || this.userSignUp.lastname.length < 3) return toastr.warning("Firstname or Lastname fields cant be empty");
       if (this.userSignUp.phone.length < 11) return toastr.warning("Invalid Phone Number");
@@ -3055,6 +3068,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3257,6 +3275,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9956,7 +9979,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n[type=\"radio\"] {\n  position: absolute;\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n/* IMAGE STYLES */\n[type=\"radio\"] + img {\n  cursor: pointer;\n}\n\n/* CHECKED STYLES */\n[type=\"radio\"]:checked + img {\n  outline: 5px solid #b78743;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n[type=\"radio\"] {\n  position: absolute;\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n/* IMAGE STYLES */\n[type=\"radio\"] + img {\n  cursor: pointer;\n}\n\n/* CHECKED STYLES */\n[type=\"radio\"]:checked + img {\n  outline: 5px solid #b78743;\n}\n", ""]);
 
 // exports
 
@@ -70677,7 +70700,14 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "input-group-append" },
+                                  {
+                                    staticClass: "input-group-append",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.togglePass($event)
+                                      }
+                                    }
+                                  },
                                   [
                                     _c(
                                       "span",
@@ -70733,7 +70763,14 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "input-group-append" },
+                                  {
+                                    staticClass: "input-group-append",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.togglePass($event)
+                                      }
+                                    }
+                                  },
                                   [
                                     _c(
                                       "span",
@@ -72483,14 +72520,16 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        on: { click: _vm.removeImage }
-                      },
-                      [_vm._v("Remove")]
-                    )
+                    !_vm.project.is_submitted
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: { click: _vm.removeImage }
+                          },
+                          [_vm._v("Remove")]
+                        )
+                      : _vm._e()
                   ]
                 )
               ]),
@@ -72573,6 +72612,10 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Enter a Category for your Innovative Idea")
+                  ]),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
@@ -73169,6 +73212,8 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
               _c(
                 "li",
                 { staticClass: "nav-item d-lg-none" },
@@ -73280,6 +73325,24 @@ var staticRenderFns = [
               _c("span", { staticClass: "fe fe-search" })
             ])
           ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: { target: "_blank", href: "/terms-conditions" }
+        },
+        [
+          _c("i", { staticClass: "fe fe-layout" }),
+          _vm._v(" Terms and Conditions\n          ")
         ]
       )
     ])

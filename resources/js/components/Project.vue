@@ -235,7 +235,11 @@
                 height="300"
                 width="300"
               >
-              <button class="btn btn-danger" @click="removeImage">Remove</button>
+              <button
+                v-if="!project.is_submitted"
+                class="btn btn-danger"
+                @click="removeImage"
+              >Remove</button>
             </div>
           </div>
 
@@ -284,6 +288,7 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
+              <label for>Enter a Category for your Innovative Idea</label>
               <input type="text" v-model="customCategory" class="form-control">
             </div>
           </div>

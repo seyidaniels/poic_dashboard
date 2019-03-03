@@ -95,7 +95,7 @@
                     >
 
                     <!-- Icon -->
-                    <div class="input-group-append">
+                    <div class="input-group-append" @click="togglePass($event)">
                       <span class="input-group-text">
                         <i class="fe fe-eye"></i>
                       </span>
@@ -119,7 +119,7 @@
                     >
 
                     <!-- Icon -->
-                    <div class="input-group-append">
+                    <div class="input-group-append" @click="togglePass($event)">
                       <span class="input-group-text">
                         <i class="fe fe-eye"></i>
                       </span>
@@ -358,6 +358,18 @@ export default {
     };
   },
   methods: {
+    togglePass(event) {
+      if (this.userSignUp.password.length > 0) {
+        let password = event.target.parentNode.parentNode.parentNode.firstChild;
+        if (password.type === "password") {
+          password.type = "text";
+          event.target.className = "fe fe-eye-off";
+        } else {
+          password.type = "password";
+          event.target.className = "fe fe-eye";
+        }
+      }
+    },
     validateRegister() {
       if (
         this.userSignUp.firstname.length < 3 ||

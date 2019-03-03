@@ -46,9 +46,9 @@ class AdminController extends Controller
     public function mailAll()
     {
         $data['message'] =
-            "Hello, How you doing, If you have created a team, You can now create, update and submit your Project! \n Also note that your registration is void if you have not created a team and started a project. \n  Only team members who have registered on the website can be added to a team";
+            "Hello, You can now submit your project in any category of your choice and the project deadline has been further adjoruned. Furthermore, Your Project Content would be minimum of 300 words rather than 1000 words";
 
-        $data['subject'] = "Hiya, Start Submitting your Projects now!";
+        $data['subject'] = "Project Submission Terns Updated";
 
         $users = User::all();
 

@@ -178,7 +178,7 @@
           <button class="btn btn-primary" @click="proceed()">
             <span>
               <i class="fa fa-forward"></i>
-            </span> Proceed Seyi
+            </span> Proceed
           </button>
         </div>
 

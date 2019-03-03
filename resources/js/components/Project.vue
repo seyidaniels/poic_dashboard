@@ -11,6 +11,11 @@
                 <h6 class="header-pretitle">New project</h6>
                 <!-- Title -->
                 <h1 class="header-title">Create a new project</h1>
+
+                <div v-if="!showIntro">
+                  <div class="badge badge-info">Category</div>
+                  {{project.category}}
+                </div>
               </div>
             </div>
             <!-- / .row -->
@@ -19,7 +24,7 @@
 
         <div v-if="showIntro">
           <div class="row listAlias">
-            <div class="col-12 col-md-6 col-xl-4">
+            <div class="col-12 col-md-6 col-xl-3">
               <!-- Card -->
               <label>
                 <div class="card">
@@ -56,7 +61,7 @@
               </label>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-4">
+            <div class="col-12 col-md-6 col-xl-3">
               <!-- Card -->
               <label>
                 <div class="card">
@@ -94,7 +99,7 @@
               </label>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-4">
+            <div class="col-12 col-md-6 col-xl-3">
               <!-- Card -->
               <label>
                 <div class="card">
@@ -131,6 +136,44 @@
                 </div>
               </label>
             </div>
+
+            <div class="col-12 col-md-6 col-xl-3">
+              <!-- Card -->
+              <label>
+                <div class="card">
+                  <input
+                    type="radio"
+                    name="category"
+                    value="other"
+                    v-model="project.category"
+                    @change="clicked()"
+                    checked
+                  >
+
+                  <img
+                    src="https://cdn.pixabay.com/photo/2016/12/01/13/10/lightbulb-1875247__340.jpg"
+                    alt="..."
+                    class="card-img-top"
+                  >
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <!-- Title -->
+                        <h4 class="card-title mb-2 name">Any other Category</h4>
+                        <!-- Subtitle -->
+                        <p
+                          class="card-text small text-muted"
+                        >This involves any other Category not mentioned here</p>
+                      </div>
+                    </div>
+                    <!-- / .row -->
+                    <!-- Divider -->
+                    <hr>
+                  </div>
+                  <!-- / .card-body -->
+                </div>
+              </label>
+            </div>
           </div>
           <button class="btn btn-primary" @click="proceed()">
             <span>
@@ -149,7 +192,7 @@
 
           <div class="form-group">
             <label for>Project Status</label>
-            <div v-if="project.is_submitted">
+            <div v-if="project.is_submitted === 1">
               <div class="badge badge-info">{{project.status}}</div>
             </div>
           </div>
@@ -161,7 +204,7 @@
               This will tell the judges about your innovative ideas, so make it good!
               <span
                 class="text-danger"
-              >Minimum of 1000 word length</span>
+              >Minimum of 300 word length</span>
             </small>
             <editor v-model="project.body"></editor>
             <p class="text-info float-right">{{wordCount}} words</p>
@@ -184,13 +227,15 @@
               name="team_avatar"
               class="form-control"
             >
-            <div>
+            <div v-show="project.image">
               <img
-                v-show="project.image"
                 :src="project.image"
                 id="imagePreview"
                 class="img-responsive img-fluid img-thumbnail"
+                height="300"
+                width="300"
               >
+              <button class="btn btn-danger" @click="removeImage">Remove</button>
             </div>
           </div>
 
@@ -220,6 +265,35 @@
     </div>
     <div class="my-4"></div>
     <div class="my-4"></div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Other Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" v-model="customCategory" class="form-control">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" @click="proceedFromCustom" class="btn btn-primary">Proceed</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- / .row -->
   </div>
 </template>
@@ -248,7 +322,8 @@ export default {
       },
 
       showIntro: true,
-      loading: false
+      loading: false,
+      customCategory: ""
     };
   },
   methods: {
@@ -265,6 +340,8 @@ export default {
         })
         .catch(error => {
           handleError(error);
+          this.$router.push("/create-team");
+          this.$vs.loading.close();
         });
     },
     submitProject(is_submitted = 0) {
@@ -297,16 +374,12 @@ export default {
       this.loading = !this.loading;
     },
     validateProject() {
-      if (this.project.title.length < 30) {
-        toastr.warning("Project Title must be more than 30 characters");
-        return false;
-      }
       if (this.project.image == "") {
         toastr.warning("Project Cover Picture not found");
         return false;
       }
-      if (this.wordCount < 1000) {
-        toastr.warning("Project Body should be minimum of 1000 words");
+      if (this.wordCount < 300) {
+        toastr.warning("Project Body should be minimum of 300 words");
         return false;
       }
       return true;
@@ -319,11 +392,30 @@ export default {
         toastr.warning("Please, Kindly select a category");
         return;
       }
+      if (this.project.category == "other") {
+        $("#exampleModal").modal();
+        return;
+      }
+      this.showIntro = !this.showIntro;
+    },
+    proceedFromCustom() {
+      if (this.customCategory == "") {
+        toastr.warning("Your Category should have a name");
+        return;
+      }
+      $("#exampleModal").modal("hide");
+      this.project.category = this.customCategory;
       this.showIntro = !this.showIntro;
     },
     handleFileUpload() {
-      var preview = document.getElementById("imagePreview");
-      this.project.image = this.$refs.file.files[0];
+      let file = this.$refs.file.files[0];
+      if (!file.type.split("/").includes("image")) {
+        this.$refs.file.value = "";
+        toastr.error("Please upload an Image");
+        return;
+      }
+      let preview = document.getElementById("imagePreview");
+      this.project.image = file;
       var reader = new FileReader();
       reader.addEventListener(
         "load",
@@ -335,6 +427,9 @@ export default {
       if (this.project.image) {
         reader.readAsDataURL(this.project.image);
       }
+    },
+    removeImage() {
+      this.project.image = "";
     }
   }
 };

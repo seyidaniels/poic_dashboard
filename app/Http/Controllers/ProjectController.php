@@ -53,7 +53,6 @@ class ProjectController extends Controller
                 $project ? $this->updateProject($data) : $this->createProject($data);
 
                 $request['is_submitted'] == true ? $this->status = "submitted" : "";
-
             } else {
 
                 if ($project == null) throw new \Exception('You cannot create a project for your team, You can only update!  contact your team head, ' . Auth::user()->team->head->fullname(), 422);
@@ -65,11 +64,9 @@ class ProjectController extends Controller
             $data['status'] = $this->status;
 
             Notification::send(Auth::user()->team->members, new ProjectStatus($data));
-
         }, 3);
 
         return response()->json(['success' => true, 'message' => $this->message]);
-
     }
 
     public function createProject($data)
@@ -85,7 +82,6 @@ class ProjectController extends Controller
         Auth::user()->team->project->update($data);
         $this->message = "Team Updated successfully";
         $this->status = "updated";
-
     }
 
     public function getProject()
@@ -99,11 +95,9 @@ class ProjectController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => 'required|min:30|string',
+            'title' => 'required|string',
             'body' => ['required', new WordCount],
             'category' => 'required|string'
         ]);
     }
-
-
 }

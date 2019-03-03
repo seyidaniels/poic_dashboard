@@ -25,7 +25,7 @@ class WordCount implements Rule
      */
     public function passes($attribute, $value)
     {
-        return count(explode(" ", $value)) > 1000;
+        return count(explode(" ", $value)) > 300;
     }
 
     /**
@@ -35,6 +35,6 @@ class WordCount implements Rule
      */
     public function message()
     {
-        return 'The :attribute must not be less than 1000 words';
+        return 'The :attribute must not be less than 300 words';
     }
 }

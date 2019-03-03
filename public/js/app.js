@@ -2972,6 +2972,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2995,7 +3069,8 @@ __webpack_require__.r(__webpack_exports__);
         category: ""
       },
       showIntro: true,
-      loading: false
+      loading: false,
+      customCategory: ""
     };
   },
   methods: {
@@ -3012,6 +3087,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.$vs.loading.close();
       }).catch(function (error) {
         Object(_error__WEBPACK_IMPORTED_MODULE_1__["default"])(error);
+
+        _this.$router.push("/create-team");
+
+        _this.$vs.loading.close();
       });
     },
     submitProject: function submitProject() {
@@ -3047,18 +3126,13 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = !this.loading;
     },
     validateProject: function validateProject() {
-      if (this.project.title.length < 30) {
-        toastr.warning("Project Title must be more than 30 characters");
-        return false;
-      }
-
       if (this.project.image == "") {
         toastr.warning("Project Cover Picture not found");
         return false;
       }
 
-      if (this.wordCount < 1000) {
-        toastr.warning("Project Body should be minimum of 1000 words");
+      if (this.wordCount < 300) {
+        toastr.warning("Project Body should be minimum of 300 words");
         return false;
       }
 
@@ -3073,11 +3147,34 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      if (this.project.category == "other") {
+        $("#exampleModal").modal();
+        return;
+      }
+
+      this.showIntro = !this.showIntro;
+    },
+    proceedFromCustom: function proceedFromCustom() {
+      if (this.customCategory == "") {
+        toastr.warning("Your Category should have a name");
+        return;
+      }
+
+      $("#exampleModal").modal("hide");
+      this.project.category = this.customCategory;
       this.showIntro = !this.showIntro;
     },
     handleFileUpload: function handleFileUpload() {
+      var file = this.$refs.file.files[0];
+
+      if (!file.type.split("/").includes("image")) {
+        this.$refs.file.value = "";
+        toastr.error("Please upload an Image");
+        return;
+      }
+
       var preview = document.getElementById("imagePreview");
-      this.project.image = this.$refs.file.files[0];
+      this.project.image = file;
       var reader = new FileReader();
       reader.addEventListener("load", function () {
         preview.src = reader.result;
@@ -3086,6 +3183,9 @@ __webpack_require__.r(__webpack_exports__);
       if (this.project.image) {
         reader.readAsDataURL(this.project.image);
       }
+    },
+    removeImage: function removeImage() {
+      this.project.image = "";
     }
   }
 });
@@ -9847,7 +9947,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n[type=\"radio\"] {\n  position: absolute;\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n/* IMAGE STYLES */\n[type=\"radio\"] + img {\n  cursor: pointer;\n}\n\n/* CHECKED STYLES */\n[type=\"radio\"]:checked + img {\n  outline: 5px solid #b78743;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n[type=\"radio\"] {\n  position: absolute;\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n/* IMAGE STYLES */\n[type=\"radio\"] + img {\n  cursor: pointer;\n}\n\n/* CHECKED STYLES */\n[type=\"radio\"]:checked + img {\n  outline: 5px solid #b78743;\n}\n", ""]);
 
 // exports
 
@@ -72010,12 +72110,39 @@ var render = function() {
   return _c("div", { staticClass: "container-fluid" }, [
     _c("div", { staticClass: "row justify-content-center my-4" }, [
       _c("div", { staticClass: "col-10 col-lg-10 col-xl-8" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "header mt-md-5" }, [
+          _c("div", { staticClass: "header-body" }, [
+            _c("div", { staticClass: "row align-items-center" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("h6", { staticClass: "header-pretitle" }, [
+                  _vm._v("New project")
+                ]),
+                _vm._v(" "),
+                _c("h1", { staticClass: "header-title" }, [
+                  _vm._v("Create a new project")
+                ]),
+                _vm._v(" "),
+                !_vm.showIntro
+                  ? _c("div", [
+                      _c("div", { staticClass: "badge badge-info" }, [
+                        _vm._v("Category")
+                      ]),
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.project.category) +
+                          "\n              "
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _vm.showIntro
           ? _c("div", [
               _c("div", { staticClass: "row listAlias" }, [
-                _c("div", { staticClass: "col-12 col-md-6 col-xl-4" }, [
+                _c("div", { staticClass: "col-12 col-md-6 col-xl-3" }, [
                   _c("label", [
                     _c("div", { staticClass: "card" }, [
                       _c("input", {
@@ -72056,12 +72183,12 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _vm._m(0)
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-12 col-md-6 col-xl-4" }, [
+                _c("div", { staticClass: "col-12 col-md-6 col-xl-3" }, [
                   _c("label", [
                     _c("div", { staticClass: "card" }, [
                       _c("input", {
@@ -72103,12 +72230,12 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(2)
+                      _vm._m(1)
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-12 col-md-6 col-xl-4" }, [
+                _c("div", { staticClass: "col-12 col-md-6 col-xl-3" }, [
                   _c("label", [
                     _c("div", { staticClass: "card" }, [
                       _c("input", {
@@ -72146,6 +72273,53 @@ var render = function() {
                         attrs: {
                           src:
                             "https://dexab.com/wp-content/uploads/2016/08/Army-Soldiers-Pictures-HD-Wallpaper-1345-425x281.jpg",
+                          alt: "..."
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(2)
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 col-md-6 col-xl-3" }, [
+                  _c("label", [
+                    _c("div", { staticClass: "card" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.project.category,
+                            expression: "project.category"
+                          }
+                        ],
+                        attrs: {
+                          type: "radio",
+                          name: "category",
+                          value: "other",
+                          checked: ""
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.project.category, "other")
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              _vm.$set(_vm.project, "category", "other")
+                            },
+                            function($event) {
+                              _vm.clicked()
+                            }
+                          ]
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "card-img-top",
+                        attrs: {
+                          src:
+                            "https://cdn.pixabay.com/photo/2016/12/01/13/10/lightbulb-1875247__340.jpg",
                           alt: "..."
                         }
                       }),
@@ -72202,7 +72376,7 @@ var render = function() {
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "" } }, [_vm._v("Project Status")]),
                 _vm._v(" "),
-                _vm.project.is_submitted
+                _vm.project.is_submitted === 1
                   ? _c("div", [
                       _c("div", { staticClass: "badge badge-info" }, [
                         _vm._v(_vm._s(_vm.project.status))
@@ -72264,8 +72438,9 @@ var render = function() {
                     })
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", [
-                  _c("img", {
+                _c(
+                  "div",
+                  {
                     directives: [
                       {
                         name: "show",
@@ -72273,11 +72448,29 @@ var render = function() {
                         value: _vm.project.image,
                         expression: "project.image"
                       }
-                    ],
-                    staticClass: "img-responsive img-fluid img-thumbnail",
-                    attrs: { src: _vm.project.image, id: "imagePreview" }
-                  })
-                ])
+                    ]
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "img-responsive img-fluid img-thumbnail",
+                      attrs: {
+                        src: _vm.project.image,
+                        id: "imagePreview",
+                        height: "300",
+                        width: "300"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: { click: _vm.removeImage }
+                      },
+                      [_vm._v("Remove")]
+                    )
+                  ]
+                )
               ]),
               _vm._v(" "),
               !_vm.project.is_submitted
@@ -72334,30 +72527,82 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "my-4" }),
     _vm._v(" "),
-    _c("div", { staticClass: "my-4" })
+    _c("div", { staticClass: "my-4" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "exampleModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.customCategory,
+                        expression: "customCategory"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.customCategory },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.customCategory = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.proceedFromCustom }
+                  },
+                  [_vm._v("Proceed")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header mt-md-5" }, [
-      _c("div", { staticClass: "header-body" }, [
-        _c("div", { staticClass: "row align-items-center" }, [
-          _c("div", { staticClass: "col" }, [
-            _c("h6", { staticClass: "header-pretitle" }, [
-              _vm._v("New project")
-            ]),
-            _vm._v(" "),
-            _c("h1", { staticClass: "header-title" }, [
-              _vm._v("Create a new project")
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -72391,7 +72636,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("p", { staticClass: "card-text small text-muted" }, [
             _vm._v(
-              "Software Engineering and Programming, Human Computer Interaction, Robotics and Artificial Intelligence, Data Mining, Graphics Visualization, Bioinformatics and Computational Biology"
+              "Software Engineering and Programming, Human Computer Interaction, Robotics and Artificial Intelligence, Data Mining, Graphics Visualization, Bioinformatics and Computational Biology, Energy and Mineral Resources"
             )
           ])
         ])
@@ -72426,6 +72671,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row align-items-center" }, [
+        _c("div", { staticClass: "col" }, [
+          _c("h4", { staticClass: "card-title mb-2 name" }, [
+            _vm._v("Any other Category")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text small text-muted" }, [
+            _vm._v("This involves any other Category not mentioned here")
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("span", [_c("i", { staticClass: "fa fa-forward" })])
   },
   function() {
@@ -72437,8 +72702,33 @@ var staticRenderFns = [
         "\n            This will tell the judges about your innovative ideas, so make it good!\n            "
       ),
       _c("span", { staticClass: "text-danger" }, [
-        _vm._v("Minimum of 1000 word length")
+        _vm._v("Minimum of 300 word length")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Other Category")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]

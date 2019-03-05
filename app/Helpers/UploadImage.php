@@ -3,6 +3,8 @@ namespace App\Helpers;
 
 use Cloudder;
 
+use Exception;
+
 
 class UploadImage
 {

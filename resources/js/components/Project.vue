@@ -217,7 +217,7 @@
           <!-- Project cover -->
           <div class="form-group">
             <label class="mb-1">Project cover</label>
-            <small class="form-text text-muted">Please use an image no larger than 1200px * 600px.</small>
+            <small class="form-text text-muted">Please use an image not larger than 1200px * 600px.</small>
             <input
               type="file"
               v-if="!project.image"

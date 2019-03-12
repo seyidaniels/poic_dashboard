@@ -43,7 +43,8 @@ class AdminController extends Controller
     }
     public function getProjects()
     {
-        $projects = Project::orderBy('created_at', 'asc')->paginate(10);
+        $projects = Auth::user()->projects();
+
         return view('admin.projects', compact('projects'));
     }
     public function viewProject($id)
@@ -65,6 +66,12 @@ class AdminController extends Controller
     public function viewPass()
     {
         return view('admin.change-password');
+    }
+
+    public function viewScores()
+    {
+        $projects = Project::all();
+        return view('admin.scores', compact('projects'));
     }
 
     public function createAdmin(Request $request)
@@ -164,6 +171,45 @@ class AdminController extends Controller
         $project->update();
 
         /// Send a Mail to Notify Applicants of their
+    }
+
+    public function scoreProject(Request $request)
+    {
+        $data = $request->All();
+        $reviewer_id = Auth::id();
+        $project_id = $data['project_id'];
+        $scores = $data['score'];
+
+        foreach ($scores as $category => $score) {
+            Review::where([
+                'reviewer_id' => $reviewer_id,
+                'project_id' => $project_id,
+                'vetting_category' => $category
+            ])->update(['score' => $score]);
+        }
+
+        $this->sendProjectToJudges($project_id);
+
+        return response()->json(['success' => true, 'message' => 'You have successfully Scored this Project']);
+    }
+
+    public function sendProjectToJudges($project_id)
+    {
+
+        // Check if th project has been completely Marked By all Reviewer if it has, Kindly change the project status
+        $reviews = Review::where([
+            'project_id' => $project_id,
+            'score' => null,
+        ])->get();
+
+        $shouldMove = [];
+        foreach ($reviews as $r) {
+            array_push($shouldMove, $r->user->role->role);
+        }
+
+        if (!in_array('reviewer', $shouldMove)) {
+            $this->updateProjectStatus($project_id, 'modification');
+        }
     }
 
     public function changePassword(Request $request)

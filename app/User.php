@@ -67,6 +67,15 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Role');
     }
+
+    public function is_super()
+    {
+        if ($this->is_admin) {
+            return $this->role->role == 'super';
+        }
+    }
+
+
     public function category()
     {
         if ($this->is_admin) {
@@ -82,5 +91,20 @@ class User extends Authenticatable
     public function reviewCategories($project_id)
     {
         return $this->reviews->where('project_id', $project_id)->pluck('vetting_category');
+    }
+    public function projects()
+    {
+        if ($this->is_admin) {
+
+            if ($this->is_super()) return Project::orderBy('created_at', 'asc')->paginate(10);
+
+            $reviews = $this->reviews->where('reviewer_id', $this->id)->pluck('project_id');
+            $projects = Project::find($reviews);
+            if ($this->role->role == 'reviewer') {
+                return $projects->where('status', 'processing');
+            } else if ($this->role->role  == 'judge') {
+                return $projects->where('status', 'modification');
+            }
+        }
     }
 }

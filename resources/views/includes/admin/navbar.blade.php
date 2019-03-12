@@ -68,7 +68,9 @@
                   <i class="fe fe-file"></i> Projects
                 </a>
               </li>
-              <li class="nav-item">
+
+              @if(Auth::user()->is_super())
+                 <li class="nav-item">
                 <a class="nav-link" href="/admin/dashboard/teams" >
                   <i class="fe fe-user"></i> Teams
                 </a>
@@ -84,6 +86,14 @@
                   <i class="fe fe-mail"></i> Admin Management
                 </a>
               </li>
+
+
+                        <li class="nav-item">
+                <a class="nav-link" href="/admin/dashboard/scores" >
+                  <i class="fe fe-mail"></i> LeaderBoards
+                </a>
+              </li>
+              @endif
             </ul>
 
           </div> <!-- / .navbar-collapse -->

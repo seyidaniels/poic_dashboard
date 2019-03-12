@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class IsSuper
 {
@@ -15,8 +16,8 @@ class IsSuper
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role->role !== 'super') {
-            return redirect()->back() - with(['error' => 'This is a Super Admin function']);
+        if (!Auth::user()->is_super()) {
+            return redirect()->back()->with(['error' => 'This is a Super Admin function']);
         }
         return $next($request);
     }

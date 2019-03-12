@@ -48,10 +48,6 @@ class Project extends Model
         return User::find($users);
     }
 
-
-
-
-
     public function smes()
     {
         $users = User::where('is_admin', 1)->where('id', '!=', Auth::id())->get();
@@ -67,4 +63,10 @@ class Project extends Model
         }
         return $users;
     }
+
+    public function scoredByAuthenticatedUser()
+    {
+        return Auth::user()->reviews()->where("project_id", $this->id)->sum('score') > 0;
+    }
 }
+

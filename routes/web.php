@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('update-password', 'AdminController@changePassword');
         Route::get('project/view/{id}', 'AdminController@viewProject');
         Route::get('projects', 'AdminController@getProjects');
+        Route::post('score-project', 'AdminController@scoreProject');
         Route::group(['middleware' => ['is_super']], function () {
             Route::get('admin-management', 'AdminController@adminView');
             Route::get('teams', 'AdminController@getTeams');
@@ -42,6 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('communication', 'AdminController@communicate');
             Route::post('send-mail', 'AdminController@mailAll');
             Route::post('add-reviewers', 'AdminController@addProjectReviewers');
+            Route::get('scores', 'AdminController@viewScores');
         });
     });
 });

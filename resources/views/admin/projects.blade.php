@@ -9,17 +9,20 @@
       <div class="container-fluid">
         <div class="my-4"></div>
         <div class="row justify-content-center mt-4">
-          <div class="col-12 col-xl-8">
+            @if(count($projects))
+          <div class="col-12 col-xl-8" >
+
+
 
             @foreach ($projects as $project)
                             <!-- Card -->
-            <div class="card mb-3">
+            <div class="card mb-3" >
               <div class="card-body">
                 <div class="row align-items-center">
                   <div class="col-auto">
 
                     <!-- Avatar -->
-                    <a href="profile-posts.html" class="avatar avatar-lg">
+                    <a href="#" class="avatar avatar-lg">
                       <img src="{{$project->image}}" alt="..." class="avatar-img rounded-circle">
                     </a>
 
@@ -28,7 +31,8 @@
 
                     <!-- Title -->
                     <h4 class="card-title mb-1">
-                      <a href="profile-posts.html">{{$project->title}}</a>
+                      <a href="#">{{$project->title}}</a>
+                      <div class="badge badge-success"> {{$project->status}} </div>
                     </h4>
 
                     <!-- Text -->
@@ -56,10 +60,15 @@
 
             @endforeach
 
-            {{$projects->links()}}
+            {{-- {{$projects->links()}} --}}
 
 
           </div>
+          @else
+
+          <p class="alert alert-info mt-4">No Project to be Vetted by You, Please check back!</p>
+
+          @endif
         </div> <!-- / .row -->
       </div>
     </div>

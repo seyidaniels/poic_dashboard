@@ -151,7 +151,7 @@
               <!-- Form -->
               <form @submit.prevent="confirm" >
                 <div class="form-group" v-for="category in categories" >
-                <label for="category"> You are vetting based on  <div class="badge badge-info">  @{{category}}  </div> of this project </label>
+                <label for="category"> You are  @if (Auth::user()->role->role == 'reviewer' ) vetting @else judging @endif based on  <div class="badge badge-info">  @{{category}}  </div> of this project </label>
                     <select class="form-control" v-model="score[category]" >
                         <option value="1">1</option>
                         <option value="2">2</option>

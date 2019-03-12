@@ -158,6 +158,15 @@ class AdminController extends Controller
         $this->updateProjectStatus($project_id, 'processing');
 
         // Send a Mail to all Reviewers telling them they have been selected to Review a Project!
+        $mail_reviewers = User::find($mail_reviewers);
+
+        $project = Project::find($project_id);
+
+        $data['message'] = "Hello, a Project '" . $project->title . "' has been assigned to you, Kindly review the proposal";
+        $data['project_id'] = $project->id;
+        $data['subject'] = "A Project has been assigned to you";
+
+        Notification::send($mail_reviewers, new GeneralMessage($data));
 
         return response()->json(['success' => true, 'message' => 'Reviewers have been added']);
     }

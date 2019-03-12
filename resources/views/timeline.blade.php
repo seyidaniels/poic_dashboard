@@ -41,7 +41,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="/dashboard">
-                            <button class="nav-link btn btn-orange" style="border-radius: 40px;" > 
+                            <button class="nav-link btn btn-orange" style="border-radius: 40px;" >
                                 <p>Apply Now</p>
                             </button>
                         </a>
@@ -67,10 +67,10 @@
                                     </div>
                                     <div class="timeline-panel">
                                       <div class="timeline-heading">
-                                        <span class="badge badge-pill badge-danger">January 1st - 30 th </span>
+                                        <span class="badge badge-pill badge-danger">February 1st -  April 1st</span>
                                       </div>
                                       <div class="timeline-body">
-                                        <p>Countdown to Opening of Challenge</p>
+                                        <p>Application is Open to all </p>
                                       </div>
                                     </div>
                                   </li>
@@ -80,10 +80,10 @@
                                     </div>
                                     <div class="timeline-panel">
                                       <div class="timeline-heading">
-                                        <span class="badge badge-pill badge-success">Febuary 1st</span>
+                                        <span class="badge badge-pill badge-success">April 1st - April 10th</span>
                                       </div>
                                       <div class="timeline-body">
-                                        <p>Entry for Challenge begins on website poic.unilag.edu.ng</p>
+                                        <p>Application Vetting </p>
                                       </div>
                                     </div>
                                   </li>
@@ -93,10 +93,10 @@
                                         </div>
                                         <div class="timeline-panel">
                                           <div class="timeline-heading">
-                                            <span class="badge badge-pill badge-success">Febuary 22nd</span>
+                                            <span class="badge badge-pill badge-success">April 10th to May 10th</span>
                                           </div>
                                           <div class="timeline-body">
-                                            <p>Hardware & materials sent to applicants</p>
+                                            <p>Presentation Production</p>
                                           </div>
                                         </div>
                                       </li>
@@ -107,10 +107,10 @@
                                             </div>
                                             <div class="timeline-panel">
                                               <div class="timeline-heading">
-                                                <span class="badge badge-pill badge-success">March 8th</span>
+                                                <span class="badge badge-pill badge-success">May 10th to May 26th</span>
                                               </div>
                                               <div class="timeline-body">
-                                                <p>Early Conferencing Registration begins</p>
+                                                <p>Application Vetting II</p>
                                               </div>
                                             </div>
                                           </li>
@@ -122,57 +122,13 @@
                                             </div>
                                             <div class="timeline-panel">
                                               <div class="timeline-heading">
-                                                <span class="badge badge-pill badge-success">March 12th</span>
+                                                <span class="badge badge-pill badge-success">May 26th to June 16th</span>
                                               </div>
                                               <div class="timeline-body">
-                                                <p>Deadline for Early Conference Registration</p>
+                                                <p>Team get Notified of Challenge and Sucessfull team qualifies</p>
                                               </div>
                                             </div>
                                           </li>
-
-                                          <li>
-                                                <div class="timeline-badge warning">
-                                                  <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <div class="timeline-panel">
-                                                  <div class="timeline-heading">
-                                                    <span class="badge badge-pill badge-success">March 12th</span>
-                                                  </div>
-                                                  <div class="timeline-body">
-                                                    <p>Deadline for Early Conference Registration</p>
-                                                  </div>
-                                                </div>
-                                              </li>
-
-
-                                  <li class="timeline-inverted">
-                                    <div class="timeline-badge info">
-                                      <i class=" fa fa-calendar"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                      <div class="timeline-heading">
-                                        <span class="badge badge-pill badge-info">February 22</span>
-                                      </div>
-                                      <div class="timeline-body">
-                                        <p>Team get Notified of Challenge and Sucessfull team qualifies</p>
-                                        <hr>
-                                      </div>
-                                    </div>
-                                  </li>
-                                  <li>
-                                    <div class="timeline-badge warning">
-                                      <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                      <div class="timeline-heading">
-                                        <span class="badge badge-pill badge-warning">April 1st</span>
-                                      </div>
-                                      <div class="timeline-body">
-                                        <p>Deadline for Applicants to Upload Video
-                                            </p>
-                                      </div>
-                                    </div>
-                                  </li>
 
                                   <li>
                                         <div class="timeline-badge danger">

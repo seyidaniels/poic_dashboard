@@ -42,12 +42,12 @@ navbar navbar-expand-lg bg-dark fixed-top
                 </li>
                 <li class="nav-item">
                         <a  href="{{url('/dashboard')}}">
-                    <button class="nav-link btn btn-orange" style="border-radius: 40px;" >
+                        <button class="nav-link btn btn-orange" style="border-radius: 40px;" >
 
-                            <a href="/dashboard">Apply Now</a>
+                                <a href="/dashboard">Apply Now</a>
 
-                    </button>
-                </a>
+                        </button>
+                     </a>
                 </li>
             </ul>
         </div>

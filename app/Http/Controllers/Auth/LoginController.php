@@ -48,6 +48,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         $credentials['is_admin'] = 1;
+        $credentials['verified'] = 1;
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...

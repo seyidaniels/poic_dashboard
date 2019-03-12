@@ -31,28 +31,35 @@ class PasswordsController extends Controller
         }, 3);
 
         return response()->json([
-            'success' => true, 'message'=> 'A reset email has been sent! Please check your email.'
+            'success' => true, 'message' => 'A reset email has been sent! Please check your email.'
         ]);
     }
-    public function index ($email_token) {
+    public function index($email_token)
+    {
         $reset = PasswordReset::where('token', $email_token)->first();
         if (!$reset) {
-            return view ('reset-password', ['success' => false, 'message' => 'Invalid Token']);
+            return view('reset-password', ['success' => false, 'message' => 'Invalid Token']);
         }
         // Check if the time difference between now and then is less
-        $now = Carbon::now ();
+        $now = Carbon::now();
         $diff = $now->diffInMinutes($reset->created_at);
 
-        if ($diff > 15) {return  view('reset-password', ['success' => false, 'message' => 'Token expired']); }
+        if ($diff > 15) {
+            return  view('reset-password', ['success' => false, 'message' => 'Token expired']);
+        }
         $user = User::where('email', $reset->email)->first();
-        return view ('reset-password', ['success' => true, 'user' =>  $user, 'token' => $reset->token]);
-
+        return view('reset-password', ['success' => true, 'user' =>  $user, 'token' => $reset->token]);
     }
 
-    public function submitRequest (Request $request) {
+
+
+
+
+    public function submitRequest(Request $request)
+    {
         // Get the User Id
         if ($request['password'] !== $request['password_confirmation']) {
-                return redirect()->back()->with (['error' => true, 'message' => 'Passwords do not match']);
+            return redirect()->back()->with(['error' => true, 'message' => 'Passwords do not match']);
         }
         $user = User::find($request['user_id']);
         $current_password = $user->password;
@@ -61,10 +68,9 @@ class PasswordsController extends Controller
             $newpassword = $request['password'];
             // PasswordReset::where('token', $request['token'])->first()->delete();
             $user->update(['password' => $newpassword]);
-            return redirect()->back ()->with (['success' => true, 'message' => 'Your password has been changed successfully']);
-
-        }else {
-            return redirect()->back ()->with (['error' => true, 'message' => 'Your password cant be same as previous password']);
+            return redirect()->back()->with(['success' => true, 'message' => 'Your password has been changed successfully']);
+        } else {
+            return redirect()->back()->with(['error' => true, 'message' => 'Your password cant be same as previous password']);
         }
-}
+    }
 }

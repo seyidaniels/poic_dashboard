@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <img src="/landing/assets/img/logo-white.png" size="height: 40px; width: 40px;" class="img-fluid footer-img" alt="">
-                    <p class="text-light">
+                    <p class="text-light " style="font-size: 1.0em" >
                         Birth the Idea. Fuel your Passion
                     </p>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="col-md-2">
                     <p class="font-weight-bold text-light">
                         <a class="text-white" href="{{ URL('/rules') }}">Rules</a>
-                    </p>    
+                    </p>
                 </div>
                 <div class="col-md-2">
                     <p class="font-weight-bold text-light">About</p>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <p class="patri">Copyright &copy; 2018 All Rights Reserved!</p>
+            <p class="patri text-light">Copyright &copy; 2018 All Rights Reserved!</p>
         </div>
     </div>
 </address>

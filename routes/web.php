@@ -26,13 +26,20 @@ Route::post('password/reset', 'PasswordsController@submitRequest')->name('passwo
 // Admin Routes
 Route::get('send-mails', 'AdminController@mailAll');
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', 'AdminController@index');
+    Route::get('/', 'AdminController@index')->name('view-login');
     Route::post('login', 'Auth\LoginController@authenticate')->name('login');
     Route::get('/logout', 'Auth\LoginController@disAuth');
     Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'is_admin']], function () {
         Route::get('/', 'AdminController@dashboard');
         Route::get('teams', 'AdminController@getTeams');
         Route::get('projects', 'AdminController@getProjects');
+        Route::get('change-password', 'AdminController@viewPass');
         Route::get('project/view/{id}', 'AdminController@viewProject');
+        Route::get('admin-management', 'AdminController@adminView');
+        Route::post('create-admin', 'AdminController@createAdmin');
+        Route::get('communication', 'AdminController@communicate');
+        Route::post('send-mail', 'AdminController@mailAll');
+        Route::post('update-password', 'AdminController@changePassword');
+        Route::post('add-reviewers', 'AdminController@addProjectReviewers');
     });
 });

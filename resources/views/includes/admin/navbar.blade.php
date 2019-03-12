@@ -78,6 +78,12 @@
                   <i class="fe fe-mail"></i> Communication
                 </a>
               </li>
+
+                        <li class="nav-item">
+                <a class="nav-link" href="/admin/dashboard/admin-management" >
+                  <i class="fe fe-mail"></i> Admin Management
+                </a>
+              </li>
             </ul>
 
           </div> <!-- / .navbar-collapse -->
@@ -105,6 +111,7 @@
 
                 <!-- Menu -->
                 <div class="dropdown-menu dropdown-menu-right">
+                  <a href="/admin/dashboard/change-password" class="dropdown-item">Change Password</a>
                   <hr class="dropdown-divider">
                   <a href="/admin/logout" class="dropdown-item">Logout</a>
                 </div>

@@ -18,7 +18,11 @@
 
     <link rel="stylesheet" href="/dashboard_assets/assets/css/theme-dark.min.css" id="stylesheetDark">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
     <style>body { display: none; }</style>
+
+    <title>Admin Dashboard</title>
 
 
   </head>

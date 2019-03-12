@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use League\Flysystem\Exception;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'phone', 'email', 'password', 'email_token', 'verified'
+        'title', 'firstname', 'lastname', 'phone', 'email', 'password', 'email_token', 'verified', 'is_admin'
     ];
 
     /**
@@ -51,6 +52,35 @@ class User extends Authenticatable
 
     public function fullname()
     {
-        return $this->firstname . " " . $this->lastname;
+        return $this->title . " " . $this->firstname . " " . $this->lastname;
+    }
+
+    public function hasRole()
+    {
+        if ($this->is_admin) {
+            return $this->hasOne('App\Role');
+        }
+        throw new Exception("Unuthorised", 403);
+    }
+
+    public function role()
+    {
+        return $this->hasOne('App\Role');
+    }
+    public function category()
+    {
+        if ($this->is_admin) {
+            return $this->hasRole->category;
+        }
+    }
+    public function reviews()
+    {
+        if ($this->is_admin) {
+            return $this->hasMany('App\Review', 'reviewer_id');
+        }
+    }
+    public function reviewCategories($project_id)
+    {
+        return $this->reviews->where('project_id', $project_id)->pluck('vetting_category');
     }
 }

@@ -168,15 +168,8 @@
             </tr>
             <tr>
               <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; font-weight: 400; text-align: left;">
-                <div class="serif" style="color: #1F2225; font-size: 28px; font-weight: 700; line-height: 50px; margin-bottom: 30px;">Hi Applicant, </div>
-                <div class="sans-serif" style="color: #969AA1; font-size: 18px; line-height: 28px; margin-bottom: 40px;">{{$data['message']}}</div>
-                <table class="mobile-text-center" bgcolor="#B78743" cellpadding="0" cellspacing="0" style="border-radius: 3px;">
-                  <tr>
-                    <th class="sans-serif">
-                    <a href="{{Config::get('app.url')}}/terms-conditions" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">View Terms and Conditions</a>
-                    </th>
-                  </tr>
-                </table>
+                <div class="serif" style="color: #1F2225; font-size: 28px; font-weight: 700; line-height: 50px; margin-bottom: 30px;">Hello, </div>
+                <div class="sans-serif" style="color: #969AA1; font-size: 18px; line-height: 28px; margin-bottom: 40px; text-align:justify">{{$data['message']}}</div>
                 <div style="color: #969AA1; font-size: 13px; margin-top: 40px;">Thanks, <br><strong>The POIC Team</strong></div>
               </th>
             </tr>

@@ -1,83 +1,59 @@
 @extends('layouts.admin')
 
 
+
+
+
 @section('content')
+
 
     <!-- MAIN CONTENT
     ================================================== -->
     <div class="main-content">
+
       <div class="container-fluid">
         <div class="my-4"></div>
+
         <div class="row justify-content-center mt-4">
+
           <div class="col-12 col-xl-8">
+              <div class="row justify-content-center">
+                                @include('includes.admin.message')
 
-            @foreach ($teams as $team)
-                            <!-- Card -->
-            <div class="card mb-3">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-auto">
+                </div>
+                <div class="row justify-content-center">
+                      <p class="lead">Communicate with Applicants and Admins</p>
 
-                    <!-- Avatar -->
-                    <a href="profile-posts.html" class="avatar avatar-lg">
-                      <img src="{{$team->image}}" alt="..." class="avatar-img rounded-circle">
-                    </a>
+                </div>
+                <div class="row justify-content-center">
 
-                  </div>
-                  <div class="col ml--2">
+                    <div class="col-md-6">
+                         <form action="send-mail" method="post">
+                             @csrf
+                <div class="form-group row">
+                    <select name="type" id="" class="form-control">
+                        <option value selected>Select Category</option>
+                        <option value="admins">Admin</option>
+                        <option value="applicants">Applicant</option>
+                        <option value="team_heads">Team Heads</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label for="subject">Subject</label>
+                    <input type="text" name="subject" class="form-control">
+                </div>
+                <div class="form-group row">
+                    <label for="subject">Message </label>
+                    <textarea name="message" class="form-control"></textarea>
+                </div>
 
-                    <!-- Title -->
-                    <h4 class="card-title mb-1">
-                      <a href="profile-posts.html">{{$team->name}}</a>
-                    </h4>
+                      <button type="submit" class="btn btn-primary float-center" >Send Message</button>
 
-                    <!-- Text -->
-                    <p class="card-text small text-muted mb-1">
-                      {{$team->description}}
-                    </p>
-
-                    <!-- Status -->
-                    <p class="card-text small">
-                      <span class="text-success">●</span> {{$team->members->count()}} member(s)
-                    </p>
-
-                  </div>
-                  <div class="col-auto">
-
-                    <!-- Button -->
-                    <a href="#!" class="btn btn-sm btn-primary d-none d-md-inline-block" >
-                      VIEW PROJECT
-                    </a>
-
-                  </div>
-                  <div class="col-auto">
-
-                    <!-- Dropdown -->
-                    <div class="dropdown">
-                      <a href="#!" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" data-expanded="false">
-                        <i class="fe fe-more-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#!" data-toggle="modal"   data-target="#modalMembers" data-team_id = {{$team->id}} class="dropdown-item">
-                          Disqualifiy
-                        </a>
-                        <a href="#!"  data-toggle="modal" data-target="#messageMembers" data-team_id = {{$team->id}} class="dropdown-item">
-                          Message
-                        </a>
-                      </div>
+            </form>
                     </div>
-
-                  </div>
-                </div> <!-- / .row -->
-              </div> <!-- / .card-body -->
-            </div>
-
-            @endforeach
+                </div>
 
 
-            <p class="text-center">
-                {{$teams->links()}}
-            </p>
 
 
           </div>
@@ -157,15 +133,9 @@
             <div class="card-header">
 
               <!-- Form -->
-              <form action="send-mail" method="post" >
-                  @csrf
-                  <div class="form-group">
-                    <label for="message">Subject</label>
-                    <input type="hidden" name="team_id" id="team_id" >
-                    <input type="text" name="subject" class="form-control">
-                </div>
+              <form>
                 <div class="form-group">
-                    <label for="message">Message</label>
+                    <label for="message">message</label>
                     <textarea name="message" id="message" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <button class="btn btn-primary float-center" type="submit">Message Team</button>
@@ -181,12 +151,5 @@
 @endsection
 
 @section('extra-js')
-<script>
-$('#messageMembers').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var team_id = button.data('team_id') // Extract info from data-* attributes
-  document.getElementById('team_id').value = team_id;
 
-})
-</script>
 @endsection

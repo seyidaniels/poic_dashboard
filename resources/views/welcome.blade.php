@@ -104,8 +104,8 @@
                         <div class="card-body">
                             <h3 class="mt-5 mb-0 font-weight-bold">got Inquiries?</h3>
                             <p>For Sponsorship and Contact details, we are ready to heed your calls</p>
-                            <a class=" btn btn-lg btn-orange text-center" data-toggle="modal" href="#contactForm" >Message
-                                </a>
+                            <button class=" btn btn-lg btn-orange text-center" data-toggle="modal" data-target="#contactForm" >Message
+                            </button>
                         </div>
                     </div>
 

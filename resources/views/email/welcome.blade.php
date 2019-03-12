@@ -170,10 +170,15 @@
               <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; font-weight: 400; text-align: left;">
                 <div class="serif" style="color: #1F2225; font-size: 28px; font-weight: 700; line-height: 50px; margin-bottom: 30px;">Hi {{$data['firstname']}},</div>
                 <div class="sans-serif" style="color: #969AA1; font-size: 18px; line-height: 28px; margin-bottom: 40px;">{{$data['message']}}</div>
-                <table class="mobile-text-center" bgcolor="#B78743" cellpadding="0" cellspacing="0" style="border-radius: 3px;">
+
+                <table class="mobile-text-center" bgcolor="#B78743" cellpadding="0" cellspacing="0" style="border-radius: 3px;" >
                   <tr>
                     <th class="sans-serif">
+                        @if(!$data['is_admin'])
                     <a href="{{Config::get('app.url')}}/verify/{{$data['email_token']}}" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">Confirm Email Address</a>
+                        @else
+                    <a href="{{Config::get('app.url')}}/admin/dashboard/change-password" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">Log In</a>
+                        @endif
                     </th>
                   </tr>
                 </table>

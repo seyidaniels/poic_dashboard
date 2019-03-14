@@ -74,7 +74,7 @@
         </div>
       </div>
       <!-- / .row -->
-      <div class="row justify-content-center" v-if="noTeam">
+      <div class="row justify-content-center" v-else>
         <div class="card mt-5">
           <div class="card-body text-center">
             <div class="row justify-content-center">
@@ -112,16 +112,15 @@ export default {
     };
   },
   mounted() {
-    this.$vs.loading();
-    console.log(this.$vs);
+    console.log(this.noTeam);
     axios
       .get(this.$store.state.serverURI + "get-team")
       .then(response => {
         if (response.data.success) {
-          response.data.team !== null
-            ? (this.team = response.data.team)
-            : (this.noTeam = true);
+          this.team = response.data.team;
           // this.members = response.data.members
+        } else {
+          this.$router.push("/create-team");
         }
         this.$vs.loading.close();
       })

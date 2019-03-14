@@ -19,14 +19,17 @@
           <a href="#" class="text-muted sort" data-sort="tables-row">#</a>
         </th>
         <th scope="col">
-          <a href="#" class="text-muted sort" data-sort="tables-first">Name</a>
+          <a href="#" class="text-muted sort" data-sort="tables-first"> Team Name</a>
         </th>
         <th scope="col">
           <a href="#" class="text-muted sort" data-sort="tables-handle"> Status </a>
         </th>
         </th>
                 <th scope="col">
-          <a href="#" class="text-muted sort" data-sort="tables-handle"> Score </a>
+          <a href="#" class="text-muted sort text-center" data-sort="tables-handle"> Score (Reviewes) </a>
+        </th>
+           <th scope="col">
+          <a href="#" class="text-muted sort " data-sort="tables-handle"> Score (Judges) </a>
         </th>
       </tr>
     </thead>
@@ -34,9 +37,10 @@
         @foreach ($projects as $project)
                   <tr>
         <th scope="row" class="tables-row">1</th>
-        <td class="tables-first">{{$project->title}} <div class="badge badge-info">{{$project->category}}</div></td>
-        <td class="tables-last">{{$project->reviews->sum('score')}}</td>
+        <td class="tables-first">{{$project->team->name}} <div class="badge badge-info">{{$project->category}}</div></td>
         <td class="tables-handle">{{$project->status}}</td>
+        <td class="tables-last">{{$project->score('reviewer')}}</td>
+        <td class="tables-last">{{$project->score('judge')}}</td>
       </tr>
         @endforeach
 

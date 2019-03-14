@@ -20,14 +20,14 @@
              <div class="badge badge-info">status</div> {{$project->status}}
 
               @if($project->status == 'pending')
-              <button class="float-right btn btn-primary" data-toggle="modal" data-target="#modalMembers" >Assign</button>
+              <button class="float-right btn btn-primary" data-toggle="modal" data-target="#modalMembers" >Assign to Reviewers</button>
               @endif
               @if ($project->status == 'processing' &&  !Auth::user()->is_super() && !$project->scoredByAuthenticatedUser() )
                 <button class="float-right btn btn-primary" data-toggle="modal" data-target="#vetCategories" >Vet Categories</button>
               @endif
 
-              @if ($project->status == 'modification' &&  !Auth::user()->is_super() && !$project->scoredByAuthenticatedUser() )
-                <button class="float-right btn btn-primary" data-toggle="modal" data-target="#vetCategories" >Judge Categories</button>
+              @if ($project->status == 'modification' &&  Auth::user()->is_super() )
+                <button class="float-right btn btn-primary" data-toggle="modal" data-target="#modalMembers" >Assign To Judges</button>
               @endif
 
               @if ($project->scoredByAuthenticateduser())
@@ -98,22 +98,35 @@
               <!-- Form -->
               <form @submit.prevent="pushCategory" >
 
+                                                        @php
+                            $sme = $project->status == 'pending' ? 'reviewer': 'judge';
+                        @endphp
+                                    @if(count ($project->smes($sme)) > 0)
+
                 <div class="form-group" v-for="category in vettingCategories" >
                 <label for="category">  <div class="badge badge-info"> @{{category}} </div> </label>
+
                     <select class="form-control" v-model="reviewers[category]" multiple>
-                        @foreach($project->smes() as $sme)
+                        @foreach($project->smes($sme) as $sme)
                         <option  value="{{$sme->id}}" > {{$sme->title}} {{$sme->firstname }} {{$sme->lastname}} |  {{$sme->role->role}}   </option>
                         @endforeach
                     </select>
-
-
 
 
                     {{-- <input type="text"  class="form-control"> --}}
 
                 </div>
 
-                <button class="btn btn-primary float-center" type="submit">Confirm</button>
+                <button class="btn btn-primary float-center"   :disabled="loading"
+              type="submit"
+            >
+              <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
+              <span v-if="!loading">Submit</span>
+            </button>
+
+            @else
+                    Ooops! No {{$sme}} has been assigned to this category
+                    @endif
               </form>
 
             </div>
@@ -153,6 +166,7 @@
                 <div class="form-group" v-for="category in categories" >
                 <label for="category"> You are  @if (Auth::user()->role->role == 'reviewer' ) vetting @else judging @endif based on  <div class="badge badge-info">  @{{category}}  </div> of this project </label>
                     <select class="form-control" v-model="score[category]" >
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -193,16 +207,20 @@ new Vue ({
                 'Cost'
             ],
             selectedCategories: [],
+            loading: false,
             category: '',
             reviewers: {},        }
     },
     methods: {
         pushCategory () {
-            let data = {
+            if(confirm("Are you sure you want to proceed?")) {
+                let data = {
                 project_id: {!! json_encode($project->id) !!},
                 reviewers: this.reviewers
             }
+            this.toggleLoading();
            axios.post('/admin/dashboard/add-reviewers', data).then (response => {
+               this.toggleLoading();
                 if (response.data.error) {
                     let errors = Object.values(response.data.error);
                             errors.forEach(element => {
@@ -216,8 +234,13 @@ new Vue ({
                     })
                 }
             }).catch(error => {
-                console.log(error);
+                this.toggleLoading()
+                toastr.error ("Ooops! An error occurred! Check your Internet or Try again");
             })
+            }
+        },
+        toggleLoading() {
+            this.loading = !this.loading;
         }
 
     }
@@ -228,7 +251,8 @@ new Vue ({
     data: function () {
         return {
             categories: {!! json_encode(Auth::user()->reviewCategories($project->id)) !!},
-            score: {}
+            score: {},
+            loading: false
         }
     },
     mounted() {
@@ -241,14 +265,22 @@ new Vue ({
                 project_id: {!! json_encode($project->id) !!},
                 score: this.score
             }
+            this.toggleLoading();
             axios.post('/admin/dashboard/score-project', data).then (response => {
+                this.toggleLoading()
                 if (response.data.success) {
                     toastr.success (response.data.message);
                     location.href = "/admin/dashboard/projects";
                 }
+            }).catch(error => {
+                this.toggleLoading()
+                toastr.error ("Ooops! An error occurred! Check your Internet or Try again");
             })
 
             }
+        },
+        toggleLoading () {
+            this.loading = !this.loading;
         }
     }
 })

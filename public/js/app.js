@@ -2658,11 +2658,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.$vs.loading();
-    console.log(this.$vs);
+    console.log(this.noTeam);
     axios.get(this.$store.state.serverURI + "get-team").then(function (response) {
       if (response.data.success) {
-        response.data.team !== null ? _this.team = response.data.team : _this.noTeam = true; // this.members = response.data.members
+        _this.team = response.data.team; // this.members = response.data.members
+      } else {
+        _this.$router.push("/create-team");
       }
 
       _this.$vs.loading.close();
@@ -3275,6 +3276,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -71907,10 +71909,7 @@ var render = function() {
               ])
             ])
           ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.noTeam
-        ? _c("div", { staticClass: "row justify-content-center" }, [
+        : _c("div", { staticClass: "row justify-content-center" }, [
             _c("div", { staticClass: "card mt-5" }, [
               _c("div", { staticClass: "card-body text-center" }, [
                 _c("div", { staticClass: "row justify-content-center" }, [
@@ -71951,7 +71950,6 @@ var render = function() {
               ])
             ])
           ])
-        : _vm._e()
     ])
   ])
 }
@@ -72477,7 +72475,7 @@ var render = function() {
                 _c("label", { staticClass: "mb-1" }, [_vm._v("Project cover")]),
                 _vm._v(" "),
                 _c("small", { staticClass: "form-text text-muted" }, [
-                  _vm._v("Please use an image no larger than 1200px * 600px.")
+                  _vm._v("Please use an image not larger than 1200px * 600px.")
                 ]),
                 _vm._v(" "),
                 !_vm.project.image
@@ -73180,21 +73178,23 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
-                    { staticClass: "nav-link", attrs: { to: "/project" } },
+              _vm.$store.getters.getUser.team_id
+                ? _c(
+                    "li",
+                    { staticClass: "nav-item" },
                     [
-                      _c("i", { staticClass: "fe fe-user" }),
-                      _vm._v(" My Project\n          ")
-                    ]
+                      _c(
+                        "router-link",
+                        { staticClass: "nav-link", attrs: { to: "/project" } },
+                        [
+                          _c("i", { staticClass: "fe fe-user" }),
+                          _vm._v(" My Project\n          ")
+                        ]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              ),
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "li",

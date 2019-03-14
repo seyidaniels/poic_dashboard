@@ -19,6 +19,8 @@
         <div class="row justify-content-center mt-4">
           <div class="col-12 col-xl-6">
 
+            @if(count ($admins))
+
             @foreach ($admins as $admin)
                             <!-- Card -->
             <div class="card mb-3">
@@ -56,9 +58,13 @@
 
             @endforeach
 
+            @else
+                 <p class="alert alert-info">No Admin has been added yet!</p>
+            @endif
+
 
             <p class="text-center">
-                {{-- {{$admins->links()}} --}}
+                {{$admins->links()}}
             </p>
 
 
@@ -184,7 +190,12 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <button class="btn btn-primary float-right" type="submit">ADD</button>
+                <button class="btn btn-primary float-right" :disabled="loading"
+              type="submit"
+            >
+              <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
+              <span v-if="!loading">Add</span>
+            </button>
               </form>
 
             </div>
@@ -214,13 +225,16 @@
             phone: '',
             email: '',
             role: '',
-            category: ''
-        }
+            category: '',
+        },
+        loading: false
        }
        },
        methods: {
            createAdmin() {
+               this.toggleLoading();
                axios.post('create-admin', this.admin).then (response => {
+                   this.toggleLoading();
                     if (response.data.success) {
                         toastr.success("Admin has been added");
                         setTimeout( () => {
@@ -235,7 +249,13 @@
                             });
                         }
                     }
-               })
+               }).catch(error => {
+                this.toggleLoading()
+                toastr.error ("Ooops! An error occurred! Check your Internet or Try again");
+            })
+           },
+           toggleLoading () {
+               this.loading = !this.loading;
            }
        }
    })

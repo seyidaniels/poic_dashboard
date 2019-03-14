@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notifications\GeneralMessage;
-use App\User;
 use Notification;
 use Auth;
+use Hash;
+use DB;
+use App\User;
 use App\Team;
 use App\Project;
-use App\Http\Controllers\RegisterController;
 use App\Review;
-use Hash;
+use App\Http\Controllers\RegisterController;
 
 class AdminController extends Controller
 {
@@ -56,7 +57,7 @@ class AdminController extends Controller
     }
     public function adminView()
     {
-        $admins = User::where('is_admin', 1)->get()->except(Auth::id());
+        $admins = User::where('is_admin', 1)->where('id', '!=', Auth::id())->paginate(10);
         return view('admin.view-admins', compact('admins'));
     }
     public function communicate()
@@ -137,36 +138,31 @@ class AdminController extends Controller
 
     public function addProjectReviewers(Request $request)
     {
-        // $validation = Validator::make($request->all(), [
-        //     'project_id' => 'required',
-        //     'reviewers' =>  'required'
-        // ]);
-        // if ($validation->fails()) return response()->json(['success' => false, 'error' => $validation->errors()]);
+        DB::transaction(function () use ($request) {
+            $mail_reviewers = [];
+            $reviewers = $request['reviewers'];
+            $project_id = $request['project_id'];
 
-        $reviewers = $request['reviewers'];
-        $project_id = $request['project_id'];
-
-        $mail_reviewers = [];
-
-        foreach ($reviewers as $category => $reviewer) {
-            foreach ($reviewer as $categoryReviewer) {
-                Review::create(['project_id' => $project_id, 'vetting_category' => $category, 'reviewer_id' => $categoryReviewer]);
-                if (!in_array($categoryReviewer, $mail_reviewers)) array_push($mail_reviewers, $categoryReviewer);
+            foreach ($reviewers as $category => $reviewer) {
+                foreach ($reviewer as $categoryReviewer) {
+                    Review::create(['project_id' => $project_id, 'vetting_category' => $category, 'reviewer_id' => $categoryReviewer]);
+                    if (!in_array($categoryReviewer, $mail_reviewers)) array_push($mail_reviewers, $categoryReviewer);
+                }
             }
-        }
 
-        $this->updateProjectStatus($project_id, 'processing');
+            $this->updateProjectStatus($project_id, 'processing');
 
-        // Send a Mail to all Reviewers telling them they have been selected to Review a Project!
-        $mail_reviewers = User::find($mail_reviewers);
+            // Send a Mail to all Reviewers telling them they have been selected to Review a Project!
+            $mail_reviewers = User::find($mail_reviewers);
 
-        $project = Project::find($project_id);
+            $project = Project::find($project_id);
 
-        $data['message'] = "Hello, a Project '" . $project->title . "' has been assigned to you, Kindly review the proposal";
-        $data['project_id'] = $project->id;
-        $data['subject'] = "A Project has been assigned to you";
+            $data['message'] = "Hello, a Project '" . $project->title . "' has been assigned to you, Kindly Log in to review the proposal";
+            $data['project_id'] = $project_id;
+            $data['subject'] = "A Project has been assigned to you";
 
-        Notification::send($mail_reviewers, new GeneralMessage($data));
+            Notification::send($mail_reviewers, new GeneralMessage($data));
+        });
 
         return response()->json(['success' => true, 'message' => 'Reviewers have been added']);
     }
@@ -179,7 +175,22 @@ class AdminController extends Controller
 
         $project->update();
 
-        /// Send a Mail to Notify Applicants of their
+        /// Send a Mail to Notify Applicants of their new Update apparently
+        $data = [];
+
+        $data['subject'] = "Project Under Review";
+
+        switch ($status) {
+            case "processing":
+                $data['message'] = "Your Application is being reviewed, You would be notified when you get to the next stage! Stay Updated on website and social media pages";
+                break;
+            case "modification":
+                $data['message'] = "Your Application has been forwarded to our list of judges, You would be notified when you get to the next stage! Stay Updated on website and social media pages";
+                break;
+        }
+        $data['team_id'] = $project->team_id;
+        $request = new Request($data);
+        $this->mailAll($request);
     }
 
     public function scoreProject(Request $request)
@@ -237,5 +248,11 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->with(['error' => 'Invalid Password inputted']);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->to('/admin');
     }
 }

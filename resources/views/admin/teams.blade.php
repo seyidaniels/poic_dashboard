@@ -43,11 +43,14 @@
 
                   </div>
                   <div class="col-auto">
-
+                    @if($team->project)
                     <!-- Button -->
-                    <a href="#!" class="btn btn-sm btn-primary d-none d-md-inline-block" >
+                    <a href="/admin/dashboard/project/view/{{$team->project->id}}" class="btn btn-sm btn-primary d-none d-md-inline-block" >
                       VIEW PROJECT
                     </a>
+                    @else
+                       Not Submitted Project
+                    @endif
 
                   </div>
                   <div class="col-auto">

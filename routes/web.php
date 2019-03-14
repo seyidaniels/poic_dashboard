@@ -28,7 +28,7 @@ Route::get('send-mails', 'AdminController@mailAll');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('view-login');
     Route::post('login', 'Auth\LoginController@authenticate')->name('login');
-    Route::get('/logout', 'Auth\LoginController@disAuth');
+    Route::get('/logout', 'AdminController@logout');
     Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'is_admin']], function () {
         Route::get('/', 'AdminController@dashboard');
         Route::get('change-password', 'AdminController@viewPass');

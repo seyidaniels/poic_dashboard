@@ -44,10 +44,10 @@
 
           <!-- Menu -->
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
-            <a href="#" class="dropdown-item">Profile</a>
-            <a href="#" class="dropdown-item">Settings</a>
+            <a class="dropdown-item">Profile</a>
+            <a class="dropdown-item">Settings</a>
             <hr class="dropdown-divider">
-            <a href="#" @click="logout" class="dropdown-item">Logout</a>
+            <a @click="logout" class="dropdown-item">Logout</a>
           </div>
         </div>
       </div>

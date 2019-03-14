@@ -73108,27 +73108,15 @@ var render = function() {
                 attrs: { "aria-labelledby": "sidebarIcon" }
               },
               [
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("Profile")]
-                ),
+                _c("a", { staticClass: "dropdown-item" }, [_vm._v("Profile")]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("Settings")]
-                ),
+                _c("a", { staticClass: "dropdown-item" }, [_vm._v("Settings")]),
                 _vm._v(" "),
                 _c("hr", { staticClass: "dropdown-divider" }),
                 _vm._v(" "),
                 _c(
                   "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "#" },
-                    on: { click: _vm.logout }
-                  },
+                  { staticClass: "dropdown-item", on: { click: _vm.logout } },
                   [_vm._v("Logout")]
                 )
               ]

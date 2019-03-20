@@ -60,7 +60,7 @@
 
             @endforeach
 
-            {{-- {{$projects->links()}} --}}
+            {{$projects->links()}}
 
 
           </div>

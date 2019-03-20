@@ -93,6 +93,13 @@
                   <i class="fe fe-mail"></i> LeaderBoards
                 </a>
               </li>
+
+                   <li class="nav-item">
+                <a class="nav-link" href="/admin/dashboard/scores" >
+                  <i class="fe fe-gallery"></i> Gallery Images
+                </a>
+              </li>
+
               @endif
             </ul>
 

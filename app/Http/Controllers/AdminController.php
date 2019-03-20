@@ -13,6 +13,7 @@ use App\Team;
 use App\Project;
 use App\Review;
 use App\Http\Controllers\RegisterController;
+use App\Helpers\UploadImage;
 
 class AdminController extends Controller
 {
@@ -67,6 +68,23 @@ class AdminController extends Controller
     public function viewPass()
     {
         return view('admin.change-password');
+    }
+
+    public function imageIndex()
+    {
+        return view('admin.image');
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $data = $request['image'];
+        return $data;
+        DB::transaction(function () use ($data) {
+            $data['image'] = UploadImage::handle($data['image'], 'gallery');
+            Image::create($data);
+        });
+
+        return redirect()->back()->with(['success' => 'Image uploaded successfully']);
     }
 
     public function viewScores()

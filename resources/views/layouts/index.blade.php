@@ -3,7 +3,7 @@
 
 @include('includes.header')
 <body class="index-page sidebar-collapse">
-    <nav class="navbar navbar-expand-lg bg-dark fixed-top" color-on-scroll="10">
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top navbar-transparent" id="navbar" color-on-scroll="10">
         <div class="container-fluid" style="padding-left: 50px; padding-right: 50px;" >
             <div class="navbar-translate">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -82,6 +82,20 @@
 @yield('extra-js')
 
 <script type="text/javascript">
+
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+
+
     $('.logos').slick({
       infinite: true,
       slidesToShow: 5,

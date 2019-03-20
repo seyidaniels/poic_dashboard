@@ -1,9 +1,7 @@
 <nav class="
 
-navbar navbar-expand-lg bg-dark fixed-top
-
-{{ Request::path() !==  '/' ? '' : 'navbar-transparent'  }}
-" color-on-scroll="10">
+navbar navbar-expand-lg bg-dark fixed-top navbar-transparent"
+ color-on-scroll="10">
     <div class="container-fluid" style="padding-left: 50px; padding-right: 50px;" >
         <div class="navbar-translate">
             <a class="navbar-brand" href="/">

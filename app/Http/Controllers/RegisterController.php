@@ -59,6 +59,7 @@ class RegisterController extends Controller
         $user->notify(new WelcomeAdmin($data));
     }
 
+
     public function verifyUser($email_token)
     {
         $user = User::where('email_token', $email_token)->first();

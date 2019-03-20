@@ -33,15 +33,13 @@ class TeamController extends Controller
                 $data['team_head'] = Auth::id();
                 $team = Team::create($data);
                 $invalidEmail = $this->validatesAndUpdatesUsers($data['members'], $team->id);
-                if ($invalidEmail) throw new InvalidEmailException($invalidEmail . " has not created an account yet", 422);
+                if ($invalidEmail) throw new \Exception($invalidEmail . " has not created an account yet", 422);
                 $this->notifyUsers($data['members'], $team->name);
             }, 3);
             return response()->json(['success' => true, 'message' => 'Team successfully created'], 200);
         } else {
             return response()->json(['success' => false, 'message' => 'You have created a team already'], 200);
         }
-
-
     }
 
     protected function validator($data)

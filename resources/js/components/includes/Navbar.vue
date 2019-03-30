@@ -84,7 +84,7 @@
             </router-link>
           </li>
 
-          <li class="nav-item" v-if="$store.getters.getUser.team_id">
+          <li class="nav-item" >
             <router-link class="nav-link" to="/project">
               <i class="fe fe-user"></i> My Project
             </router-link>

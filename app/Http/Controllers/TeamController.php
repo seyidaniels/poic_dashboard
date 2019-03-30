@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\UploadImage;
-use PharIo\Manifest\InvalidEmailException;
 use Validator;
 use DB;
 use Auth;
 use App\Team;
 use App\User;
 use App\Notifications\TeamCreated;
+use App\Rules\UserExists;
 
 class TeamController extends Controller
 {
@@ -28,12 +28,12 @@ class TeamController extends Controller
             $data = $request->all();
             $validation = $this->validator($data);
             if ($validation->fails()) return response()->json(['success' => false, 'error' => $validation->errors()], 422);
+            $invalidEmail = $this->validateUser($data['members']);
+            if ($invalidEmail) return response()->json(['success' => false, 'error' => ['message' => $invalidEmail . " has not created an account yet"]], 422);
             DB::transaction(function () use ($data) {
                 $data['image'] = UploadImage::handle($data['image'], 'teams');
                 $data['team_head'] = Auth::id();
                 $team = Team::create($data);
-                $invalidEmail = $this->validatesAndUpdatesUsers($data['members'], $team->id);
-                if ($invalidEmail) throw new \Exception($invalidEmail . " has not created an account yet", 422);
                 $this->notifyUsers($data['members'], $team->name);
             }, 3);
             return response()->json(['success' => true, 'message' => 'Team successfully created'], 200);
@@ -47,9 +47,22 @@ class TeamController extends Controller
         return Validator::make($data, [
             'name' => 'required|min:5|max:15|unique:teams',
             'description' => 'required|min:30',
-            'members' => 'required|array',
+            'members' => ['required', 'array'],
             'image' => 'required|mimes:jpeg,jpg,png,gif|max:10000'
         ]);
+    }
+
+    public function validateUser($members)
+    {
+        $valid = false;
+        foreach ($members as $member) {
+            $user = User::where('email', $member)->first();
+            if ($user == null) {
+                $valid = $member;
+                break;
+            }
+        }
+        return $valid;
     }
 
 

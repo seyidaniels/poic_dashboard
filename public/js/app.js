@@ -2386,6 +2386,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -71429,6 +71434,12 @@ var render = function() {
         _vm._v(" "),
         _vm.page === 2
           ? _c("div", [
+              _c("div", { staticClass: "alert alert-warning" }, [
+                _vm._v(
+                  "Please note that your team members must have created an account before you can add them as team members"
+                )
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { staticClass: "mb-1" }, [
                   _vm._v("Select Team Picture")
@@ -73166,23 +73177,21 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.$store.getters.getUser.team_id
-                ? _c(
-                    "li",
-                    { staticClass: "nav-item" },
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/project" } },
                     [
-                      _c(
-                        "router-link",
-                        { staticClass: "nav-link", attrs: { to: "/project" } },
-                        [
-                          _c("i", { staticClass: "fe fe-user" }),
-                          _vm._v(" My Project\n          ")
-                        ]
-                      )
-                    ],
-                    1
+                      _c("i", { staticClass: "fe fe-user" }),
+                      _vm._v(" My Project\n          ")
+                    ]
                   )
-                : _vm._e(),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "li",

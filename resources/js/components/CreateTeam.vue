@@ -29,6 +29,7 @@
             <small
               class="form-text text-muted"
             >This is how others will learn about the team, so make it good!</small>
+
             <textarea
               name="description"
               class="form-control"
@@ -45,6 +46,9 @@
         >Next</button>
 
         <div v-if="page === 2">
+          <div
+            class="alert alert-warning"
+          >Please note that your team members must have created an account before you can add them as team members</div>
           <div class="form-group">
             <label class="mb-1">Select Team Picture</label>
             <input
@@ -67,6 +71,7 @@
 
           <div class="form-group">
             <label class="mb-1">Select team Members</label>
+
             <div v-for="(member, index) in members" class="mt-4" :key="index">
               <input
                 v-model="members[index]"

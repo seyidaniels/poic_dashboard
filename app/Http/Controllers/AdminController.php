@@ -118,7 +118,9 @@ class AdminController extends Controller
 
             try {
                 Notification::send($users, new GeneralMessage($data));
-            } catch (\Exception $e) { }
+            } catch (\Exception $e) {
+                return redirect()->back()->with(['error' => $e->getMessage()]);
+            }
 
             return redirect()->back()->with(['message' => 'Mail has been successfully sent']);
         }

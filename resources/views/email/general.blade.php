@@ -173,7 +173,7 @@
                  <table class="mobile-text-center" bgcolor="#B78743" cellpadding="0" cellspacing="0" style="border-radius: 3px;" >
                   <tr>
                     <th class="sans-serif">
-                    @if($data['project_id'])
+                    @if(in_array('project_id', $data))
                     <a href="{{Config::get('app.url')}}/admin/dashboard/project/view/{{$data['project_id']}}" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">View Project</a>
                     @endif
                     </th>

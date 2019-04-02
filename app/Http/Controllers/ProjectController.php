@@ -36,35 +36,43 @@ class ProjectController extends Controller
 
         if ($validation->fails()) return response()->json(['success' => false, 'error' => $validation->errors()], 422);
 
-        DB::transaction(function () use ($data, $request) {
+        DB::beginTransaction();
 
-            $project = Auth::user()->team->project;
+        $project = Auth::user()->team->project;
 
-            if ($project !== null) {
-                if ($project->is_submitted) throw new \Exception("You have submitted a project already and can no longer edit or create a new one", 422);
+        if ($project !== null) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => "You have submitted a project already and can no longer edit or create a new one"], 422);
+        }
+
+        $data['image'] = UploadImage::handle($data['image'], 'projects');
+
+        $data['team_id'] = Auth::user()->team->id;
+
+        if (Auth::user()->isTeamHead()) {
+
+            $project ? $this->updateProject($data) : $this->createProject($data);
+
+            $request['is_submitted'] == true ? $this->status = "submitted" : "";
+        } else {
+
+            if ($project == null) {
+                DB::rollBack();
+                return response()->json(['success' => false, 'message' => 'You cannot create a project for your team, You can only update!  contact your team head, ' . Auth::user()->team->head->fullname()], 422);
             }
 
-            $data['image'] = UploadImage::handle($data['image'], 'projects');
-
-            $data['team_id'] = Auth::user()->team->id;
-
-            if (Auth::user()->isTeamHead()) {
-
-                $project ? $this->updateProject($data) : $this->createProject($data);
-
-                $request['is_submitted'] == true ? $this->status = "submitted" : "";
-            } else {
-
-                if ($project == null) throw new \Exception('You cannot create a project for your team, You can only update!  contact your team head, ' . Auth::user()->team->head->fullname(), 422);
-
-                if ($request->has('is_submitted') && $request['is_submitted'] == true) throw new \Exception("Only team head can submit project, Please contact " . Auth::user()->team->head->fullname(), 422);
-
-                $this->updateProject($data);
+            if ($request->has('is_submitted') && $request['is_submitted'] == true) {
+                DB::rollBack();
+                return response()->json(['success' => false, 'message' => "Only team head can submit project, Please contact " . Auth::user()->team->head->fullname()], 422);
             }
-            $data['status'] = $this->status;
 
-            Notification::send(Auth::user()->team->members, new ProjectStatus($data));
-        }, 3);
+            $this->updateProject($data);
+        }
+        $data['status'] = $this->status;
+
+        DB::commit();
+
+        Notification::send(Auth::user()->team->members, new ProjectStatus($data));
 
         return response()->json(['success' => true, 'message' => $this->message]);
     }

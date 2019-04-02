@@ -92,24 +92,27 @@
           </div>
         </div>
 
-        <button
-          v-if="page === 2"
-          @click="page -= 1"
-          class="btn text-light btn-large float-left btn-secondary"
-        >Previous</button>
+        <div class="mb-4">
+          <button
+            v-if="page === 2"
+            @click="page -= 1"
+            class="btn text-light btn-large float-left btn-secondary"
+          >Previous</button>
 
-        <button
-          v-if="page === 2"
-          @click="submitTeam"
-          class="btn text-light btn-large float-right btn-primary"
-          :disabled="loading"
-          type="submit"
-        >
-          <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
-          <span v-if="!loading">Create Team</span>
-        </button>
+          <button
+            v-if="page === 2"
+            @click="submitTeam"
+            class="btn text-light btn-large float-right btn-primary"
+            :disabled="loading"
+            type="submit"
+          >
+            <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
+            <span v-if="!loading">Create Team</span>
+          </button>
+        </div>
       </div>
     </div>
+    <div class="mb-4"></div>
   </div>
 </template>
 <script>

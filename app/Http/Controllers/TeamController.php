@@ -34,12 +34,12 @@ class TeamController extends Controller
                 $data['image'] = UploadImage::handle($data['image'], 'teams');
                 $data['team_head'] = Auth::id();
                 $team = Team::create($data);
+                $this->UpdatesUsers($data['members'], $team->id);
                 $this->notifyUsers($data['members'], $team->name);
             }, 3);
             return response()->json(['success' => true, 'message' => 'Team successfully created'], 200);
-        } else {
-            return response()->json(['success' => false, 'message' => 'You have created a team already'], 200);
         }
+        return response()->json(['success' => false, 'message' => 'You have created a team already'], 200);
     }
 
     protected function validator($data)
@@ -66,20 +66,13 @@ class TeamController extends Controller
     }
 
 
-    protected function validatesAndUpdatesUsers($members, $team_id)
+    protected function UpdatesUsers($members, $team_id)
     {
-        $email = false;
         foreach ($members as $member) {
             $user = User::where('email', $member)->first();
-            if ($user === null) {
-                $email = $member;
-                break;
-            } else {
-                $user->team_id = $team_id;
-                $user->update();
-            }
+            $user->team_id = $team_id;
+            $user->update();
         }
-        return $email;
     }
 
     protected function notifyUsers($emails, $teamname)

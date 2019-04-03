@@ -9,7 +9,7 @@ export default function handleError(error) {
             }, 3000);
         } else if (error.response.status === 422) {
             if (error.response.data.message) {
-                toastr.error(response.data.message)
+                toastr.error(error.response.data.message)
             } else {
                 Object.values(error.response.data.error).forEach(function (element) {
                     toastr.error(element)

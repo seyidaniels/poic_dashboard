@@ -21,6 +21,11 @@ class TeamController extends Controller
         return response()->json(['success' => true, 'team' => $team, 'members' => $team->members, 'head' => $team->head]);
     }
 
+    public function userHasTeam()
+    {
+        return Auth::user()->team_id != null ? response()->json(['success' => true, 'has_team' => true]) : response()->json(['success' => true, 'has_team' => false]);
+    }
+
     public function createTeam(Request $request)
     {
 

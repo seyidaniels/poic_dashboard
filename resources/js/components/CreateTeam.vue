@@ -132,6 +132,12 @@ export default {
       }
     };
   },
+  beforeMounted() {
+    // Check if the User has a team already
+    axios.get(this.$store.state.serverURI + "has-team").then(response => {
+      if (response.data.has_team) this.$router.push("/my-team");
+    });
+  },
   mounted() {
     if (this.$store.getters.isAuthenticated) {
       this.members.push(this.$store.getters.getUser.email);

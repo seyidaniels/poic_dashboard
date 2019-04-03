@@ -40,8 +40,7 @@ class ProjectController extends Controller
 
         $project = Auth::user()->team->project;
 
-        if ($project !== null) {
-            DB::rollBack();
+        if ($project !== null && $project->is_submitted == 1) {
             return response()->json(['success' => false, 'message' => "You have submitted a project already and can no longer edit or create a new one"], 422);
         }
 
@@ -81,14 +80,14 @@ class ProjectController extends Controller
     {
         $data['team_id'] = Auth::user()->team->id;
         Project::create($data);
-        $this->message = "Team created successfully";
+        $this->message = "Project created successfully";
         $this->status = "created";
     }
 
     public function updateProject($data)
     {
         Auth::user()->team->project->update($data);
-        $this->message = "Team Updated successfully";
+        $this->message = "Project Updated successfully";
         $this->status = "updated";
     }
 

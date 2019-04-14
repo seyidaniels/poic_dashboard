@@ -174,12 +174,12 @@
                 <table class="mobile-text-center" bgcolor="#B78743" cellpadding="0" cellspacing="0" style="border-radius: 3px;" >
                   <tr>
                     <th class="sans-serif">
-                        @if(!in_array('is_admin', $data))
+                        @if(!array_key_exists('is_admin', $data))
                     <a href="{{Config::get('app.url')}}/verify/{{$data['email_token']}}" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">Confirm Email Address</a>
                         @else
                     <a href="{{Config::get('app.url')}}/admin/dashboard/change-password" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">Log In</a>
                     @endif
-                    @if(in_array('project_id', $data))
+                    @if(array_key_exists('project_id', $data))
                     <a href="{{Config::get('app.url')}}/admin/dashboard/project/view/{{$data['project_id']}}" style="border: 0 solid #B78743; color: #FFFFFF; display: inline-block; font-size: 14px; font-weight: 400; padding: 15px 50px 15px 50px; text-decoration: none;">View Project</a>
                     @endif
                     </th>

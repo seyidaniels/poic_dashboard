@@ -40,13 +40,14 @@ class RegisterController extends Controller
 
         $data['email_token'] = str_random(30); //Generate verification code
 
+
         DB::transaction(function () use ($data) {
 
             $user = User::create($data);
 
             $data['message'] = 'Thank you for creating an account to participate in the Professor Ogundipe Innovative Challenge. To continue please confirm your email by clicking the button below';
 
-            in_array('is_admin', $data) ? $this->registerAdmin($data, $user) : $user->notify(new WelcomeEmail($data));
+            array_key_exists('is_admin', $data) ? $this->registerAdmin($data, $user) : $user->notify(new WelcomeEmail($data));
         }, 4);
 
         return response()->json(['success' => true, 'message' => 'Thanks for signing up! Please check your email to complete your registration.'], 200);

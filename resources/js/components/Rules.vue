@@ -7,17 +7,13 @@
           <div class="header-body">
             <!-- Pretitle -->
             <h6 class="header-pretitle">MUST READ</h6>
-
             <!-- Title -->
             <h1 class="header-title display-4">Rules and Guidelines</h1>
           </div>
         </div>
-
         <p>This guide will help you get started with your application process for Professor Ogundipe Innovative Challenge! Defaulters would be automatically disqualified, please kindly note these rules</p>
-
         <ul>
           <li class="text-justify">The following people may not enter the contest:</li>
-
           <ol>
             <li
               class="text-justify"

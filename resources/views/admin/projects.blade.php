@@ -61,8 +61,8 @@
             @endforeach
 
             @if ($projects instanceof \Illuminate\Pagination\LengthAwarePaginator )
-)
             {{ $projects->links() }}
+
             @endif
 
 

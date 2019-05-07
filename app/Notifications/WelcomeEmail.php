@@ -34,13 +34,11 @@ class WelcomeEmail extends Notification
     public function via($notifiable)
     {
 
-        if (array_key_exists('resend', $this->data)){
+        if (array_key_exists('resend', $this->data)) {
             return ['mail'];
-        }else {
+        } else {
             return ['mail', 'database'];
         }
-
-
     }
 
     /**
@@ -51,8 +49,8 @@ class WelcomeEmail extends Notification
      */
     public function toMail($notifiable)
     {
-            $subject = array_key_exists('resend', $this->data) ? "Verification Code Resent" : "POIC Account Created, Verification Needed" ;
-            return  (new MailMessage)->view('email.welcome', ['data' => $this->data])->from ('poic@unilag.edu.ng')->subject($subject);
+        $subject = array_key_exists('resend', $this->data) ? "Verification Code Resent" : "POIC Account Created, Verification Needed";
+        return (new MailMessage)->view('email.welcome', ['data' => $this->data])->from('poic@unilag.edu.ng')->subject($subject);
     }
 
     /**

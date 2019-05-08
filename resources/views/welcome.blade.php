@@ -11,8 +11,12 @@
                         <h3 class="m-4 poic-heading">Professor Ogundipe <span class="text-orange">Innovative</span> Challenge</h3>
                         <h5 class="text-white">Do you have an innovative idea or technology-driven solution?</h5>
 
-                         <h3 id="countdown" class=" poic-heading mt-4"  style="font-size: 25px;
-" ></h3>
+                         {{-- <h3 id="countdown" class=" poic-heading mt-4"  style="font-size: 25px;
+" ></h3> --}}
+
+                         <h3  class=" poic-heading mt-4"  style="font-size: 25px;
+" >Applications for POIC has ended </h3>
+
                         <!-- <a class=" btn btn-lg btn-orange text-left" href="{{URL('dashboard')}}"> Apply Now
                             <span class="pull-right fa fa-chevron-right"></span>
                         </a>

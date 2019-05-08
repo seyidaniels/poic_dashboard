@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('admin-management', 'AdminController@adminView');
             Route::get('teams', 'AdminController@getTeams');
             Route::post('create-admin', 'AdminController@createAdmin');
+            Route::post('edit-admin', 'AdminController@updateAdminRole');
             Route::get('communication', 'AdminController@communicate');
             Route::post('send-mail', 'AdminController@mailAll');
             Route::post('add-reviewers', 'AdminController@addProjectReviewers');

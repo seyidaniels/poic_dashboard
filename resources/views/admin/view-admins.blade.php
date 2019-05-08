@@ -35,6 +35,8 @@
 
                     <h4>Role:  <div class="badge badge-info"> {{$admin->hasRole['role']}} </div> </h4>
 
+                     <h4>Category:  <div class="badge badge-warning"> {{$admin->hasRole['category']}} </div> </h4>
+
 
                   </div>
                   <div class="col-auto">
@@ -45,10 +47,11 @@
                         <i class="fe fe-more-vertical"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#!" data-toggle="modal" data-target="#messageMembers" class="dropdown-item">
-                         Delete
+                        <a style="cursor: pointer;" @click="editRole({{$admin}})" class="dropdown-item">
+                         Edit Role
                         </a>
                       </div>
+
                     </div>
 
                   </div>
@@ -203,6 +206,67 @@
         </div>
       </div>
     </div>
+
+            <!-- Modal: Members -->
+    <div class="modal fade" id="editRole" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-card card" data-toggle="lists" data-lists-values='["name"]'>
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h4 class="card-header-title" id="exampleModalCenterTitle">
+                    You are editing the roles of @{{admin.title}} @{{admin.firstname}} @{{admin.lastname}}
+                  </h4>
+
+                </div>
+                <div class="col-auto">
+
+                  <!-- Close -->
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+
+                </div>
+              </div> <!-- / .row -->
+            </div>
+            <div class="card-header">
+              <!-- Form -->
+              <form @submit.prevent="editAdmin" >
+                <div class="form-group">
+                    <label for="message">Select Role</label>
+                    <select name="role" required v-model="admin.role" class="form-control" >
+                        <option value selected>Select Role</option>
+                        <option value="reviewer">Reviewer</option>
+                        <option value="judge">Judge</option>
+                        <option value="super">Super Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Select Category</label>
+                    <select name="category" required v-model="admin.category" class="form-control" >
+                        <option value selected>Select Category</option>
+                        <option value="food">Food</option>
+                        <option value="software">Software</option>
+                        <option value="security">Security</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary float-right" :disabled="loading"
+              type="submit"
+            >
+              <i v-if="loading" class="fa fa-circle-o-notch fa-spin"></i>
+              <span v-if="!loading">Update</span>
+            </button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 
 
@@ -212,6 +276,8 @@
 
 @section('extra-js')
     <script>
+
+
    new Vue ({
        el: "#view-admins",
        data: function () {
@@ -231,6 +297,12 @@
        }
        },
        methods: {
+           editRole (admin) {
+               this.admin = admin
+               this.admin.category = admin.has_role.category
+               this.admin.role = admin.has_role.role
+               $('#editRole').modal();
+           },
            createAdmin() {
                this.toggleLoading();
                axios.post('create-admin', this.admin).then (response => {
@@ -253,6 +325,34 @@
                 this.toggleLoading()
                 toastr.error ("Ooops! An error occurred! Check your Internet or Try again");
             })
+           },
+           editAdmin () {
+               let edittedAdmin = {
+                   id: this.admin.id,
+                   role: this.admin.role,
+                   category: this.admin.category
+               }
+               axios.post('edit-admin', edittedAdmin).then (response => {
+                   this.toggleLoading()
+                   if (response.data.success) {
+                        toastr.success("Admin Role Updated");
+                        setTimeout( () => {
+                            location.reload();
+                        }, 2500)
+                        return;
+                    }else {
+                        if (response.data.error) {
+                            let errors = Object.values(response.data.error);
+                            errors.forEach(element => {
+                               toastr.error(element);
+                            });
+                        }
+                    }
+               }).catch(error => {
+                this.toggleLoading()
+                toastr.error ("Ooops! An error occurred! Check your Internet or Try again");
+            })
+
            },
            toggleLoading () {
                this.loading = !this.loading;

@@ -100,6 +100,20 @@ class AdminController extends Controller
         return response()->json(json_decode($response));
     }
 
+    public function updateAdminRole(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+            'role' => 'required',
+            'category' => 'required'
+        ]);
+        $data = $request->all();
+        $adminRole = User::findOrFail($data['id'])->hasRole;
+        $adminRole->update($data);
+
+        return response()->json(['success' => true, 'message' => 'Role Updated'], 200);
+    }
+
     public function mailAll(Request $request)
     {
 

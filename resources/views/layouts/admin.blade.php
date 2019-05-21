@@ -10,6 +10,8 @@
 
 
 
+    @yield('extra-css')
+
 
     @yield('content')
 

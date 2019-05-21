@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('scores', 'AdminController@viewScores');
             Route::get('image', 'AdminController@imageIndex');
             Route::post('upload-image', 'AdminController@uploadImage');
+            Route::post('resend-admin-invite', 'AdminController@resendAdminInvite');
         });
     });
 });

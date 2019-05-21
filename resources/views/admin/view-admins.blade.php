@@ -21,6 +21,9 @@
 
             @if(count ($admins))
 
+            <div id="cover-spin"></div>
+
+
             @foreach ($admins as $admin)
                             <!-- Card -->
             <div class="card mb-3">
@@ -50,6 +53,9 @@
                         <a style="cursor: pointer;" @click="editRole({{$admin}})" class="dropdown-item">
                          Edit Role
                         </a>
+                        <a style="cursor: pointer;" @click="resendInvite({{$admin}})" resendInvite  class="dropdown-item">
+                         Resend Invite
+                        </a>
                       </div>
 
                     </div>
@@ -75,47 +81,7 @@
         </div> <!-- / .row -->
       </div>
 
-              <!-- Modal: Members -->
-    <div class="modal fade" id="modalMembers" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-card card" data-toggle="lists" data-lists-values='["name"]'>
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col">
 
-                  <!-- Title -->
-                  <h4 class="card-header-title" id="exampleModalCenterTitle">
-                    Disqualify Team?
-                  </h4>
-
-                </div>
-                <div class="col-auto">
-
-                  <!-- Close -->
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-
-                </div>
-              </div> <!-- / .row -->
-            </div>
-            <div class="card-header">
-
-              <!-- Form -->
-              <form>
-                <div class="form-group">
-                    <label for="reason">Reason</label>
-                    <textarea name="reason" id="reason" class="form-control" cols="30" rows="10"></textarea>
-                </div>
-                <button class="btn btn-primary float-center" type="submit">Confirm</button>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
 
@@ -354,10 +320,64 @@
             })
 
            },
+           resendInvite (admin) {
+                document.getElementById("cover-spin").style.display = "block";
+               axios.post('resend-admin-invite', {
+                   admin_id: admin.id
+               }).then(response => {
+                   if (response.data.success) {
+                        toastr.success("Invitation Resent");
+                        document.getElementById("cover-spin").style.display = "none";
+                   }
+               }).catch(error => {
+                document.getElementById("cover-spin").style.display = "none";
+                toastr.error ("Ooops! An error occurred! Check your Internet or Try again");
+            })
+           },
            toggleLoading () {
                this.loading = !this.loading;
            }
        }
    })
     </script>
+@endsection
+
+@section('extra-css')
+
+<style>
+#cover-spin {
+    position:fixed;
+    width:100%;
+    left:0;right:0;top:0;bottom:0;
+    background-color: rgba(255,255,255,0.7);
+    z-index:9999;
+    display:none;
+}
+
+@-webkit-keyframes spin {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@keyframes spin {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+#cover-spin::after {
+    content:'';
+    display:block;
+    position:absolute;
+    left:48%;top:40%;
+    width:40px;height:40px;
+    border-style:solid;
+    border-color:black;
+    border-top-color:transparent;
+    border-width: 4px;
+    border-radius:50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+</style>
+
 @endsection

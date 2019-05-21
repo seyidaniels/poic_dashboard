@@ -57,6 +57,7 @@ class RegisterController extends Controller
     {
         Role::create(['role' => $data['role'], 'user_id' => $user->id, 'category' => $data['category']]);
         $data['message'] = "You have been added as an Admin on POIC! Your password is '" . $data['password'] . "'\n Kindly log on to perform admin duties";
+        $data['subject'] = "You have been added as an Administrator";
         $user->notify(new WelcomeAdmin($data));
     }
 

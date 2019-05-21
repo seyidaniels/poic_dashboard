@@ -40,8 +40,7 @@ class WelcomeAdmin extends Notification
      */
     public function toMail($notifiable)
     {
-        $subject = "You have been added as an Administrator";
-        return (new MailMessage)->view('email.welcome', ['data' => $this->data])->from('poic@unilag.edu.ng')->subject($subject);
+        return (new MailMessage)->view('email.welcome', ['data' => $this->data])->from('poic@unilag.edu.ng')->subject($this->data['subject']);
     }
 
     /**

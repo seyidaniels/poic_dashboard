@@ -14,7 +14,6 @@ use App\Project;
 use App\Review;
 use App\Http\Controllers\RegisterController;
 use App\Helpers\UploadImage;
-use App\Notifications\WelcomeAdmin;
 
 class AdminController extends Controller
 {
@@ -101,35 +100,6 @@ class AdminController extends Controller
         return response()->json(json_decode($response));
     }
 
-    public function resendAdminInvite(Request $request)
-    {
-        DB::transaction(function () use ($request) {
-            $admin = $request['admin_id'];
-            $admin = User::findorFail($admin);
-            $password = str_random(5);
-            $admin->password = $password;
-            $admin->update();
-            $admin['message'] = "You have been resent a password to login to POIC. Your password is ''" . $password . "''. Kindly log on to perform admin duties";
-            $admin['subject'] = "New Invitation to access Projects";
-            $admin->notify(new WelcomeAdmin($admin));
-        });
-        return response()->json(['success' => true, 'message' => 'Admin added']);
-    }
-
-    public function updateAdminRole(Request $request)
-    {
-        $this->validate($request, [
-            'id' => 'required',
-            'role' => 'required',
-            'category' => 'required'
-        ]);
-        $data = $request->all();
-        $adminRole = User::findOrFail($data['id'])->hasRole;
-        $adminRole->update($data);
-
-        return response()->json(['success' => true, 'message' => 'Role Updated'], 200);
-    }
-
     public function mailAll(Request $request)
     {
 
@@ -147,7 +117,7 @@ class AdminController extends Controller
             $data['subject'] = $request['subject'];
 
             try {
-                Notification::send($users, new GeneralMessage($data));
+                \Notification::send($users, new GeneralMessage($data));
             } catch (\Exception $e) {
                 return redirect()->back()->with(['error' => $e->getMessage()]);
             }
@@ -193,6 +163,7 @@ class AdminController extends Controller
             $reviewers = $request['reviewers'];
             $project_id = $request['project_id'];
 
+
             foreach ($reviewers as $category => $reviewer) {
                 foreach ($reviewer as $categoryReviewer) {
                     Review::create(['project_id' => $project_id, 'vetting_category' => $category, 'reviewer_id' => $categoryReviewer]);
@@ -202,19 +173,32 @@ class AdminController extends Controller
 
             $this->updateProjectStatus($project_id, 'processing');
 
-            // Send a Mail to all Reviewers telling them they have been selected to Review a Project!
-            $mail_reviewers = User::find($mail_reviewers);
-
-            $project = Project::find($project_id);
-
-            $data['message'] = "Hello, a Project '" . $project->title . "' has been assigned to you, Kindly Log in to review the proposal";
-            $data['project_id'] = $project_id;
-            $data['subject'] = "A Project has been assigned to you";
-
-            Notification::send($mail_reviewers, new GeneralMessage($data));
+            $this
         });
 
         return response()->json(['success' => true, 'message' => 'Reviewers have been added']);
+    }
+
+    protected function notifyProjectStakeholders($project_id)
+    {
+
+        $project = Project::find($project_id);
+
+        // Send a Mail to all Reviewers telling them they have been selected to Review a Project!
+        $mail_reviewers = User::find($mail_reviewers);
+
+        $data['message'] = "Hello, a Project '" . $project->title . "' has been assigned to you, Kindly Log in to review the proposal";
+        $data['project_id'] = $project_id;
+        $data['subject'] = "A Project has been assigned to you";
+
+        Notification::send($mail_reviewers, new GeneralMessage($data));
+
+        // Mail Project Head that he has his Project has been set to alist of reviewers and everything is in check
+        unset($data['project_id']);
+        $data['subject'] = "Your Project is under Review";
+        $data['message'] = "Hello, Your Project brilliant Innovative Idea is been reviewed by a couple of our reviewers, We will get back to you shortly after you have been graded";
+        $project_members = Project::find($project_id)->team->members()->get();
+        Notification::send($project_members, new GeneralMessage($data));
     }
 
     public function updateProjectStatus($id, $status)

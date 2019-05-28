@@ -8,7 +8,7 @@
     <div class="main-content">
       <div class="container-fluid">
         <div class="my-4"></div>
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4" id="project" >
           <div class="col-12 col-xl-8">
 
               <div class="badge badge-info">Topic:</div> {{$project->title}}
@@ -18,6 +18,10 @@
                <br>
                 <br>
              <div class="badge badge-info">status</div> {{$project->status}}
+
+
+              <button class="float-right btn btn-primary" onclick="download('POIC_PROJECT_{{$project->team->name}}_{{$project->title}}')">Download</button>
+
 
               @if($project->status == 'pending')
               <button class="float-right btn btn-primary" data-toggle="modal" data-target="#modalMembers" >Assign to Reviewers</button>
@@ -190,9 +194,18 @@
 
 @section('extra-js')
 
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 
 <script>
 
+  var doc = new jsPDF();
+
+ function download(title) {
+    doc.fromHTML($('#project').html(), 15, 15, {
+        'width': 170
+    });
+    doc.save(title);
+  }
 
 
 new Vue ({

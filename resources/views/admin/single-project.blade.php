@@ -269,7 +269,6 @@ new Vue ({
         }
     },
     mounted() {
-        console.log(this.categories);
     },
     methods: {
         confirm () {

@@ -95,7 +95,6 @@ class User extends Authenticatable
     public function projects()
     {
         if ($this->is_admin) {
-
             if ($this->is_super()) return Project::orderBy('created_at', 'asc')->paginate(10);
 
             $reviews = $this->reviews->where('reviewer_id', $this->id)->pluck('project_id');

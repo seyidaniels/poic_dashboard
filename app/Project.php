@@ -95,9 +95,9 @@ class Project extends Model
     {
         $reviews = $this->reviews;
 
-        if (!$this->hasBeenReviewedBy($type)) return 'N/A';
+        // if (!$this->hasBeenReviewedBy($type)) return 'N/A';
 
-        if ($reviews == null) return 'N/A';
+        // if ($reviews == null) return 'N/A';
 
         $reviewTypes = [];
         foreach ($reviews as $review) {
@@ -130,6 +130,6 @@ class Project extends Model
             $categorySum += array_sum($categoryScore) / count($categoryScore);
             $totalScore += $categorySum;
         }
-        return $totalScore;
+        return round($totalScore, 1);
     }
 }

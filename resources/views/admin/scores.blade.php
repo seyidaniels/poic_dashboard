@@ -34,9 +34,9 @@
       </tr>
     </thead>
     <tbody class="list">
-        @foreach ($projects as $project)
+        @foreach ($projects as $i => $project)
                   <tr>
-        <th scope="row" class="tables-row">1</th>
+        <th scope="row" class="tables-row">{{$i + 1}}</th>
         <td class="tables-first">{{$project->team->name}} <div class="badge badge-info">{{$project->category}}</div></td>
         <td class="tables-handle">{{$project->status}}</td>
         <td class="tables-last">{{$project->score('reviewer')}}</td>

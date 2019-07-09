@@ -103,12 +103,13 @@
 
 function download(title) {
 doc.fromHTML($('#project-table').html(), 15, 15, {
-    'width': 170
+  orientation: 'landscape',
+  unit: 'in',
+  format: [4, 2]
 });
 doc.save(title);
 }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/table2csv@1.1.3/src/table2csv.min.js"></script>
 
 
     <script>

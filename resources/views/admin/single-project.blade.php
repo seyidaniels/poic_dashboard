@@ -53,6 +53,21 @@
                     </br>
                     @endforeach
                 </ol>
+
+                <p>List of Lecturers who have not reviewed the Project</p>
+                <ol>
+                  @foreach ($project->notReviewedBy() as $reviewer)
+                   <li> {{$reviewer->fullname()}} | {{$reviewer->role->role}} </li>
+                   @foreach ( $reviewer->reviewCategories($project->id) as $category)
+                   <div class="badge badge-info">
+                      {{$category}}
+                   </div>
+                   @endforeach
+                  </br>
+                  @endforeach
+              </ol>
+
+
                 @else
 
                 <p>No Lecturer has been assigned to his project yet </p>

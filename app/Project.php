@@ -91,6 +91,20 @@ class Project extends Model
         }
     }
 
+    // This shows the list of Lecturers who have not reviewed their projects
+    public function notReviewedBy() {
+        $lecturersNotReviewed = [];
+        $reviewIds = $this->reviews()->where('score', null)->select('reviewer_id')->get();
+        $gottenReviewer = [];
+        foreach($reviewIds as $reviewer) {
+            if (in_array($reviewer, $gottenReviewer)) continue;
+            $user = User::find($reviewer)->first();
+            array_push($lecturersNotReviewed, $user);
+            array_push($gottenReviewer, $reviewer);
+        }
+        return $lecturersNotReviewed;
+    }   
+
     public function score($type)
     {
         $reviews = $this->reviews;

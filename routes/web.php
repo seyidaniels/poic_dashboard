@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('send-mail', 'AdminController@mailAll');
             Route::post('add-reviewers', 'AdminController@addProjectReviewers');
             Route::get('scores', 'AdminController@viewScores');
+            Route::get('project-analytics', 'AdminController@vewProjectAnalytics');
             Route::get('image', 'AdminController@imageIndex');
             Route::post('upload-image', 'AdminController@uploadImage');
             Route::post('resend-admin-invite', 'AdminController@resendAdminInvite');

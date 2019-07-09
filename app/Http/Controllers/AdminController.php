@@ -94,9 +94,14 @@ class AdminController extends Controller
         return view('admin.scores', compact('projects'));
     }
 
+    public function vewProjectAnalytics () {
+        $projects = Project::all();
+        return view ('admin.project-analytics', compact('projects'));
+    }
+
     public function createAdmin(Request $request)
     {
-        $request['password'] = $request['password_confirmation'] = str_random(5);
+        $request['password'] = $request['password_confirmation'] = strtoupper(str_random(5));
         $response = $this->register->register($request)->getContent();
         return response()->json(json_decode($response));
     }

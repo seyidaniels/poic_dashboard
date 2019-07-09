@@ -33,6 +33,7 @@ class RegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed'
         ];
+        
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
             return response()->json(['success' => false, 'error' => $validator->messages()], 422);

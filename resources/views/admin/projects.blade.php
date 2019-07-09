@@ -12,6 +12,7 @@
             @if(count($projects))
           <div class="col-12 col-xl-8" >
 
+              <a class="float-right btn btn-primary" href="/admin/dashboard/project-analytics" >VIEW PROJECT REPORT</a>
 
 
             @foreach ($projects as $project)

@@ -36,6 +36,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ URL('getinvite') }}" style="font-size: 14px;">
+                           Get Invite
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ URL('faq') }}" style="font-size: 14px;">
                             FAQ
                         </a>
@@ -130,7 +137,7 @@ var currentScrollPos = window.pageYOffset;
 
 <script>
         // Set the date we're counting down to
-        var countDownDate = new Date("April 14, 2019 12:00:00").getTime();
+        var countDownDate = new Date("September 3, 2019 09:00:00").getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
@@ -148,7 +155,7 @@ var currentScrollPos = window.pageYOffset;
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
           // Display the result in the element with id="demo"
-          document.getElementById("countdown").innerHTML = "Application ends in " +  days + " days " + hours + " hours "
+          document.getElementById("countdown").innerHTML = "Event is in  " +  days + " days " + hours + " hours "
           + minutes + "minutes " + seconds +" seconds";
 
           // If the count down is finished, write some text

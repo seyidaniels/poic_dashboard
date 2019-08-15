@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/timeline', 'HomeController@timeline');
 Route::get('/rules', 'HomeController@rule');
 Route::get('/faq', 'HomeController@faq');
+Route::get('getinvite', 'HomeController@getInvite');
 Route::get('/terms-conditions', 'HomeController@terms');
 Route::get('/dashboard', 'SinglePageController@index');
 Route::get('verify/{email_token}', 'RegisterController@verifyUser');

@@ -52,8 +52,8 @@
                     </thead>
                     <tbody>
                       <tr v-for="(member, index) in team.members" :key="index">
-                        <td class="px-0">{{member.firstname}} {{member.lastname}}</td>
-                        <td class="px-0">{{member.email}}</td>
+                        <td class="text-white">{{member.firstname}} {{member.lastname}}</td>
+                        <td class="text-white">{{member.email}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -102,44 +102,43 @@
   </div>
 </template>
 <script>
-import handleError from "../error.js";
+import handleError from '../error.js';
 export default {
-  data: function() {
-    return {
-      team: [],
-      members: [],
-      noTeam: false
-    };
-  },
-  mounted() {
-    console.log(this.noTeam);
-    axios
-      .get(this.$store.state.serverURI + "get-team")
-      .then(response => {
-        if (response.data.success) {
-          this.team = response.data.team;
-          // this.members = response.data.members
-        } else {
-          this.$router.push("/create-team");
-        }
-        this.$vs.loading.close();
-      })
-      .catch(error => {
-        handleError(error);
-      });
-  },
-  methods: {
-    leaveTeam() {
-      if (confirm("Are you sure you want to leave this team")) {
-        console.log("Sends a request to the server");
-      }
-    }
-  }
+	data: function() {
+		return {
+			team: [],
+			members: [],
+			noTeam: false
+		};
+	},
+	mounted() {
+		axios
+			.get('/api/get-team')
+			.then(response => {
+				if (response.data.success) {
+					this.team = response.data.team;
+					// this.members = response.data.members
+				} else {
+					this.$router.push('/create-team');
+				}
+				this.$vs.loading.close();
+			})
+			.catch(error => {
+				handleError(error);
+			});
+	},
+	methods: {
+		leaveTeam() {
+			if (confirm('Are you sure you want to leave this team')) {
+				console.log('Sends a request to the server');
+			}
+		}
+	}
 };
 </script>
 <style>
 [v-cloak] {
-  display: none;
+	display: none;
 }
 </style>
 

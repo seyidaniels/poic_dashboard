@@ -110,57 +110,58 @@
   </nav>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import handleError from "../../error";
+import { mapGetters } from 'vuex';
+import handleError from '../../error';
 
 export default {
-  data: function() {
-    return {
-      notifications: []
-    };
-  },
-  watch: {
-    notifications() {
-      // this.notifications = this.$store.getters.notifications
-    }
-  },
-  created() {
-    if (this.$store.getters.isAuthenticated) {
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + localStorage.getItem("token");
-      axios
-        .get(this.$store.state.serverURI + "get-notifications")
-        .then(response => {
-          if (response.data.success) {
-            this.notifications = response.data.notifications;
-            this.$store.dispatch("SET_NOTIFICATIONS", this.notifications);
-          }
-        })
-        .catch(error => {
-          handleError(error);
-        });
-    }
-  },
-  methods: {
-    logout() {
-      axios
-        .post(this.$store.state.serverURI + "logout", {
-          token: localStorage.getItem("token")
-        })
-        .then(response => {
-          if (response.data.success) {
-            this.$store.dispatch("SET_TOKEN", null);
-            this.$store.dispatch("SET_USER", null);
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
-            location.href = "/dashboard";
-          }
-        })
-        .catch(error => {
-          handleError(error);
-        });
-    }
-  }
+	data: function() {
+		return {
+			notifications: []
+		};
+	},
+	watch: {
+		notifications() {
+			// this.notifications = this.$store.getters.notifications
+		}
+	},
+	created() {
+		console.log(this.$store.getters);
+		console.log(process.env);
+		if (this.$store.getters.isAuthenticated) {
+			axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+			axios
+				.get('/api/get-notifications')
+				.then(response => {
+					if (response.data.success) {
+						this.notifications = response.data.notifications;
+						this.$store.dispatch('SET_NOTIFICATIONS', this.notifications);
+					}
+				})
+				.catch(error => {
+					handleError(error);
+				});
+		}
+	},
+	methods: {
+		logout() {
+			axios
+				.post('/api/logout', {
+					token: localStorage.getItem('token')
+				})
+				.then(response => {
+					if (response.data.success) {
+						this.$store.dispatch('SET_TOKEN', null);
+						this.$store.dispatch('SET_USER', null);
+						localStorage.removeItem('user');
+						localStorage.removeItem('token');
+						location.href = '/dashboard';
+					}
+				})
+				.catch(error => {
+					handleError(error);
+				});
+		}
+	}
 };
 </script>
 

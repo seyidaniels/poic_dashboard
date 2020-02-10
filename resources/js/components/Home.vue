@@ -25,7 +25,7 @@
                     <h4 class="alert-heading">Well done!</h4>
                     <p>Thank you for signing up successfully, we  are glad to have you on board</p>
                     <hr>
-                    <p class="mb-0">Do contact 08176607259 if there are any issues in applying for poic here.</p>
+                    <!-- <p class="mb-0">Do contact 08176607259 if there are any issues in applying for poic here.</p> -->
                   </div>
                 </div>
               </div>
@@ -44,10 +44,10 @@
                     </h2>
 
                     <p class="text-muted">
-                      Compete with over 300 students for the grand proze of 3 million naira
+                      Compete with over 300 students for the grand prize of 3 million naira
                     </p>
 
-                    <router-link to="/create-team" class="btn btn-primary">
+                    <router-link to="/create-team" v-if="!$store.getters.getUser.team_id" class="btn btn-primary">
                       Create Team
                     </router-link>
 

@@ -19,6 +19,11 @@ class CreateProjectsTable extends Migration
             $table->longText('body');
             $table->integer('team_id');
             $table->string('category');
+            $table->longText('objectives')->nullable();
+            $table->integer("duration")->nullable();
+            $table->longText('goals')->nullable();
+            $table->longText('impact')->nullable();
+            $table->longText('monitoring_evaluation')->nullable();
             $table->string('image');
             $table->boolean('is_submitted')->default(false);
             $table->enum('status', ['accepted', 'rejected', 'pending', 'modification'])->default('pending');

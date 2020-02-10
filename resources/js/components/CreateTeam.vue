@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-bottom: 100px;">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8">
         <!-- Header -->
@@ -46,9 +46,7 @@
         >Next</button>
 
         <div v-if="page === 2">
-          <div
-            class="alert alert-warning"
-          >Please note that your team members must have created an account before you can add them as team members</div>
+
           <div class="form-group">
             <label class="mb-1">Select Team Picture</label>
             <input
@@ -90,7 +88,13 @@
               <i class="fa fa-minus"></i>
             </button>
           </div>
+
+           <div
+            class="alert alert-warning"
+          >Please note that your team members must have created an account before you can add them as team members</div>
         </div>
+
+
 
         <div class="mb-4">
           <button
@@ -110,102 +114,101 @@
             <span v-if="!loading">Create Team</span>
           </button>
         </div>
+
       </div>
     </div>
     <div class="mb-4"></div>
   </div>
 </template>
 <script>
-import Select2 from "@/js/components/includes/Select2";
-import handleError from "../error";
+import Select2 from '@/js/components/includes/Select2';
+import handleError from '../error';
 
 export default {
-  data: function() {
-    return {
-      page: 1,
-      file: "",
-      loading: false,
-      members: [],
-      team: {
-        name: "",
-        description: ""
-      }
-    };
-  },
-  beforeMounted() {
-    // Check if the User has a team already
-    axios.get(this.$store.state.serverURI + "has-team").then(response => {
-      if (response.data.has_team) this.$router.push("/my-team");
-    });
-  },
-  mounted() {
-    if (this.$store.getters.isAuthenticated) {
-      this.members.push(this.$store.getters.getUser.email);
-    }
-  },
-  components: {
-    "select-2": Select2
-  },
-  methods: {
-    removeMember() {
-      this.members.pop();
-    },
-    next() {
-      if (this.team.name.length < 5)
-        return toastr.warning("Team Name too short");
-      if (this.team.description.length < 15)
-        return toastr.warning("Team Description is too short");
-      this.page += 1;
-    },
-    addMember() {
-      if (this.members.length >= 4)
-        return toastr.error("You cant have more than 4 team members");
-      this.members.push("");
-    },
-    toggleLoading() {
-      this.loading = !this.loading;
-    },
-    submitTeam() {
-      if (confirm("Are you sure? Once team is created, you cannot edit")) {
-        let data = new FormData();
-        data.append("image", this.file);
-        data.append("name", this.team.name);
-        data.append("description", this.team.description);
-        this.members.forEach(function(member, index) {
-          data.append(`members[${index}]`, member);
-        });
-        this.toggleLoading();
-        axios
-          .post(this.$store.state.serverURI + "create-team", data)
-          .then(response => {
-            if (response.data.success) {
-              toastr.success(response.data.message);
-            } else {
-              toastr.error(response.data.message);
-            }
-            this.$router.push("/my-team");
-          })
-          .catch(error => {
-            handleError(error);
-            this.toggleLoading();
-          });
-      }
-    },
-    handleFileUpload() {
-      var preview = document.getElementById("imagePreview");
-      this.file = this.$refs.file.files[0];
-      var reader = new FileReader();
-      reader.addEventListener(
-        "load",
-        function() {
-          preview.src = reader.result;
-        },
-        false
-      );
-      if (this.file) {
-        reader.readAsDataURL(this.file);
-      }
-    }
-  }
+	data: function() {
+		return {
+			page: 1,
+			file: '',
+			loading: false,
+			members: [],
+			team: {
+				name: '',
+				description: ''
+			}
+		};
+	},
+	beforeMounted() {
+		// Check if the User has a team already
+		axios.get(this.$store.state.serverURI + 'has-team').then(response => {
+			if (response.data.has_team) this.$router.push('/my-team');
+		});
+	},
+	mounted() {
+		if (this.$store.getters.isAuthenticated) {
+			this.members.push(this.$store.getters.getUser.email);
+		}
+	},
+	components: {
+		'select-2': Select2
+	},
+	methods: {
+		removeMember() {
+			this.members.pop();
+		},
+		next() {
+			if (this.team.name.length < 5) return toastr.warning('Team Name too short, Must be at least 3 letters');
+			if (this.team.description.length < 30)
+				return toastr.warning('Team Description is too short, Must be at leats 30 characters');
+			this.page += 1;
+		},
+		addMember() {
+			if (this.members.length >= 4) return toastr.error('You cant have more than 4 team members');
+			this.members.push('');
+		},
+		toggleLoading() {
+			this.loading = !this.loading;
+		},
+		submitTeam() {
+			if (confirm('Are you sure? Once team is created, you cannot edit')) {
+				let data = new FormData();
+				data.append('image', this.file);
+				data.append('name', this.team.name);
+				data.append('description', this.team.description);
+				this.members.forEach(function(member, index) {
+					data.append(`members[${index}]`, member);
+				});
+				this.toggleLoading();
+				axios
+					.post('/api/create-team', data)
+					.then(response => {
+						if (response.data.success) {
+							toastr.success(response.data.message);
+						} else {
+							toastr.error(response.data.message);
+						}
+						this.$router.push('/my-team');
+					})
+					.catch(error => {
+						handleError(error);
+						this.toggleLoading();
+					});
+			}
+		},
+		handleFileUpload() {
+			var preview = document.getElementById('imagePreview');
+			this.file = this.$refs.file.files[0];
+			var reader = new FileReader();
+			reader.addEventListener(
+				'load',
+				function() {
+					preview.src = reader.result;
+				},
+				false
+			);
+			if (this.file) {
+				reader.readAsDataURL(this.file);
+			}
+		}
+	}
 };
 </script>

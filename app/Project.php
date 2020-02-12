@@ -11,7 +11,7 @@ use Auth;
 class Project extends Model
 {
     protected $fillable = [
-        'title', 'body', 'category', 'is_submitted', 'team_id', 'image'
+        'title', 'body', 'category', 'is_submitted', 'team_id', 'image', 'category', 'duration', 'objectives', 'goals', 'impact', 'monitoring_evaluation'
     ];
 
     public function category()
@@ -103,7 +103,7 @@ class Project extends Model
             array_push($gottenReviewer, $reviewer);
         }
         return $lecturersNotReviewed;
-    }   
+    }
 
     public function score($type)
     {

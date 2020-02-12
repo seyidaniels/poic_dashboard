@@ -1,40 +1,42 @@
 <script>
-import Quill from "quill";
+import Quill from 'quill';
 
 export default {
-  props: {
-    value: {
-      type: String,
-      default: ""
-    }
-  },
+	props:
+		// value: {
+		// 	type: String,
+		// 	default: ''
+		// },
+		['height', 'value'],
+	data() {
+		return {
+			editor: null
+		};
+	},
+	computed: {
+		getHeight() {
+			return {
+				height: `${this.height}px`
+			};
+		}
+	},
+	mounted() {
+		this.editor = new Quill(this.$refs.editor, {
+			modules: {
+				toolbar: '#toolbar-container'
+			},
+			theme: 'snow'
+		});
 
-  data() {
-    return {
-      editor: null
-    };
-  },
-  mounted() {
-    this.editor = new Quill(this.$refs.editor, {
-      modules: {
-        toolbar: "#toolbar-container"
-      },
-      theme: "snow"
-    });
+		this.editor.root.innerHTML = this.value;
 
-    this.editor.root.innerHTML = this.value;
-
-    this.editor.on("text-change", () => this.update());
-  },
-
-  methods: {
-    update() {
-      this.$emit(
-        "input",
-        this.editor.getText() ? this.editor.root.innerHTML : ""
-      );
-    }
-  }
+		this.editor.on('text-change', () => this.update());
+	},
+	methods: {
+		update() {
+			this.$emit('input', this.editor.getText() ? this.editor.root.innerHTML : '');
+		}
+	}
 };
 </script>
 
@@ -85,8 +87,8 @@ export default {
         <button class="ql-clean"></button>
       </span>
     </div>
-    <div ref="editor" style="  height: 600px;
-"></div>
+    <div ref="editor" :style="getHeight"></div>
   </div>
 </template>
+
 

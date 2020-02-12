@@ -104,7 +104,12 @@ class ProjectController extends Controller
         return Validator::make($data, [
             'title' => 'required|string',
             'body' => ['required', new WordCount],
-            'category' => 'required|string'
+            'category' => 'required|string',
+            'duration' => 'required|numeric',
+            'objectives' => 'required',
+            'goals' =>'required',
+            'impact' => 'required',
+            'monitoring_evaluation' => 'required'
         ]);
     }
 }

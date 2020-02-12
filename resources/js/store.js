@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const state = {
     callingAPI: false,
     searching: '',
-    serverURI: process.env.MIX_APP_API,
+    serverURI: process.env.MIX_APP_API_TEST,
     user: null,
     token: null,
     ignoreAuthToken: false,
@@ -35,6 +35,9 @@ const getters = {
     notifications: state => {
         // not 'this.state' because state is passed in as a parameter
         return state.notifications
+    },
+    getUrl: state => {
+        return state.serverURI
     }
 
     //     notifications() {

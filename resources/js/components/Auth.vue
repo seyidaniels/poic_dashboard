@@ -65,6 +65,17 @@
                   </div>
                 </div>
 
+                 <!-- <div class="form-group"> -->
+                  <!-- Label -->
+                  <!-- <label> Institution</label>
+
+
+
+                  <select class="form-control" id="">
+
+                  </select>
+                </div> -->
+
                 <!-- Phone Number -->
                 <div class="form-group">
                   <!-- Label -->
@@ -72,7 +83,7 @@
 
                   <!-- Input -->
                   <input
-                    type="phone"
+                    type="number"
                     class="form-control"
                     v-model="userSignUp.phone"
                     placeholder="08012345678"
@@ -329,178 +340,172 @@
   </div>
 </template>
 <script>
-import handleError from "../error";
+import handleError from '../error';
 
 export default {
-  data: function() {
-    return {
-      showSignUp: false,
-      showForgot: false,
-      showSignIn: true,
-      loading: false,
-      promptResend: false,
-      showResendEmail: false,
-      url: "",
-      resend_email: "",
-      recover_email: "",
-      userSignUp: {
-        email: "",
-        firstname: "",
-        lastname: "",
-        phone: "",
-        password: "",
-        password_confirmation: ""
-      },
-      userSignIn: {
-        email: "",
-        password: ""
-      }
-    };
-  },
-  methods: {
-    togglePass(event) {
-      if (this.userSignUp.password.length > 0) {
-        let password = event.target.parentNode.parentNode.parentNode.firstChild;
-        if (password.type === "password") {
-          password.type = "text";
-          event.target.className = "fe fe-eye-off";
-        } else {
-          password.type = "password";
-          event.target.className = "fe fe-eye";
-        }
-      }
-    },
-    validateRegister() {
-      if (
-        this.userSignUp.firstname.length < 3 ||
-        this.userSignUp.lastname.length < 3
-      )
-        return toastr.warning("Firstname or Lastname fields cant be empty");
-      if (this.userSignUp.phone.length < 11)
-        return toastr.warning("Invalid Phone Number");
-      if (this.userSignUp.password.length < 5)
-        return toastr.warning("Please use a stronger password");
-      if (this.userSignUp.password !== this.userSignUp.password_confirmation)
-        return toastr.warning("Passwords do not match");
-      return true;
-    },
-    validateEmail(email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    },
-    clickRegister() {
-      if (this.validateRegister() === true) {
-        this.toggleLoading();
-        axios
-          .post(this.url + "register", this.userSignUp)
-          .then(response => {
-            this.handleResponse(response);
-          })
-          .catch(error => {
-            this.handleError(error);
-          });
-      }
-    },
-    toggleLoading() {
-      this.loading = !this.loading;
-    },
-    handleResponse(data) {
-      if (data.data.success) {
-        toastr.success(data.data.message);
-        this.userSignUp = "";
-        this.userSignIn = "";
-        let token = data.data.data.token;
-        let user = data.data.data.user;
-        this.saveUserData(token, user);
-        window.location.reload();
-      } else {
-        toastr.warning(data.data.error);
-      }
-      if (data.data.not_verified) this.promptResend = true;
-      this.toggleLoading();
-    },
-    handleError(error) {
-      if (error.response) {
-        if (error.response.status === 422) {
-          Object.values(error.response.data.error).forEach(function(element) {
-            toastr.error(element);
-          });
-        } else if (error.response.status === 404) {
-          toastr.error("Could not find the requested resource");
-        } else {
-          toastr.error(
-            "Oops! Something went wrong, we could not send a verification mail to you, please try again!"
-          );
-        }
-      }
-      this.toggleLoading();
-    },
-    saveUserData(token, user) {
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", token);
-      this.$store.dispatch("SET_TOKEN", token);
-      this.$store.dispatch("SET_USER", user);
-    },
-    validateLogin() {
-      if (this.userSignIn.password.length < 5)
-        return toastr.warning("Password too short");
-      return true;
-    },
+	data: function() {
+		return {
+			showSignUp: false,
+			showForgot: false,
+			showSignIn: true,
+			loading: false,
+			promptResend: false,
+			showResendEmail: false,
+			url: '',
+			resend_email: '',
+			recover_email: '',
+			userSignUp: {
+				email: '',
+				firstname: '',
+				lastname: '',
+				phone: '',
+				password: '',
+				password_confirmation: ''
+			},
+			userSignIn: {
+				email: '',
+				password: ''
+			}
+		};
+	},
+	methods: {
+		togglePass(event) {
+			if (this.userSignUp.password.length > 0) {
+				let password = event.target.parentNode.parentNode.parentNode.firstChild;
+				if (password.type === 'password') {
+					password.type = 'text';
+					event.target.className = 'fe fe-eye-off';
+				} else {
+					password.type = 'password';
+					event.target.className = 'fe fe-eye';
+				}
+			}
+		},
+		validateRegister() {
+			if (this.userSignUp.firstname.length < 3 || this.userSignUp.lastname.length < 3)
+				return toastr.warning('Firstname or Lastname fields cant be empty');
+			if (this.userSignUp.phone.length < 11) return toastr.warning('Invalid Phone Number');
+			if (this.userSignUp.password.length < 5) return toastr.warning('Please use a stronger password');
+			if (this.userSignUp.password !== this.userSignUp.password_confirmation)
+				return toastr.warning('Passwords do not match');
+			return true;
+		},
+		validateEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		},
+		clickRegister() {
+			if (this.validateRegister() === true) {
+				this.toggleLoading();
+				axios
+					.post('/api/register', this.userSignUp)
+					.then(response => {
+						this.handleResponse(response);
+					})
+					.catch(error => {
+						this.handleError(error);
+					});
+			}
+		},
+		toggleLoading() {
+			this.loading = !this.loading;
+		},
+		handleResponse(data) {
+			if (data.data.success) {
+				toastr.success(data.data.message);
+				this.userSignUp = '';
+				this.userSignIn = '';
+				let token = data.data.data.token;
+				let user = data.data.data.user;
+				this.saveUserData(token, user);
+				window.location.reload();
+			} else {
+				toastr.warning(data.data.error);
+			}
+			if (data.data.not_verified) this.promptResend = true;
+			this.toggleLoading();
+		},
+		handleError(error) {
+			if (error.response) {
+				if (error.response.status === 422) {
+					Object.values(error.response.data.error).forEach(function(element) {
+						toastr.error(element);
+					});
+				} else if (error.response.status === 404) {
+					toastr.error('Could not find the requested resource');
+				} else {
+					toastr.error(
+						'Oops! Something went wrong, we could not send a verification mail to you, please try again!'
+					);
+				}
+			}
+			this.toggleLoading();
+		},
+		saveUserData(token, user) {
+			localStorage.setItem('user', JSON.stringify(user));
+			localStorage.setItem('token', token);
+			this.$store.dispatch('SET_TOKEN', token);
+			this.$store.dispatch('SET_USER', user);
+		},
+		validateLogin() {
+			if (this.userSignIn.password.length < 5) return toastr.warning('Password too short');
+			return true;
+		},
 
-    clickLogin() {
-      this.toggleLoading();
-      axios
-        .post(this.url + "login", this.userSignIn)
-        .then(response => {
-          if (response.data.success) {
-            let token = response.data.data.token;
-            let user = response.data.data.user;
-            this.saveUserData(token, user);
-            location.reload();
-          } else {
-            toastr.error(response.data.error);
-            if (response.data.not_verified) this.promptResend = true;
-            this.toggleLoading();
-          }
-        })
-        .catch(error => {
-          this.handleError(error);
-        });
-    },
-    resendEmail() {
-      if (this.resend_email == "") return toastr.error("Invalid Email");
-      this.toggleLoading();
-      axios
-        .post(this.url + "resend-verification", { email: this.resend_email })
-        .then(response => {
-          if (response.data.success) {
-            toastr.success(response.data.message);
-          }
-          this.toggleLoading();
-        })
-        .catch(error => {
-          handleError(error);
-        });
-    },
-    recoverPassword() {
-      if (this.recover_email == "") return toastr.error("Invalid Email");
-      this.toggleLoading();
-      axios
-        .post(this.url + "recover", { email: this.recover_email })
-        .then(response => {
-          if (response.data.success) {
-            toastr.success(response.data.message);
-          }
-          this.toggleLoading();
-        })
-        .catch(error => {
-          handleError(error);
-        });
-    }
-  },
-  mounted() {
-    this.url = this.$store.state.serverURI;
-  }
+		clickLogin() {
+			this.toggleLoading();
+			axios
+				.post('/api/login', this.userSignIn)
+				.then(response => {
+					if (response.data.success) {
+						let token = response.data.data.token;
+						let user = response.data.data.user;
+						this.saveUserData(token, user);
+						location.reload();
+					} else {
+						toastr.error(response.data.error);
+						if (response.data.not_verified) this.promptResend = true;
+						this.toggleLoading();
+					}
+				})
+				.catch(error => {
+					this.handleError(error);
+				});
+		},
+		resendEmail() {
+			if (this.resend_email == '') return toastr.error('Invalid Email');
+			this.toggleLoading();
+			axios
+				.post('/api/resend-verification', { email: this.resend_email })
+				.then(response => {
+					if (response.data.success) {
+						toastr.success(response.data.message);
+					}
+					this.toggleLoading();
+				})
+				.catch(error => {
+					handleError(error);
+				});
+		},
+		recoverPassword() {
+			if (this.recover_email == '') return toastr.error('Invalid Email');
+			this.toggleLoading();
+			axios
+				.post('/api/recover', { email: this.recover_email })
+				.then(response => {
+					if (response.data.success) {
+						toastr.success(response.data.message);
+					}
+					this.toggleLoading();
+				})
+				.catch(error => {
+					handleError(error);
+				});
+		}
+	},
+	mounted() {
+		this.url = this.$store.state.serverURI;
+	}
 };
 </script>1
 
@@ -510,11 +515,11 @@ export default {
 <style>
 .component-fade-enter-active,
 .component-fade-leave-active {
-  transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+	opacity: 0;
 }
 </style>
 

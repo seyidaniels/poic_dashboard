@@ -101,7 +101,7 @@
             <label class="mb-1">How long will your Project Take to develop</label>
             <select class="form-control" v-model="project.duration" id="">
                 <option value="">Select Month</option>
-                <option value="1" v-for="(month, index) in monthCount" :key="index" >{{ month }} Months</option>
+                <option :value="month" v-for="(month, index) in monthCount" :key="index" >{{ month }} Months</option>
             </select>
           </div>
 
@@ -326,7 +326,8 @@ export default {
 				data.append('duration', this.project.duration);
 				data.append('goals', this.project.goals);
 				data.append('impact', this.project.impact);
-				data.append('monitoring_evaulation', this.project.monitoring_evaluation);
+				data.append('objectives', this.project.objectives);
+				data.append('monitoring_evaluation', this.project.monitoring_evaluation);
 				data.append('is_submitted', is_submitted);
 				this.toggleLoading();
 				axios

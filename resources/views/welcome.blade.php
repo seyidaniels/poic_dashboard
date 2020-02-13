@@ -30,7 +30,7 @@
                 <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
                     <h1 class="display-1 mt-1 mb-3 font-weight-light">Professor Ogundipe Innovative Challenge.</h1>
                     <p class="lead">Do you have an Innovative Idea or Technology Driven Solution?</p>
-                    <a href="" class="btn btn-lg rounded" style="font-weight: 700;background: #b78743!important;">Join</a>
+                    <a href="{{ url('/dashboard') }}" class="btn btn-lg rounded" style="font-weight: 700;background: #b78743!important;">Join</a>
                 </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
                     <h1 class="display-1 mt-1 mb-3 font-weight-light">Professor Ogundipe Innovative Challenge.</h1>
                     <p class="lead">Do you have an Innovative Idea or Technology Driven Solution?</p>
-                    <a href="" class="btn btn-lg rounded" style="font-weight: 700;background: #b78743!important;">Join</a>
+                    <a href="{{ url('/dashboard') }}" class="btn btn-lg rounded" style="font-weight: 700;background: #b78743!important;">Join</a>
                 </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="col-lg-8 text-white" data-swiper-parallax-x="-100%">
                     <h1 class="display-1 mt-1 mb-3 font-weight-light">Professor Ogundipe Innovative Challenge.</h1>
                     <p class="lead">Do you have an Innovative Idea or Technology Driven Solution?</p>
-                    <a href="" class="btn btn-lg rounded" style="font-weight: 700;background: #b78743!important;">Join</a>
+                    <a href="{{ url('/dashboard') }}" class="btn btn-lg rounded" style="font-weight: 700;background: #b78743!important;">Join</a>
                 </div>
                 </div>
             </div>
@@ -136,6 +136,11 @@
                 <p class="text-justify">
                 This platform empowers students and young entrepreneurs (age 16 -35) from around the world to be awarded the opportunity to foster 
                 and develop their ideas.
+                </p>
+                <p class="text-justify">
+                Participants are invited to submit their innovative ideas and projects with a societal impact, which champion and implement in one or more of these focus areas; Agriculture, Software Engineering, and Security. 
+                These have been crafted with the Sustainable Development Goals (SDGs) in mind. 
+                
                 </p>
                 <div class="mb-3"></div>
                 {{-- <a href="#" class="hover-arrow">

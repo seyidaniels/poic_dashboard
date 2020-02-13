@@ -52,7 +52,7 @@
 
     <body>
 
-       {{-- <div  id="app" v-cloak></div> --}}
+       <div  id="app" v-cloak></div>
 
 
 

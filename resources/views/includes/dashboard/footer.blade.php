@@ -5,7 +5,7 @@
             <div class="card card-body border-0 o-hidden mb-0 bg-primary text-light">
             <div class="position-relative d-flex flex-column flex-md-row justify-content-between align-items-center" style="z-index:1;">
                 <div class="h3 text-center mb-md-0" style="font-weight: 700;">Got a Ground Breaking Idea?</div>
-                <a href="https://themes.getbootstrap.com/product/leap-multipurpose-bootstrap-theme/" class="btn btn-sm btn-white my-btn">
+                <a href="{{ url('/rules') }}" class="btn btn-sm btn-white my-btn">
                 See Rules &amp; Regulations
                 </a>
             </div>
@@ -26,19 +26,16 @@
             <h5>Navigate</h5>
             <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="#" class="nav-link" style="padding: .5rem 0;">Home</a>
+                <a href="{{ url('/') }}" class="nav-link" style="padding: .5rem 0;">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" style="padding: .5rem 0;">About</a>
+                <a href="{{ url('/rules') }}" class="nav-link" style="padding: .5rem 0;">Rules</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" style="padding: .5rem 0;">Rules</a>
+                <a href="{{ url('/timeline') }}" class="nav-link" style="padding: .5rem 0;">Timelines</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" style="padding: .5rem 0;">Timelines</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" style="padding: .5rem 0;">FAQs</a>
+                <a href="{{ url('/dashboard') }}" class="nav-link" style="padding: .5rem 0;">Apply Now</a>
             </li>
             </ul>
         </div>
@@ -114,7 +111,7 @@
         <div class="col-auto">
             <ul class="nav">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="https://www.instagram.com/poic_unilag" class="nav-link">
                 <svg viewBox="0 0 24 24" width="32" height="32" stroke="#adb5bd" stroke-width="2" fill="none" stroke-linecap="round"
                     stroke-linejoin="round" class="css-i6dzq1">
                     <title>Instagram icon</title>
@@ -125,7 +122,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="https://twitter.com/POIC_Unilag" class="nav-link">
                 <svg viewBox="0 0 24 24" width="32" height="32" stroke="#adb5bd" stroke-width="2" fill="none" stroke-linecap="round"
                     stroke-linejoin="round" class="css-i6dzq1">
                     <title>Twitter icon</title>
@@ -134,31 +131,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                <svg viewBox="0 0 24 24" width="32" height="32" stroke="#adb5bd" stroke-width="2" fill="none" stroke-linecap="round"
-                    stroke-linejoin="round" class="css-i6dzq1">
-                    <title>YouTube icon</title>
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                </svg>
-                </a>
-            </li>
-            <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="injected-svg icon undefined"
-                    data-src="assets/img/icons/social/medium.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <title>Medium icon</title>
-                    <path d="M0 0v24h24V0H0zm19.938 5.686L18.651 6.92a.376.376 0 0 0-.143.362v9.067a.376.376 0 0 0 .143.361l1.257 1.234v.271h-6.322v-.27l1.302-1.265c.128-.128.128-.165.128-.36V8.99l-3.62 9.195h-.49L6.69 8.99v6.163a.85.85 0 0 0 .233.707l1.694 2.054v.271H3.815v-.27L5.51 15.86a.82.82 0 0 0 .218-.707V8.027a.624.624 0 0 0-.203-.527L4.019 5.686v-.27h4.674l3.613 7.923 3.176-7.924h4.456v.271z"></path>
-                </svg>
-                </a>
-            </li> -->
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <svg viewBox="0 0 24 24" width="32" height="32" stroke="#adb5bd" stroke-width="2" fill="none" stroke-linecap="round"
-                    stroke-linejoin="round" class="css-i6dzq1">
-                    <title>Facebook icon</title>
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
+                <a href="https://www.linkedin.com/company/professor-ogundipe-innovative-challenge" class="nav-link">
+                <span class="fa fa-linkedin fa-2x"></span>
                 </a>
             </li>
             </ul>

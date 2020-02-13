@@ -1,6 +1,4 @@
-<nav class="
-
-navbar navbar-expand-lg bg-dark fixed-top navbar-transparent"
+<nav class="navbar navbar-expand-lg bg-dark fixed-top navbar-transparent"
  color-on-scroll="10">
     <div class="container-fluid" style="padding-left: 50px; padding-right: 50px;" >
         <div class="navbar-translate">

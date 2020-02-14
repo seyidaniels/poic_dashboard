@@ -12,11 +12,14 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <!-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
   <!-- CSS Files -->
   <link href="/landing/assets/newassets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/landing/assets/newassets/css/now-ui-kit.css?v=1.2.0" rel="stylesheet" />
   <link  href="/landing/assets/newassets/css/custom.css" rel="stylesheet">
   <link href="/landing/assets/newassets/css/vendor.min.css" rel="stylesheet">
+  <link href="/landing/assets/newassets/css/timeline.css" rel="stylesheet">
 
   <style>
     .js div#preloader {

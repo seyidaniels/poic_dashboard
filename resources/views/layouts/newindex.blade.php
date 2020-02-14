@@ -7,10 +7,6 @@
     <!-- Preloader -->
     <div id="preloader"></div>
     
-    <!-- Navbar -->
-    @include('includes.dashboard.navbar')
-    <!-- End Navbar -->
-    
     @yield('content')
     
     <script type="text/javascript">

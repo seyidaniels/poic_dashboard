@@ -14,18 +14,28 @@
         <div class="py-2 py-lg-0">
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">
+            <a class="nav-link" href="{{ url('/') }}">
                 <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">Home</p>
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">
-                <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">About Us</p>
+                <a class="nav-link" href="{{ url('/rules') }}">
+                    <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">Rules</p>
+                </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url('/timeline') }}">
+                <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">Timelines</p>
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">
-                <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">Meet the Winners</p>
+                <a class="nav-link" href="{{ url('/faq') }}">
+                    <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">FAQ</p>
+                </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url('/dashboard') }}">
+                <p class="text-capitalize underline" style="font-size: 15px;font-weight: 700;">Apply Now</p>
             </a>
             </li>
         </ul>

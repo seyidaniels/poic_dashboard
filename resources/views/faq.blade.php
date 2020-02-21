@@ -13,7 +13,7 @@
                     <div class="col-sm-8 text-justify">
                         <h2>How to Apply?</h2>
                         <p>
-                            To participate in the challenge, participants must submit a two-page proposal in PDF format, including a short pitch (30 words maximum), a description (300 words description), concept images and/or sketches.
+                            To participate in the challenge, participants must submit a proposal in PDF format, including a short pitch (30 words maximum), a description (300 words description), concept images and/or sketches.
                             Names of participants, their qualifications (level, experience and backgrounds); a web-link to an online portfolio or website is preferred)
                         </p>
                         <br><br>
@@ -32,7 +32,7 @@
                     <div class="col-sm-8 text-right text-justify">
                         <h2>Qualification</h2>
                         <p>
-                            The challenge is open to undergraduate and graduate students. Teams may have between 2-4 members. Teams/Participants are free to enlist professors, teachers, and professionals as advisors, but the work must be done by the students only.
+                            The challenge is open to undergraduate and graduate students. Teams may have between 2-5 members. Teams/Participants are free to enlist professors, teachers, and professionals as advisors, but the work must be done by the students only.
                             All team members must be students at the time of submission of the application.
                         </p>
                         <br>
@@ -49,9 +49,8 @@
                     <div class="col-sm-8 text-justify">
                         <h2>Writting a good submission</h2>
                         <p>
-                            A good submission will address a real-world problem in a creative way. Your two-page proposal should help us understand the problem you are trying to solve and why it is important;
+                            A good submission will address a real-world problem in a creative way. Your proposal should help us understand the problem you are trying to solve and why it is important;
                             What your ideas will do and how people will interact with it.
-                            A tactile grid display is appropriate for your application(Ideas), and a roadmap for development and how your team's skills can achieve them.
                         </p>
                     </div>
                     <div class="col-sm-4 text-center">
@@ -68,7 +67,7 @@
                     <div class="col-sm-8 text-right text-justify">
                         <h2>Submitting</h2><br>
                         <p>
-                            Submissions will commence in late November 2018, on the conference website. Interested teams will complete the submission form, as well as sign the participant agreement.  Proposals would be submitted at 8:00 p.m. on January 8, 2019.
+                            Submissions will commence on 18th of February till April 30th, on the conference website. Interested teams will complete the submission form. Applications will close at 11:59 PM on April 30th.
                         </p>
                     </div>
                 </div>

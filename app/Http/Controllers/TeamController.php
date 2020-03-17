@@ -50,7 +50,7 @@ class TeamController extends Controller
     protected function validator($data)
     {
         return Validator::make($data, [
-            'name' => 'required|min:5|max:15|unique:teams',
+            'name' => 'required|min:5|unique:teams',
             'description' => 'required|min:30',
             'members' => ['required', 'array'],
             'image' => 'required|mimes:jpeg,jpg,png,gif|max:10000'

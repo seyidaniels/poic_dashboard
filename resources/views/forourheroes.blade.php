@@ -19,7 +19,8 @@
         <section class="instruction">
             <img src="src/img/poic_logo.jpg" alt="" id="logo" class="mt-1">
             <div class="mt-2">
-                <h2>Display Picture (DP) Generator</h2>
+                <h2> COVID 19 | FOR OUR HEROES</h2>
+                <p class="lead">We encourage everyone to stay at Home </p>
                 <span>
                     <svg width="83" height="5" viewBox="0 0 83 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="82.1782" height="4.93069" fill="#B78743" />
@@ -38,7 +39,8 @@
                 </li>
             </ul>
             <p class="pt-1 pb-2">
-                Don’t forget to share on Whatsapp, Facebook, Twitter, Instagram, and make sure you hashtag (#POICUnilag)
+                Don’t forget to share on Whatsapp, Facebook, Twitter, Instagram, and make sure you hashtag
+                (#ForOurHeroes)
             </p>
 
         </section>
@@ -54,6 +56,39 @@
                         <input placeholder="Enter your first name" required="" id="fullname" name="fullname" type="text"
                             class="input-text">
                     </div>
+
+                    <style>
+                        .input-hidden {
+                            position: absolute;
+                            left: -9999px;
+                        }
+
+                        .pad {
+                            padding: 20px;
+                        }
+
+                        input[type=radio]:checked+label>img {
+                            border: 1px solid #fff;
+                            box-shadow: 0 0 3px 3px #B78743;
+                        }
+                    </style>
+
+                    <div class="form-control pt-1 pb-1">
+                        <label>Choose Template</label>
+                        <br>
+                        <br>
+                        <input type="radio" value="ceeplus" name="template" id="sad" class="input-hidden" />
+                        <label for="sad" class="pad">
+                            <img src="/src/img/covid1.png" style="max-width: 100px;" alt="I'm sad" />
+                        </label>
+
+                        <input type="radio" value="other" name="template" id="happy" class="input-hidden" />
+                        <label for="happy" class="pad">
+                            <img src="/src/img/covid.png" style="max-width: 100px;" alt="I'm happy" />
+                        </label>
+                    </div>
+
+
                     <div class="image-editor">
                         <!-- <input type="file" class="cropit-image-input"> -->
                         <label for="file" class="">Upload Image</label>

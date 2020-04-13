@@ -14,6 +14,11 @@ $(function() {
     $("form").submit(function(e) {
         e.preventDefault();
         var username = $("#fullname").val();
+
+        // get Template
+        var template = $("input[name='template']:checked").val();
+
+
         // Move cropped image data to hidden input
         var imageData = $(".image-editor").cropit("export", {
             type: "image/jpeg",
@@ -27,15 +32,30 @@ $(function() {
             .html("...processing");
 
         // x, y, width, height
-        const picData = [700, 400, 1000, 1000];
+        const picData = [700, 400, 1300, 1300];
         // name, y
         const nameData = [username, 500];
 
-        createDP(username, imageData, picData, nameData, function(url) {
-            navigateTo("yourdp", createHTMLForImage(url));
+        if (template == 'ceeplus') {
+            createDP(username, "src/img/covid1.png", {
+                    x: 180,
+                    y: 240,
+                    size: 320
+                }, {
+                    x: 0,
+                    y: 0,
+                    size: 800
+                }, {
+                    x: 560,
+                    y: 632,
+                    size: 25
+                },
+                imageData, picData, nameData,
+                function(url) {
+                    navigateTo("yourdp", createHTMLForImage(url));
 
-            function createHTMLForImage(url) {
-                return `
+                    function createHTMLForImage(url) {
+                        return `
         <section class="dp-container">
           <a href="?" class="arrow-back"><i class="ti-arrow-left"></i></a>
           <div>
@@ -44,15 +64,74 @@ $(function() {
           <a class="download-dp" href="${url}" download="POIC_DP_${username}">Download Image</a>
         <section>
       `;
-            }
-        });
+                    }
+                });
+
+        } else {
+
+            createDP(username, "src/img/covid.png", {
+                    x: 1040,
+                    y: 620,
+                    size: 450
+                }, {
+                    x: 500,
+                    y: 0,
+                    size: 1300
+                }, {
+                    x: 1050,
+                    y: 1250,
+                    size: 70
+                },
+                imageData, picData, nameData,
+                function(url) {
+                    navigateTo("yourdp", createHTMLForImage(url));
+
+                    function createHTMLForImage(url) {
+                        return `
+        <section class="dp-container">
+          <a href="?" class="arrow-back"><i class="ti-arrow-left"></i></a>
+          <div>
+          <img id="dp_result" src=${url} title="Your DP"/>
+          <br>
+          <a class="download-dp" href="${url}" download="POIC_DP_${username}">Download Image</a>
+        <section>
+      `;
+                    }
+                });
+
+        }
+
     });
+
+
+
+    function viewResult(url, username) {
+        navigateTo("yourdp", createHTMLForImage(url));
+
+        function createHTMLForImage(url) {
+            return `
+        <section class="dp-container">
+          <a href="?" class="arrow-back"><i class="ti-arrow-left"></i></a>
+          <div>
+          <img id="dp_result" src=${url} title="Your DP"/>
+          <br>
+          <a class="download-dp" href="${url}" download="POIC_DP_${username}">Download Image</a>
+        <section>
+      `;
+        }
+    }
 
     /* file input */
     fileInput.on("change", function(e) {
-        fileInpbtn.css({ display: "none" });
-        changebtn.css({ display: "inline-block" });
-        deletebtn.css({ display: "inline-block" });
+        fileInpbtn.css({
+            display: "none"
+        });
+        changebtn.css({
+            display: "inline-block"
+        });
+        deletebtn.css({
+            display: "inline-block"
+        });
     });
 
     /* change image btn */
@@ -65,9 +144,15 @@ $(function() {
         let file = document.querySelector("input[type=file]").files[0];
         file.value = null;
 
-        fileInpbtn.css({ display: "inline-block" });
-        changebtn.css({ display: "none" });
-        deletebtn.css({ display: "none" });
+        fileInpbtn.css({
+            display: "inline-block"
+        });
+        changebtn.css({
+            display: "none"
+        });
+        deletebtn.css({
+            display: "none"
+        });
 
         $(".cropit-preview-image").attr("src", "");
     });
@@ -91,11 +176,13 @@ $(function() {
             byteArrays.push(byteArray);
         }
 
-        var blob = new Blob(byteArrays, { type: contentType });
+        var blob = new Blob(byteArrays, {
+            type: contentType
+        });
         return blob;
     }
 
-    function createDP(username, imageUrl, pic, name, cb) {
+    function createDP(username, frame, arc, image, text, imageUrl, pic, name, cb) {
         var canvas = document.createElement("canvas"),
             ctx = canvas.getContext("2d"),
             imageCount = 2,
@@ -111,7 +198,7 @@ $(function() {
             };
 
         var userImg = loadImage(imageUrl);
-        var frameImg = loadImage("src/img/frame2.png");
+        var frameImg = loadImage(frame);
 
         function loadImage(src) {
             var img = new Image();
@@ -130,11 +217,14 @@ $(function() {
 
             ctx.save();
             ctx.beginPath();
-            ctx.arc(1200, 900, 500, 0, 7);
+            ctx.arc(arc.x, arc.y, arc.size, 0, 7);
             ctx.clip();
             ctx.stroke();
             ctx.closePath();
-            ctx.drawImage(userImg, view.x, view.y, view.width, view.height);
+            // ctx.drawImage(userImg, 500, 0, view.width, view.height);
+            // ctx.drawImage(userImg, 0, 0, 800, 800);
+            ctx.drawImage(userImg, image.x, image.y, image.size, image.size)
+
             ctx.restore();
 
             //ctx.textBaseline = "bottom";e
@@ -144,9 +234,12 @@ $(function() {
 
             ctx.textBaseline = "top";
             ctx.textAlign = "center";
-            ctx.font = "bold 70px Raleway";
+            // "bold 70px Raleway"
+            ctx.font = `bold ${text.size}px Raleway`;
             ctx.fillStyle = "#B78743";
-            ctx.fillText(name[0], 1130, 1670);
+            ctx.fillText(name[0], text.x, text.y);
+
+
 
             cb(canvas.toDataURL("image/jpeg", 1.0));
         }
@@ -156,7 +249,9 @@ $(function() {
         switch (view) {
             case "yourdp":
                 main.html(temp);
-                main.css({ background: "none" });
+                main.css({
+                    background: "none"
+                });
                 break;
             default:
                 main.style.background = "rgb(108, 86, 123)";
@@ -165,4 +260,5 @@ $(function() {
     }
     console.log("DOM fully loaded and parsed");
 });
-``
+`
+                    `

@@ -9,6 +9,9 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+    public function forOurHeroes() {
+        return view ('forourheroes');
+    }
     function timeline()
     {
         return view('timeline');

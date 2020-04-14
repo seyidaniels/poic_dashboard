@@ -48,7 +48,8 @@ $(function() {
                 }, {
                     x: 560,
                     y: 632,
-                    size: 25
+                    size: 25,
+                    color: '#B78743'
                 },
                 imageData, picData, nameData,
                 function(url) {
@@ -80,7 +81,8 @@ $(function() {
                 }, {
                     x: 1050,
                     y: 1250,
-                    size: 70
+                    size: 70,
+                    color: '#C8A63D'
                 },
                 imageData, picData, nameData,
                 function(url) {
@@ -236,7 +238,7 @@ $(function() {
             ctx.textAlign = "center";
             // "bold 70px Raleway"
             ctx.font = `bold ${text.size}px Raleway`;
-            ctx.fillStyle = "#B78743";
+            ctx.fillStyle = `${text.color}`;
             ctx.fillText(name[0], text.x, text.y);
 
 

@@ -135,7 +135,7 @@
     </main>
     <script src="src/js/jquery.min.js"></script>
     <script src="src/js/jquery.cropit.js"></script>
-    <script src="src/js/main.js"></script>
+    <script src="src/js/main.js?{{ date('yhims') }}"></script>
 
 
     <!-- <h1>Register For POIC now!!</h1> -->

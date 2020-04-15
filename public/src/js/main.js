@@ -62,7 +62,7 @@ $(function() {
           <div>
           <img id="dp_result" src=${url} title="Your DP"/>
           <br>
-          <a class="download-dp" href="${url}" download="POIC_DP_${username}">Download Image</a>
+          <a class="download-dp" href="${url}" download="POIC_DP_${Math.random() * 1000}">Download Image</a>
         <section>
       `;
                     }
@@ -95,7 +95,7 @@ $(function() {
           <div>
           <img id="dp_result" src=${url} title="Your DP"/>
           <br>
-          <a class="download-dp" href="${url}" download="POIC_DP_${username}">Download Image</a>
+          <a class="download-dp" href="${url}" download="POIC_DP_${Math.random() * 1000}">Download Image</a>
         <section>
       `;
                     }

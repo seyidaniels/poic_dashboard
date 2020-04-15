@@ -105,7 +105,7 @@
                                     fill="#707070" />
                             </svg>
                             <span class="input-text">Choose an image...</span>
-                            <input id="file" name="file" type="file" class="cropit-image-input" required="">
+                            <input id="file"  name="file" type="file" class="cropit-image-input" required="">
                             <input type="hidden" name="image-data" class="hidden-image-data" />
                         </span>
                         <div class="form-control">

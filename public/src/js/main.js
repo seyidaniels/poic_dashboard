@@ -44,9 +44,9 @@ $(function() {
                 }, {
                     x: 0,
                     y: 0,
-                    size: 800
+                    size: 500
                 }, {
-                    x: 560,
+                    x: 540,
                     y: 632,
                     size: 25,
                     color: '#B78743'
@@ -62,7 +62,7 @@ $(function() {
           <div>
           <img id="dp_result" src=${url} title="Your DP"/>
           <br>
-          <a class="download-dp" href="${url}" download="POIC_DP_${Math.random() * 1000}">Download Image</a>
+          <a class="download-dp" href="${url}" download="POIC_DP_${Math.random() * 1000}.png">Download Image</a>
         <section>
       `;
                     }
@@ -76,8 +76,8 @@ $(function() {
                     size: 450
                 }, {
                     x: 500,
-                    y: 0,
-                    size: 1300
+                    y: 150,
+                    size: 1200
                 }, {
                     x: 1050,
                     y: 1250,
@@ -95,7 +95,7 @@ $(function() {
           <div>
           <img id="dp_result" src=${url} title="Your DP"/>
           <br>
-          <a class="download-dp" href="${url}" download="POIC_DP_${Math.random() * 1000}">Download Image</a>
+          <a class="download-dp" href="${url}" download="POIC_DP_${Math.random() * 1000}.png">Download Image</a>
         <section>
       `;
                     }
@@ -199,13 +199,20 @@ $(function() {
                 y: 800,
             };
 
-        var userImg = loadImage(imageUrl);
+        var userImg = loadImage(imageUrl, image.size, image.size);
+
         var frameImg = loadImage(frame);
 
-        function loadImage(src) {
+        function loadImage(src, width = null, height = null) {
             var img = new Image();
             img.onload = transformImage;
             img.src = src;
+            if (width) {
+                img.width = width;
+            }
+            if (height) {
+                img.height = height;
+            }
             return img;
         }
 
@@ -225,7 +232,8 @@ $(function() {
             ctx.closePath();
             // ctx.drawImage(userImg, 500, 0, view.width, view.height);
             // ctx.drawImage(userImg, 0, 0, 800, 800);
-            ctx.drawImage(userImg, image.x, image.y, image.size, image.size)
+            var height = image.x == 0 ? userImg.height + 60 : userImg.height
+            ctx.drawImage(userImg, image.x, image.y, userImg.width, height)
 
             ctx.restore();
 
@@ -260,7 +268,6 @@ $(function() {
                 main.innerHTML = mainContent;
         }
     }
-    console.log("DOM fully loaded and parsed");
 });
 `
                     `

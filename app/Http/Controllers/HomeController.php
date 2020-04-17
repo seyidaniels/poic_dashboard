@@ -2,12 +2,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
 
 class HomeController extends Controller
 {
     function index()
     {
         return view('welcome');
+    }
+
+    public function archive () {
+        $projects = Project::whereYear('created_at', '2019')->get();
+        foreach($projects as $project) {
+            $project->delete();
+        }
+        dd("Done");
+;
     }
     public function forOurHeroes() {
         return view ('forourheroes');

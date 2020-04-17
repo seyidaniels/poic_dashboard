@@ -8,8 +8,12 @@ use App\User;
 
 use Auth;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Project extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'title', 'body', 'category', 'is_submitted', 'team_id', 'image', 'category', 'duration', 'objectives', 'goals', 'impact', 'monitoring_evaluation'
     ];

@@ -23,7 +23,11 @@ class ProjectController extends Controller
     {
         $this->middleware(function ($request, $next) {
 
-            if (Auth::user()->team == null) throw new \Exception("You have not created a team yet!", 422);
+            if (Auth::user()->team == null) return response()->json(
+                [
+                    'message' => 'You haave not created a team yet'
+                ], 422
+            );
             return $next($request);
         });
     }
@@ -93,6 +97,7 @@ class ProjectController extends Controller
 
     public function getProject()
     {
+
         $project = Auth::user()->team->project;
         if ($project !== null) {
             return response()->json(['project' => $project, 'success' => true]);

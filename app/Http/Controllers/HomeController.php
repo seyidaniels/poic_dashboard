@@ -17,7 +17,6 @@ class HomeController extends Controller
             $project->delete();
         }
         dd("Done");
-;
     }
     public function forOurHeroes() {
         return view ('forourheroes');

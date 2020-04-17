@@ -2612,6 +2612,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2639,7 +2655,28 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     leaveTeam: function leaveTeam() {
       if (confirm('Are you sure you want to leave this team')) {
-        console.log('Sends a request to the server');
+        this.$vs.loading();
+        axios.get('/api/leave-team').then(function (response) {
+          if (response.data.success) {
+            toastr.success(response.data.message);
+            setTimeout(function () {
+              location.reload();
+            }, 3000);
+          }
+        });
+      }
+    },
+    removeMember: function removeMember(id) {
+      if (confirm('Are you remove this team member?')) {
+        this.$vs.loading();
+        axios.get('/api/remove-team-member/' + id).then(function (response) {
+          if (response.data.success) {
+            toastr.success(response.data.message);
+            setTimeout(function () {
+              location.reload();
+            }, 3000);
+          }
+        });
       }
     }
   }
@@ -10086,7 +10123,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.component-fade-enter-active,\r\n.component-fade-leave-active {\r\n\t-webkit-transition: opacity 0.3s ease;\r\n\ttransition: opacity 0.3s ease;\n}\n.component-fade-enter, .component-fade-leave-to\r\n/* .component-fade-leave-active below version 2.1.8 */ {\r\n\topacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.component-fade-enter-active,\n.component-fade-leave-active {\n\t-webkit-transition: opacity 0.3s ease;\n\ttransition: opacity 0.3s ease;\n}\n.component-fade-enter, .component-fade-leave-to\n/* .component-fade-leave-active below version 2.1.8 */ {\n\topacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -10105,7 +10142,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n[v-cloak] {\r\n\tdisplay: none;\n}\r\n", ""]);
+exports.push([module.i, "\n[v-cloak] {\n\tdisplay: none;\n}\n", ""]);
 
 // exports
 
@@ -10124,7 +10161,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* HIDE RADIO */\n[type='radio'] {\r\n\tposition: absolute;\r\n\topacity: 0;\r\n\twidth: 0;\r\n\theight: 0;\n}\r\n\r\n/* IMAGE STYLES */\n[type='radio'] + img {\r\n\tcursor: pointer;\n}\r\n\r\n/* CHECKED STYLES */\n[type='radio']:checked + img {\r\n\toutline: 5px solid #b78743;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n[type='radio'] {\n\tposition: absolute;\n\topacity: 0;\n\twidth: 0;\n\theight: 0;\n}\n\n/* IMAGE STYLES */\n[type='radio'] + img {\n\tcursor: pointer;\n}\n\n/* CHECKED STYLES */\n[type='radio']:checked + img {\n\toutline: 5px solid #b78743;\n}\n", ""]);
 
 // exports
 
@@ -72228,17 +72265,19 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", {}, [
-                        _c("div", { staticClass: "badge badge-info" }, [
-                          _vm._v("Team head")
-                        ]),
+                        _vm.team.head
+                          ? _c("div", { staticClass: "badge badge-info" }, [
+                              _vm._v("Team head")
+                            ])
+                          : _vm._e(),
                         _vm._v(
-                          "\n                  " +
+                          "\n                    " +
                             _vm._s(
                               _vm.team.head.firstname +
                                 " " +
                                 _vm.team.head.lastname
                             ) +
-                            "\n                "
+                            "\n                  "
                         )
                       ])
                     ]),
@@ -72248,9 +72287,17 @@ var render = function() {
                         "a",
                         {
                           staticClass: "btn btn-primary ml-2",
-                          on: { click: _vm.leaveTeam }
+                          on: {
+                            click: function($event) {
+                              return _vm.leaveTeam()
+                            }
+                          }
                         },
-                        [_vm._v("Leave Team")]
+                        [
+                          _vm.$store.getters.getUser.id == _vm.team.id
+                            ? _c("span", [_vm._v(" Delete Team ")])
+                            : _c("span", [_vm._v("Leave Team")])
+                        ]
                       )
                     ])
                   ])
@@ -72266,38 +72313,82 @@ var render = function() {
                       attrs: { src: _vm.team.image, alt: "..." }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "table-responsive justify-content-center"
-                      },
-                      [
-                        _vm._v("Team Members\n                "),
-                        _c("table", { staticClass: "table my-4" }, [
-                          _vm._m(0),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            _vm._l(_vm.team.members, function(member, index) {
-                              return _c("tr", { key: index }, [
-                                _c("td", { staticClass: "text-white" }, [
-                                  _vm._v(
-                                    _vm._s(member.firstname) +
-                                      " " +
-                                      _vm._s(member.lastname)
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-white" }, [
-                                  _vm._v(_vm._s(member.email))
-                                ])
-                              ])
-                            }),
-                            0
-                          )
-                        ])
-                      ]
-                    ),
+                    _c("div", { staticClass: "table-responsive " }, [
+                      _vm._v("Team Members\n                  "),
+                      _vm._v(" "),
+                      _c("table", { staticClass: "table table-sm " }, [
+                        _c("thead", [
+                          _c("tr", [
+                            _c(
+                              "th",
+                              {
+                                staticClass: "bg-transparent",
+                                attrs: { scope: "col" }
+                              },
+                              [_vm._v("Name")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass: "bg-transparent",
+                                attrs: { scope: "col" }
+                              },
+                              [_vm._v("Email")]
+                            ),
+                            _vm._v(" "),
+                            _vm.$store.getters.getUser.id == _vm.team.id
+                              ? _c(
+                                  "th",
+                                  {
+                                    staticClass: "bg-transparent",
+                                    attrs: { scope: "col" }
+                                  },
+                                  [_vm._v("Action")]
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.team.members, function(member, index) {
+                            return _c("tr", { key: index }, [
+                              _c("td", { staticClass: "text-white" }, [
+                                _vm._v(
+                                  _vm._s(member.firstname) +
+                                    " " +
+                                    _vm._s(member.lastname)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-white" }, [
+                                _vm._v(_vm._s(member.email))
+                              ]),
+                              _vm._v(" "),
+                              _vm.$store.getters.getUser.id == _vm.team.id &&
+                              _vm.$store.getters.getUser.id != member.id
+                                ? _c("td", [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-warning btn-sm",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeMember(member.id)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Remove")]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row my-4" }, [
                       _c("div", { staticClass: "badge badge-danger" }, [
@@ -72364,24 +72455,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "px-0 bg-transparent border-top-0" }, [
-          _c("span", { staticClass: "h6" }, [_vm._v("Name")])
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "px-0 bg-transparent border-top-0" }, [
-          _c("span", { staticClass: "h6" }, [_vm._v("email")])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -104444,7 +104518,7 @@ router.afterEach(function (to, from) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -104456,7 +104530,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var state = {
   callingAPI: false,
   searching: '',
-  serverURI: process.env.MIX_APP_API_TEST,
+  serverURI: "http://poic.local/api/",
   user: null,
   token: null,
   ignoreAuthToken: false,
@@ -104521,7 +104595,6 @@ var actions = {
   mutations: mutations,
   actions: actions
 }));
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -104612,8 +104685,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Stacey\Documents\poic_dashboard\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Stacey\Documents\poic_dashboard\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/seyi/poic/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/seyi/poic/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

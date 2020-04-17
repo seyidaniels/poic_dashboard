@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use App\Helpers\UploadImage;
 use Validator;
 use DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Team;
 use App\User;
 use App\Notifications\TeamCreated;
-use App\Rules\UserExists;
+
 
 class TeamController extends Controller
 {
@@ -24,6 +24,34 @@ class TeamController extends Controller
     public function userHasTeam()
     {
         return Auth::user()->team_id != null ? response()->json(['success' => true, 'has_team' => true]) : response()->json(['success' => true, 'has_team' => false]);
+    }
+
+    public function leaveTeam () {
+        if (Auth::user()->isTeamHead()) {
+            // WE would be removing everyone from the team and deleting it
+            $team = Auth::user()->team;
+            $members = Auth::user()->team->members;
+            foreach($members as $member) {
+                $member->update(['team_id' => null]);
+            }
+            $team->delete();
+            return  response()->json(['success' => true, 'message' => 'Team Deleted successfully']);
+        }
+        Auth::user()->update([
+            'team_id' => null
+        ]);
+        return  response()->json(['success' => true, 'message' => 'You have successfuly left the team']);
+    }
+
+    public function removeTeamMember($id) {
+        $user = User::findOrFail($id);
+        if (!$user->isTeamHead()){
+            $user->update([
+                "team_id" => null
+            ]);
+        }
+        return  response()->json(['success' => true, 'message' => 'User has been removed']);
+
     }
 
     public function createTeam(Request $request)

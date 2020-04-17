@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title', 'firstname', 'lastname', 'phone', 'email', 'password', 'email_token', 'verified', 'is_admin'
+        'title', 'firstname', 'lastname','team_id', 'phone', 'email', 'password', 'email_token', 'verified', 'is_admin'
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function team()
     {
-        return $this->belongsTo('App\Team');
+        return $this->belongsTo(Team::class, 'team_id', 'id');
     }
 
     public function isTeamHead()

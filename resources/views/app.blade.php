@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Professor Ogundipe Innovative Challenge</title>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <title>Professor Ogundipe Innovative Challenge</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
 
     <!-- Libs CSS -->
@@ -30,8 +31,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Theme included stylesheets -->
-<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
     <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
@@ -41,18 +42,22 @@
 
     <style>
         [v-cloak] {
-        display: none;
+            display: none;
         }
     </style>
 
-    <style>body { display: none; }</style>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
 
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-       <div  id="app" v-cloak></div>
+    <div id="app" v-cloak></div>
 
 
 
@@ -77,7 +82,7 @@
     <!-- Theme JS -->
     <script src="dashboard_assets/assets/js/theme.min.js"></script>
 
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="/js/app.js?version={{ date('yhmis') }}'"></script>
 
 
 
@@ -85,5 +90,6 @@
 
 
 
-    </body>
+</body>
+
 </html>

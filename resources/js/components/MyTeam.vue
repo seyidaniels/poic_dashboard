@@ -14,12 +14,12 @@
                   <!-- Title -->
                   <h1 class="header-title">{{team.name}}</h1>
                   <div class>
-                    <div class="badge badge-info">Team head</div>
+                    <div class="badge badge-info" v-if="team.head">Team head</div>
                     {{team.head.firstname +" " +team.head.lastname}}
                   </div>
                 </div>
                 <div class="col-auto">
-                  <a @click="leaveTeam" class="btn btn-primary ml-2">Leave Team</a>
+                  <a @click="leaveTeam()" class="btn btn-primary ml-2"> <span v-if="$store.getters.getUser.id == team.id"> Delete Team </span> <span v-else>Leave Team</span> </a>
                 </div>
               </div>
               <!-- / .row -->
@@ -38,17 +38,15 @@
                   style="max-width: 272px;"
                 >
 
-                <div class="table-responsive justify-content-center">Team Members
-                  <table class="table my-4">
+                <div class="table-responsive ">Team Members
+                  <!-- <table class="table my-4">
                     <thead>
-                      <tr>
                         <th class="px-0 bg-transparent border-top-0">
                           <span class="h6">Name</span>
                         </th>
                         <th class="px-0 bg-transparent border-top-0">
                           <span class="h6">email</span>
                         </th>
-                      </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(member, index) in team.members" :key="index">
@@ -56,7 +54,25 @@
                         <td class="text-white">{{member.email}}</td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table> -->
+
+<table class="table table-sm ">
+  <thead>
+    <tr>
+      <th class="bg-transparent" scope="col">Name</th>
+      <th class="bg-transparent" scope="col">Email</th>
+      <th class="bg-transparent"  v-if="$store.getters.getUser.id == team.id" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr v-for="(member, index) in team.members" :key="index">
+                        <td class="text-white">{{member.firstname}} {{member.lastname}}</td>
+                        <td class="text-white">{{member.email}}</td>
+                        <td  v-if="$store.getters.getUser.id == team.id && $store.getters.getUser.id != member.id"> <button @click="removeMember(member.id)" class="btn btn-warning btn-sm">Remove</button> </td>
+                      </tr>
+  </tbody>
+</table>
+
                 </div>
                 <div class="row my-4">
                   <div class="badge badge-danger">Created {{moment(team.created_at).fromNow()}}</div>
@@ -130,7 +146,28 @@ export default {
 	methods: {
 		leaveTeam() {
 			if (confirm('Are you sure you want to leave this team')) {
-				console.log('Sends a request to the server');
+				this.$vs.loading();
+				axios.get('/api/leave-team').then(response => {
+					if (response.data.success) {
+						toastr.success(response.data.message);
+						setTimeout(() => {
+							location.reload();
+						}, 3000);
+					}
+				});
+			}
+		},
+		removeMember(id) {
+			if (confirm('Are you remove this team member?')) {
+				this.$vs.loading();
+				axios.get('/api/remove-team-member/' + id).then(response => {
+					if (response.data.success) {
+						toastr.success(response.data.message);
+						setTimeout(() => {
+							location.reload();
+						}, 3000);
+					}
+				});
 			}
 		}
 	}

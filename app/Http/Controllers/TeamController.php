@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\UploadImage;
 use Validator;
-use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Team;
 use App\User;
 use App\Notifications\TeamCreated;
@@ -28,13 +28,19 @@ class TeamController extends Controller
 
     public function leaveTeam () {
         if (Auth::user()->isTeamHead()) {
-            // WE would be removing everyone from the team and deleting it
-            $team = Auth::user()->team;
+           DB::transaction(function () {
+                $team = Auth::user()->team;
             $members = Auth::user()->team->members;
             foreach($members as $member) {
                 $member->update(['team_id' => null]);
             }
+
+            if ($team->project) {
+                $team->project->delete();
+            }
             $team->delete();
+           });
+
             return  response()->json(['success' => true, 'message' => 'Team Deleted successfully']);
         }
         Auth::user()->update([

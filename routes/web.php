@@ -25,7 +25,6 @@ Route::post('password/reset', 'PasswordsController@submitRequest')->name('passwo
 Route::get('archive', 'HomeController@archive');
 
 
-
 // Admin Routes
 Route::get('send-mails', 'AdminController@mailAll');
 Route::group(['prefix' => 'admin'], function () {

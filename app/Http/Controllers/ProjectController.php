@@ -48,7 +48,9 @@ class ProjectController extends Controller
             return response()->json(['success' => false, 'message' => "You have submitted a project already and can no longer edit or create a new one"], 422);
         }
 
-        $data['image'] = UploadImage::handle($data['image'], 'projects');
+        if (isset($data['image'])) {
+            $data['image'] = UploadImage::handle($data['image'], 'projects');
+        }
 
         $data['team_id'] = Auth::user()->team->id;
 

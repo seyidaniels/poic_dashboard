@@ -37,7 +37,8 @@ class AdminController extends Controller
         $users = User::all()->count();
         $teams = Team::all()->count();
         $projects = Project::where('is_submitted', 1)->count();
-        return view('admin.dashboard', compact('users', 'teams', 'projects'));
+        $teamsCreated = Team::whereYear('created_at', '=', '2020');
+        return view('admin.dashboard', compact('users', 'teams', 'projects', 'teamsCreated'));
     }
     public function getTeams()
     {

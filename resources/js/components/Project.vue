@@ -149,7 +149,7 @@
           <hr class="mt-4 mb-5">
 
           <!-- Project cover -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="mb-1">Project cover</label>
             <small class="form-text text-muted">Please use an image not larger than 1200px * 600px.</small>
             <input
@@ -175,7 +175,7 @@
                 @click="removeImage"
               >Remove</button>
             </div>
-          </div>
+          </div> -->
 
           <div v-if="!project.is_submitted">
             <!-- Buttons -->
@@ -319,7 +319,7 @@ export default {
 		submitProject(is_submitted = 0) {
 			if (this.validateProject()) {
 				let data = new FormData();
-				data.append('image', this.project.image);
+				// data.append('image', this.project.image);
 				data.append('title', this.project.title);
 				data.append('body', this.project.body);
 				data.append('category', this.project.category);

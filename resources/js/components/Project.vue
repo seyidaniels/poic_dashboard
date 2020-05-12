@@ -351,10 +351,6 @@ export default {
 			this.loading = !this.loading;
 		},
 		validateProject() {
-			if (this.project.image == '') {
-				toastr.warning('Project Cover Picture not found');
-				return false;
-			}
 			if (this.wordCount < 300) {
 				toastr.warning('Project Body should be minimum of 300 words');
 				return false;

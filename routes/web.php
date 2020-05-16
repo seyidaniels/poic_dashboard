@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['middleware' => ['is_super']], function () {
             Route::get('admin-management', 'AdminController@adminView');
             Route::get('teams', 'AdminController@getTeams');
+            Route::get('team-heads', 'AdminController@heads');
             Route::post('create-admin', 'AdminController@createAdmin');
             Route::post('edit-admin', 'AdminController@updateAdminRole');
             Route::get('communication', 'AdminController@communicate');

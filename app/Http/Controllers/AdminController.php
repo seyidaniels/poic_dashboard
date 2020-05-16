@@ -36,14 +36,19 @@ class AdminController extends Controller
     {
         $users = User::all()->count();
         $teams = Team::all()->count();
-        $projects = Project::where('is_submitted', 1)->count();
+        $projects = Project::whereYear('created_at', '=', '2020')->count();
         $teamsCreated = Team::whereYear('created_at', '=', '2020')->count();
         return view('admin.dashboard', compact('users', 'teams', 'projects', 'teamsCreated'));
     }
     public function getTeams()
     {
-        $teams = Team::paginate(10);
+        $teams = Team::whereYear('created_at', '2020')->paginate(10);
         return view('admin.teams', compact('teams'));
+    }
+
+    public function heads () {
+        $teams = Team::whereYear('created_at', '2020')->paginate(10);
+        return view('admin.teamheads', compact('teams'));
     }
     public function getProjects()
     {

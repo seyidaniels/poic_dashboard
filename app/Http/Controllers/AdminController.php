@@ -47,7 +47,7 @@ class AdminController extends Controller
     }
 
     public function heads () {
-        $teams = Team::whereYear('created_at', '2020')->paginate(10);
+        $teams = Team::whereYear('created_at', '2020')->get();
         return view('admin.teamheads', compact('teams'));
     }
     public function getProjects()

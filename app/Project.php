@@ -1,14 +1,10 @@
 <?php
 
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-use App\User;
-
-use Auth;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Auth;
 
 class Project extends Model
 {

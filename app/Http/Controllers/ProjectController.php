@@ -12,7 +12,6 @@ use DB;
 use App\Notifications\ProjectStatus;
 use Notification;
 
-
 class ProjectController extends Controller
 {
     private $message;

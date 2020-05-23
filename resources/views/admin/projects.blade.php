@@ -12,8 +12,8 @@
             @if(count($projects))
           <div class="col-12 col-xl-8" >
 
-              <a class="float-right btn btn-primary" href="/admin/dashboard/project-analytics" >VIEW PROJECT REPORT</a>
-
+              <a class="float-right btn btn-primary" style="margin-left:15px;" href="/admin/dashboard/project-analytics" >VIEW PROJECT REPORT</a>
+              <br><br><br>
 
             @foreach ($projects as $project)
                             <!-- Card -->
@@ -50,7 +50,7 @@
                   <div class="col-auto">
 
                     <!-- Button -->
-                    <a href="/admin/dashboard/project/view/{{$project->id}}" class="btn btn-sm btn-primary d-none d-md-inline-block">
+                    <a href="/admin/dashboard/project/view/{{$project->id}}" class="btn btn-sm btn-primary d-none d-md-inline-block" >
                       VIEW PROJECT
                     </a>
 

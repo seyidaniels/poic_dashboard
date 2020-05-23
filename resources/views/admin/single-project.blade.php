@@ -20,7 +20,7 @@
              <div class="badge badge-info">status</div> {{$project->status}}
 
 
-              <button class="float-right btn btn-primary" onclick="download('POIC_PROJECT_{{$project->team->name}}_{{$project->title}}')">Download</button>
+              <button class="float-right btn btn-primary" onclick="download('POIC_PROJECT_{{$project->team->name}}_{{$project->title}}')" style="margin-left:5px;">Download</button>
 
 
               @if($project->status == 'pending')
@@ -87,7 +87,7 @@
         <!-- Modal: Members -->
 
         @if(Auth::user()->is_super())
-            <div class="modal  fade" id="modalMembers" role="dialog" aria-hidden="true" style="overflow:hidden;">
+            <div class="modal  fade" id="modalMembers" role="dialog" aria-hidden="true" style="overflow:auto;">
       <div class="modal-dialog " role="document">
         <div class="modal-content">
           <div class="modal-card card" data-toggle="lists" data-lists-values='["name"]'>

@@ -16,6 +16,7 @@ Route::get('archive', 'HomeController@archive');
 // Admin Routes
 Route::get('send-mails', 'AdminController@mailAll');
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('delete-old-reviewers', 'AdminController@deleteOldReviewers');
     Route::get('/', 'AdminController@index')->name('view-login');
     Route::post('login', 'Auth\LoginController@authenticate')->name('login');
     Route::get('/logout', 'AdminController@logout');

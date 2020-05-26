@@ -158,7 +158,10 @@ class AdminController extends Controller
             $data['subject'] = $request['subject'];
 
             try {
-                Notification::send($users, new GeneralMessage($data));
+                foreach($users as $user) {
+                    $user->notify(new GeneralMessage($data));
+                }
+                // Notification::send($users, new GeneralMessage($data));
             } catch (\Exception $e) {
                 return redirect()->back()->with(['error' => $e->getMessage()]);
             }
@@ -291,6 +294,18 @@ class AdminController extends Controller
         if (!in_array('reviewer', $shouldMove)) {
             $this->updateProjectStatus($project_id, 'modification');
         }
+    }
+
+    public function deleteOldReviewers(Request $request) {
+        $users = User::where('is_admin', 1)->get();
+
+        foreach($users as $user) {
+            if ($user->role->role == 'reviewer') {
+                $user->delete();
+                $user->role->delete();
+            }
+        }
+        dd("Done");
     }
 
     public function changePassword(Request $request)

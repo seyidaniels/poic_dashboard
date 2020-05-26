@@ -118,8 +118,8 @@
                     <select required name="title" v-model="admin.title" class="form-control" >
                         <option value selected>Select Title</option>
                         <option value="Mr">Mr</option>
+                        <option value="Mrs"> Mrs</option>
                         <option value="Miss"> Miss</option>
-                        <option value="Mrs"> Miss</option>
                         <option value="Dr">Dr</option>
                         <option value="Professor">Professor</option>
                     </select>

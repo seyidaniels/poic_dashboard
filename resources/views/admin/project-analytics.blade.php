@@ -11,7 +11,7 @@
         <div class="row  mt-4 mb-4">
           <div class="col-12 col-xl-12">
               <h2>All Projects</h2>
-              <button class="float-right btn btn-primary" onclick="download('POIC_PROJECT_REVIEW_ANALYTICS')">Download</button>
+              <button class="float-right btn btn-primary" onclick="download('POIC_PROJECT_REVIEW_ANALYTICS')">Download</button><br>
 
   <table class="table table-responsive table-bordered" id="project-table" >
     <thead>

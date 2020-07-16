@@ -128,7 +128,7 @@ class Project extends Model
             'relevance',
             'feasibility',
             'viability',
-            'cost'
+            'cost' 
         ];
         // Then sort the reviews by category and get the weighted Average
         // return $reviewT

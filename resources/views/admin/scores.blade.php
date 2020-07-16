@@ -37,7 +37,7 @@
         @foreach ($projects as $i => $project)
                   <tr>
         <th scope="row" class="tables-row">{{$i + 1}}</th>
-        <td class="tables-first">{{$project->team->name}} <div class="badge badge-info">{{$project->category}}</div></td>
+        <td class="tables-first">{{ $project->team->name}} <div class="badge badge-info">{{$project->category}}</div></td>
         <td class="tables-handle">{{$project->status}}</td>
         <td class="tables-last">{{$project->score('reviewer')}}</td>
         <td class="tables-last">{{$project->score('judge')}}</td>
@@ -58,11 +58,8 @@
 
 
 @section('extra-js')
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css
-">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js
 "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js

@@ -44,10 +44,13 @@
         <td class="tables-first">{{ $project->team->name}} <div class="badge badge-info">{{$project->category}}</div></td>
         <td class="tables-handle">{{$project->status}}</td>
         <td class="tables-handle">
+          @if (count($project->scoreCategories('reviewer')) > 0)
           @foreach ($project->scoreCategories('reviewer') as $key => $item)
-              {{$key}} => {{$item}}
-          @endforeach
+          {{$key}} => {{$item}}
+      @endforeach
 
+          @endif
+      
         </td>
         <td class="tables-last">{{$project->score('reviewer')}}</td>
         {{-- <td class="tables-last">{{$project->score('judge')}}</td> --}}

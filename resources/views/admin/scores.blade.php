@@ -24,13 +24,17 @@
         <th scope="col">
           <a href="#" class="text-muted sort" data-sort="tables-handle"> Status </a>
         </th>
+        <th scope="col">
+          <a href="#" class="text-muted sort" data-sort="tables-handle"> Score Categories </a>
+
+        </th>
         </th>
                 <th scope="col">
           <a href="#" class="text-muted sort text-center" data-sort="tables-handle"> Score (Reviewes) </a>
         </th>
-           <th scope="col">
+           {{-- <th scope="col">
           <a href="#" class="text-muted sort " data-sort="tables-handle"> Score (Judges) </a>
-        </th>
+        </th> --}}
       </tr>
     </thead>
     <tbody class="list">
@@ -39,8 +43,14 @@
         <th scope="row" class="tables-row">{{$i + 1}}</th>
         <td class="tables-first">{{ $project->team->name}} <div class="badge badge-info">{{$project->category}}</div></td>
         <td class="tables-handle">{{$project->status}}</td>
+        <td class="tables-handle">
+          @foreach ($project->scoreCategories('reviewer') as $key => $item)
+              {{$key}} => {{$item}}
+          @endforeach
+
+        </td>
         <td class="tables-last">{{$project->score('reviewer')}}</td>
-        <td class="tables-last">{{$project->score('judge')}}</td>
+        {{-- <td class="tables-last">{{$project->score('judge')}}</td> --}}
       </tr>
         @endforeach
 

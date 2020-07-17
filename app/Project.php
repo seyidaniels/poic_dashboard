@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
@@ -92,11 +93,12 @@ class Project extends Model
     }
 
     // This shows the list of Lecturers who have not reviewed their projects
-    public function notReviewedBy() {
+    public function notReviewedBy()
+    {
         $lecturersNotReviewed = [];
         $reviewIds = $this->reviews()->where('score', null)->select('reviewer_id')->get();
         $gottenReviewer = [];
-        foreach($reviewIds as $reviewer) {
+        foreach ($reviewIds as $reviewer) {
             if (in_array($reviewer, $gottenReviewer)) continue;
             $user = User::find($reviewer)->first();
             array_push($lecturersNotReviewed, $user);
@@ -128,7 +130,7 @@ class Project extends Model
             'relevance',
             'feasibility',
             'viability',
-            'cost' 
+            'cost'
         ];
         // Then sort the reviews by category and get the weighted Average
         // return $reviewT
@@ -145,5 +147,26 @@ class Project extends Model
             $totalScore += $categorySum;
         }
         return round($totalScore, 1);
+    }
+
+    public function scoreCategories($type)
+    {
+        $reviews = $this->reviews;
+        $reviewTypes = [];
+        foreach ($reviews as $review) {
+            if ($review->user->role->role == $type) {
+                array_push($reviewTypes, $review);
+            }
+
+            if (count($reviewTypes) == 0)  return [];
+
+            $categoryScore = [];
+
+            foreach ($reviewTypes as $review) {
+                $categoryScore[$review->vetting_category] += $review->score;
+            }
+
+            return $categoryScore;
+        }
     }
 }

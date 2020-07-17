@@ -152,15 +152,12 @@ class Project extends Model
     public function scoreCategories($type)
     {
         $reviews = $this->reviews;
-        $reviewTypes = [];
+        $categoryScore = [];
+
         foreach ($reviews as $review) {
             if ($review->user->role->role == $type) {
                 array_push($reviewTypes, $review);
             }
-
-            if (count($reviewTypes) == 0)  return [];
-
-            $categoryScore = [];
 
             foreach ($reviewTypes as $review) {
                 if (!isset($categoryScore[$review->vetting_category])) {
@@ -171,7 +168,8 @@ class Project extends Model
                 }
             }
 
-            return $categoryScore;
         }
+        return $categoryScore;
+
     }
 }

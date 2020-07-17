@@ -163,7 +163,12 @@ class Project extends Model
             $categoryScore = [];
 
             foreach ($reviewTypes as $review) {
-                $categoryScore[$review->vetting_category] += $review->score;
+                if (!isset($categoryScore[$review->vetting_category])) {
+                    $categoryScore[$review->vetting_category] =  $review->score;
+                }else {
+                    $categoryScore[$review->vetting_category] += $review->score;
+
+                }
             }
 
             return $categoryScore;

@@ -159,19 +159,18 @@ class Project extends Model
             if ($review->user->role->role == $type) {
                 array_push($reviewTypes, $review);
             }
+        }
 
-            if (count($reviewTypes) == 0)  return [];
+        if (count($reviewTypes) == 0)  return [];
 
 
-            foreach ($reviewTypes as $review) {
-                if (!isset($categoryScore[$review->vetting_category])) {
-                    $categoryScore[$review->vetting_category] =  $review->score;
-                }else {
-                    $categoryScore[$review->vetting_category] += $review->score;
+        foreach ($reviewTypes as $review) {
+            if (!isset($categoryScore[$review->vetting_category])) {
+                $categoryScore[$review->vetting_category] =  $review->score;
+            }else {
+                $categoryScore[$review->vetting_category] += $review->score;
 
-                }
             }
-
         }
         return $categoryScore;
 
